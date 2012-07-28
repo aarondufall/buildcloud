@@ -1,5 +1,16 @@
 Buildcloud::Application.routes.draw do
-  devise_for :users
+  resources :teams
+
+  devise_for :users,
+             :controllers => { :registrations => "registrations" } 
+    
+
+  resources  :users, :only => [:index, :show] do
+    member do
+        put 'add_to_team'
+        put 'remove_from_team'
+    end
+  end
 
   root to: 'static_pages#home'
 

@@ -63,6 +63,14 @@ color: #fff;
   text-decoration: none;
 }
 
+/* Title */
+#title {
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 10px;
+  text-align: right; 
+}
+
+
 /* footer */
 footer {
   margin-top: 45px;
