@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120727095742) do
+ActiveRecord::Schema.define(:version => 20120729012635) do
 
   create_table "teams", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(:version => 20120727095742) do
     t.integer "team_id"
     t.integer "user_id"
   end
+
+  add_index "teams_users", ["team_id", "user_id"], :name => "by_team_and_user", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
