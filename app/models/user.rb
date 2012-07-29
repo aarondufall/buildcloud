@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  after_create :set_user_on_team
+  before_destroy { teams.clear }
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -10,9 +13,9 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_and_belongs_to_many :teams
-  has_one :owned_team, :class_name => "Team", :foreign_key => 'user_id'
+  has_one :owned_team, :class_name => "Team", :foreign_key => 'user_id', :dependent => :destroy
 
-  after_create :set_user_on_team
+  
 
 def self.search(search)
   	if search
