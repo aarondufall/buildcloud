@@ -1,0 +1,22 @@
+<h1>Edit Profile</h1>
+<div class="row">
+<div class="span4 offset4">
+<%= form_for @profile do |f| %>
+	<%= f.label :name %>
+    <%= f.text_field :name, :value => @profile.name %>
+    
+    <%= f.label :company %> 
+    <%= f.text_field :company, :value => @profile.company %>
+
+    <%= f.label :location %>
+    <%= f.text_field :location, :value => @profile.location %>
+
+   <%= f.label :professional_bio %>
+    <%= f.text_area :professional_bio, :value => @profile.professional_bio %> 
+
+    <%= f.submit "Update", :class => 'btn' %>
+
+
+ <% end %> 
+</div>
+</div>

@@ -1,4 +1,6 @@
 Buildcloud::Application.routes.draw do
+  resources :profiles
+
   resources :teams
 
   devise_for :users,
