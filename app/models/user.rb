@@ -20,16 +20,18 @@ class User < ActiveRecord::Base
   
   attr_accessible :email, :password, :password_confirmation, :remember_me, :profile_attributes
 
-def self.search(search)
-  	if search
-      #User.joins(:profile).where("profiles.name" => "%#{search}%")
-    	find(:all, :conditions => ['email LIKE ?', "%#{search}%"])
-  	else
-    	find(:all)
-  	end
-end
+  searchable do
+    text :users_name do
+      profile.name
+    end
+  end
+
+
 
   private
+    
+
+
     def set_user_on_team
       self.create_owned_team(:name => self.profile.name ).users << self
 

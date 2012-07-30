@@ -2,7 +2,11 @@ class UsersController < ApplicationController
 
 
 	def index
-		@users = User.search(params[:search])
+		@search = User.search do
+    		fulltext params[:search]
+    		paginate :page => params[:page], :per_page => 20
+    	end
+		@users = @search.results
 	end
 
 	def add_to_team
