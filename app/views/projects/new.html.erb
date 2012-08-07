@@ -1,0 +1,19 @@
+<h1>New Project</h1>
+ <div class="row">
+  <div class="span4 offset4">
+
+  <%= form_for @project do |f| %>
+
+  <%= f.label :name %><br />
+  <%= f.text_field :name %>
+
+  <%= f.label :job_number %><br />
+  <%= f.text_field :job_number %>
+
+  <%= f.submit "Create Project", :class => 'btn btn-success' %>
+
+
+<% end %>
+
+ </div>
+</div>
