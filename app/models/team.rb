@@ -9,5 +9,5 @@ class Team < ActiveRecord::Base
   	raise ActiveRecord::Rollback if self.users.include? user
   end
 
-  
+
 end
