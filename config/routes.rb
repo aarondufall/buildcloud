@@ -1,5 +1,9 @@
 Buildcloud::Application.routes.draw do
-  resources :projects
+  
+
+  resources :projects do
+    resources :tasklists
+  end
 
   resources :profiles
 

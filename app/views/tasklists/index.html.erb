@@ -1,0 +1,29 @@
+<h3><%= link_to @project.name, @project %></h3>
+
+<hr />
+<ul class="navlist">
+<li>Task Lists</li>  
+
+<li><%= link_to 'Add task list', new_project_tasklist_path(@project), :class => 'btn btn-mini'%></li>
+</ul>
+
+<% @tasklists.each do |tasklist| %>
+<table class="table table-bordered table-condensed">
+  <thead>
+    <tr>
+    	<th><%= tasklist.name %> - 
+    
+    		Start Date: <div class="date"><%= tasklist.start_date%></div>   
+    		Due Date: <div class="date"><%= tasklist.end_date%></div>
+    	</th>
+    </tr>
+  </thead>
+  <tbody>
+        <tr>
+          <td><input type="checkbox" name="task" value="task">this is a task </td>  
+        </tr>
+  
+    
+  </tbody>
+</table>
+<% end %>

@@ -1,0 +1,16 @@
+<h1>Edit Project</h1>
+<div class="row">
+<div class="span4 offset4">
+<%= form_for @project do |f| %>
+	<%= f.label :name %>
+    <%= f.text_field :name, :value => @project.name %>
+    
+    <%= f.label :job_number %>
+    <%= f.text_field :job_number, :value => @project.job_number %>
+
+    <%= f.submit "Update", :class => 'btn' %>
+
+
+ <% end %> 
+</div>
+</div>

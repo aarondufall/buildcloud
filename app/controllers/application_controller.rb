@@ -3,10 +3,13 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_team
 
+
   private
 
   def current_team
     current_user.owned_team
   end
+
+ 
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120807093126) do
+ActiveRecord::Schema.define(:version => 20120811054654) do
 
   create_table "profiles", :force => true do |t|
     t.string   "name"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(:version => 20120807093126) do
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
     t.integer  "team_id"
+  end
+
+  create_table "tasklists", :force => true do |t|
+    t.string   "name",       :default => "", :null => false
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "project_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "teams", :force => true do |t|

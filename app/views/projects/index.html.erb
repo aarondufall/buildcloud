@@ -16,7 +16,12 @@
           <td><%= link_to project.name, project_path(project) %></td>
         
           <td>
-        	
+           <%= link_to project, method: :delete, :class => 'btn btn-mini btn-danger pull-right', confirm: "You sure?" do %> 
+           <i class="icon-remove icon-white"></i> delete
+           <% end %> 
+        	 <%= link_to edit_project_path(project), :class => 'btn btn-mini pull-right', :method => 'get' do %>
+             <i class="icon-pencil icon-white"></i> edit
+            <% end %>
           </td>
 
         </tr>

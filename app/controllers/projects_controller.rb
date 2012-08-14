@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+	respond_to :html
 
 	def index
 		@projects = current_projects.all
@@ -6,6 +7,7 @@ class ProjectsController < ApplicationController
 
 	def show
 		@project = current_projects.find(params[:id])
+		@tasklists = @project.tasklists
 	end
 
 	def new
@@ -21,6 +23,34 @@ class ProjectsController < ApplicationController
 			render 'new'
 		end
 	end
+
+
+	def edit
+		@project = Project.find(params[:id])
+		respond_with @project
+	end	
+
+	def update
+		@project = Project.find(params[:id])
+		if @project.update_attributes(params[:project])
+			flash[:success] = "project sucessfully updated"
+			redirect_to projects_path
+		else
+			flash[:error] = "project failed to update"
+			render 'edit'
+		end
+	end
+
+	def destroy
+		if Project.find(params[:id]).destroy
+    		flash[:success] = "Project deleteed."
+    		redirect_to projects_path
+    	else
+    		flash[:error] = "project failed to delete"
+    		redirect_to projects_path
+    	end
+	end
+
 
 	private
 
