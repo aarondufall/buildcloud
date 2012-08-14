@@ -22,7 +22,14 @@
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>
-    	<th><%= tasklist.name %></th>
+    	<th>
+        <%= tasklist.name %> <%= link_to edit_project_tasklist_path(@project, tasklist), :class => 'btn btn-mini', :method => 'get' do %>
+             <i class="icon-pencil icon-white"></i>
+            <% end %>
+            <%= link_to project_tasklist_path(@project,tasklist), method: :delete, :class => 'btn btn-mini btn-danger', confirm: "You sure?" do %> 
+           <i class="icon-remove icon-white"></i>
+           <% end %>
+      </th>
     	<th>
     		Start Date: <div class="date"><%= tasklist.start_date%></div>   
     		Due Date: <div class="date"><%= tasklist.end_date%></div>

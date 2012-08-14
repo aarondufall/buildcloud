@@ -1,0 +1,21 @@
+<h1>Edit List</h1>
+<div class="row">
+<div class="span4 offset4">
+<%= form_for [@tasklist.project, @tasklist] do |f| %>
+
+	<%= f.label :name %>
+    <%= f.text_field :name, :value => @tasklist.name %>
+    
+    <%= f.label :start_date %>
+  	<%= f.date_select :start_date, :value => @tasklist.start_date %>
+
+  	<%= f.label :end_date %>
+  	<%= f.date_select :end_date, :value => @tasklist.end_date %>
+    
+    <%= f.submit "Update", :class => 'btn' %>
+
+
+ <% end %> 
+ <%=  link_to 'back', project_path(@tasklist.project), :class => 'btn'%>
+</div>
+</div>
