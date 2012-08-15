@@ -2,33 +2,36 @@
 
 <hr />
 <ul class="navlist">
-<li>Task Lists</li>  
+<li>Task Lists</li>
 
-<li><%= link_to 'Add task list', new_project_tasklist_path(@project), :class => 'btn btn-mini'%></li>
+<li><%= link_to 'Add task list', [:new, @project, :tasklist], :class => 'btn btn-mini'%></li>
 </ul>
 
 <% @tasklists.each do |tasklist| %>
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>
-    	<th><%= tasklist.name %> <%= link_to edit_project_tasklist_path(@project, tasklist), :class => 'btn btn-mini', :method => 'get' do %>
+    	<th>
+        <%= tasklist.name %>
+        <div class='pull-right'>
+          Start Date: <span class="date"><%= tasklist.start_date%></span>
+          Due Date: <span class="date"><%= tasklist.end_date%></span>
+          <%= link_to [:edit, @project, tasklist], :class => 'btn btn-mini', :method => 'get' do %>
              <i class="icon-pencil icon-white"></i>
             <% end %>
-            <%= link_to project_tasklist_path(@project,tasklist), method: :delete, :class => 'btn btn-mini btn-danger', confirm: "You sure?" do %> 
-           <i class="icon-remove icon-white"></i>
-           <% end %>
-    
-    		Start Date: <div class="date"><%= tasklist.start_date%></div>   
-    		Due Date: <div class="date"><%= tasklist.end_date%></div>
+          <%= link_to [@project, tasklist], method: :delete, :class => 'btn btn-mini btn-danger', confirm: "You sure?" do %>
+            <i class="icon-remove icon-white"></i>
+          <% end %>
+        </div>
     	</th>
     </tr>
   </thead>
   <tbody>
         <tr>
-          <td><input type="checkbox" name="task" value="task">this is a task </td>  
+          <td><input type="checkbox" name="task" value="task"> this is a task</td>
         </tr>
-  
-    
+
+
   </tbody>
 </table>
 <% end %>

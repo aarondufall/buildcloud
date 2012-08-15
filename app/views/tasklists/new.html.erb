@@ -1,16 +1,17 @@
 <h1>New TaskList</h1>
  <div class="row">
-  <div class="span4 offset4">
+  <div class="span4 well offset4">
 
-  <%= form_for @tasklist, :url => project_tasklists_path do |f| %>
+  <%= form_for [@tasklist.project, @tasklist] do |f| %>
 
   <%= f.label :name %><br />
   <%= f.text_field :name %>
+
   <%= f.label :start_date %>
-  <%= f.date_select :start_date %>
+  <div><%= f.date_select :start_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
 
   <%= f.label :end_date %>
-  <%= f.date_select :end_date %>
+  <div><%= f.date_select :end_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
 
 
   <%= f.submit "Create List", :class => 'btn btn-success' %>

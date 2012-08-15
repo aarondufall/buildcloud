@@ -13,7 +13,7 @@
 </div>
 
 <ul class="navlist">
-<li>Task Lists</li>  
+<li>Task Lists</li>
 
 <li><%= link_to 'Add task list', new_project_tasklist_path(@project), :class => 'btn btn-mini'%></li>
 </ul>
@@ -23,33 +23,33 @@
   <thead>
     <tr>
     	<th>
-        <%= tasklist.name %> <%= link_to edit_project_tasklist_path(@project, tasklist), :class => 'btn btn-mini', :method => 'get' do %>
+        <%= tasklist.name %> <%= link_to edit_project_tasklist_path(@project, tasklist, :from => "project"), :class => 'btn btn-mini', :method => 'get' do %>
              <i class="icon-pencil icon-white"></i>
             <% end %>
-            <%= link_to project_tasklist_path(@project,tasklist), method: :delete, :class => 'btn btn-mini btn-danger', confirm: "You sure?" do %> 
+            <%= link_to project_tasklist_path(@project,tasklist), method: :delete, :class => 'btn btn-mini btn-danger', confirm: "You sure?" do %>
            <i class="icon-remove icon-white"></i>
            <% end %>
       </th>
     	<th>
-    		Start Date: <div class="date"><%= tasklist.start_date%></div>   
+    		Start Date: <div class="date"><%= tasklist.start_date%></div>
     		Due Date: <div class="date"><%= tasklist.end_date%></div>
     	</th>
-    
-    		
-    	
+
+
+
     </tr>
   </thead>
   <tbody>
         <tr>
           <td><input type="checkbox" name="task" value="task"> </td>
-        
+
           <td>
         	this is a task
           </td>
 
         </tr>
-  
-    
+
+
   </tbody>
 </table>
 <% end %>

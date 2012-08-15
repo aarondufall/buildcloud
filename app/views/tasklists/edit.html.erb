@@ -1,21 +1,28 @@
 <h1>Edit List</h1>
 <div class="row">
 <div class="span4 offset4">
-<%= form_for [@tasklist.project, @tasklist] do |f| %>
+  <%= form_for [@tasklist.project, @tasklist] do |f| %>
 
-	<%= f.label :name %>
-    <%= f.text_field :name, :value => @tasklist.name %>
-    
-    <%= f.label :start_date %>
-  	<%= f.date_select :start_date, :value => @tasklist.start_date %>
+    <%= hidden_field_tag :from, params[:from] %>
 
-  	<%= f.label :end_date %>
-  	<%= f.date_select :end_date, :value => @tasklist.end_date %>
-    
+    <div class='well'>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, :value => @tasklist.name %>
+
+      <%= f.label :start_date %>
+      <%= f.date_select :start_date, :value => @tasklist.start_date %>
+
+      <%= f.label :end_date %>
+      <%= f.date_select :end_date, :value => @tasklist.end_date %>
+
+    </div>
+
     <%= f.submit "Update", :class => 'btn' %>
+    <%=  link_to 'Back', @tasklist.project, :class => 'btn'%>
 
-
- <% end %> 
- <%=  link_to 'back', project_path(@tasklist.project), :class => 'btn'%>
+  <% end %>
 </div>
+
+
 </div>
