@@ -2,34 +2,38 @@ class TasklistsController < ApplicationController
 	respond_to :html
 
 	def index
-		@project = current_project(params[:project_id])
-		@tasklists = @project.tasklists
+		@project = current_project
+		@tasklists = current_tasklists.all
 	end
 
 	def new
-		@tasklist = current_project(params[:project_id]).tasklists.build
+		@tasklist = current_tasklists.build
 	end
 
 	def create
-		@tasklist = current_project(params[:project_id]).tasklists.build(params[:tasklist])
+		@tasklist = current_tasklists.build(params[:tasklist])
 		if @tasklist.save
 			flash[:success] = "Added new tasklist #{@tasklist.name} created"
-			redirect_to project_path(params[:project_id])
+			redirect_to current_project
 		else
 			render 'new'
-		end	
+		end
 	end
 
 	def edit
-		@tasklist = Tasklist.find(params[:id])
+		@tasklist = current_tasklists.find(params[:id])
 		respond_with @tasklist
-	end	
+	end
 
 	def update
-		@tasklist = Tasklist.find(params[:id])
+		@tasklist = current_tasklists.find(params[:id])
 		if @tasklist.update_attributes(params[:tasklist])
 			flash[:success] = "List sucessfully updated"
-			redirect_to project_path(@tasklist.project)
+			if redirect_to_project?
+				redirect_to @tasklist.project
+			else
+				redirect_to [@tasklist.project, :tasklists]
+			end
 		else
 			flash[:error] = "List failed to update"
 			render 'edit'
@@ -37,18 +41,23 @@ class TasklistsController < ApplicationController
 	end
 
 	def destroy
-		if Tasklist.find(params[:id]).destroy
-    		flash[:success] = "List deleted."
-    		redirect_to project_path(current_project(params[:project_id]))
-    	else
-    		flash[:error] = "List failed to delete"
-    		redirect_to project_path(current_project(params[:project_id]))
-    	end
+		current_tasklists.find(params[:id]).destroy
+		flash[:success] = "List deleted."
+		redirect_to current_project
 	end
 
 	private
 
-	def current_project(project)
-		Project.find(project)
+	def redirect_to_project?
+		params[:from] == 'project'
 	end
+
+	def current_project
+		@current_project ||= current_projects.find(params[:project_id])
+	end
+
+	def current_tasklists
+		current_project.tasklists
+	end
+
 end
