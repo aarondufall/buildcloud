@@ -8,20 +8,24 @@
     <div class='well'>
 
       <%= f.label :name %>
-      <%= f.text_field :name, :value => @tasklist.name %>
+      <%= f.text_field :name %>
 
       <%= f.label :start_date %>
-      <%= f.date_select :start_date, :value => @tasklist.start_date %>
+      <div><%= f.date_select :start_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
 
       <%= f.label :end_date %>
-      <%= f.date_select :end_date, :value => @tasklist.end_date %>
+      <div><%= f.date_select :end_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
 
-    </div>
+    
 
-    <%= f.submit "Update", :class => 'btn' %>
-    <%=  link_to 'Back', @tasklist.project, :class => 'btn'%>
-
+    <%= f.submit "Update", :class => 'btn btn-primary' %>
+    
+    <%= link_to [@tasklist.project, @tasklist] , method: :delete, :class => 'btn btn-danger', confirm: "You sure?" do %>
+            <i class="icon-trash icon-white"></i> Delete
+      <% end %>
+      <%= link_to 'Cancel', @tasklist.project, :class => 'btn'%>
   <% end %>
+  </div>
 </div>
 
 
