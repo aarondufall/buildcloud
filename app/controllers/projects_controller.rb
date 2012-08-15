@@ -11,11 +11,13 @@ class ProjectsController < ApplicationController
 	end
 
 	def new
-		@project = current_projects.build
+		@team    = current_user.owned_team
+		@project = @team.projects.build
 	end
 
 	def create
-		@project = current_projects.build(params[:project])
+		@team    = current_user.owned_team
+		@project = @team.projects.build(params[:project])
 		if @project.save
 			flash[:success] = "Added new project #{@project.name}"
 			redirect_to projects_path
@@ -26,12 +28,12 @@ class ProjectsController < ApplicationController
 
 
 	def edit
-		@project = Project.find(params[:id])
+		@project = current_projects.find(params[:id])
 		respond_with @project
-	end	
+	end
 
 	def update
-		@project = Project.find(params[:id])
+		@project = current_projects.find(params[:id])
 		if @project.update_attributes(params[:project])
 			flash[:success] = "project sucessfully updated"
 			redirect_to projects_path
@@ -42,20 +44,9 @@ class ProjectsController < ApplicationController
 	end
 
 	def destroy
-		if Project.find(params[:id]).destroy
-    		flash[:success] = "Project deleteed."
-    		redirect_to projects_path
-    	else
-    		flash[:error] = "project failed to delete"
-    		redirect_to projects_path
-    	end
-	end
-
-
-	private
-
-	def current_projects
-		current_team.projects
+		current_projects.find(params[:id]).destroy
+		flash[:success] = "Project deleteed."
+  	redirect_to projects_path
 	end
 
 end
