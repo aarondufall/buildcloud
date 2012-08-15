@@ -17,16 +17,11 @@
 
 			</ul>	
 			<ul class="nav pull-right">
-				
-					
-					
-					
 					<li id="fat-menu" class="dropdown">
 				       	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-
 				       		<i class="icon-user icon-white"></i>
 				       		<%= current_user.profile.name %>
-				           <b class="caret"></b>
+				            <b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
 							<li><%= link_to "Profile", edit_profile_path(current_user.profile) %></li> 
@@ -37,15 +32,19 @@
 						</ul> 
 					</li>
 					<li class="divider-vertical"></li>
-				<% else %>
-				<li> 
-					<%= link_to root_path do %>
-			    	<%= content_tag :i, '', :class => 'icon-home icon-white' %> Home
-					<% end -%>
-				</li> 
-				<li><%= link_to "Sign in", new_user_session_path %></li>
-				<% end %>
-			</ul> 
+
+
+			<% else %>
+				<ul class="nav pull-right">
+					<li> 
+						<%= link_to root_path do %>
+			    		<%= content_tag :i, '', :class => 'icon-home icon-white' %> Home
+						<% end -%>
+					</li> 
+					<li><%= link_to "Sign in", new_user_session_path %></li>
+				</ul> 
+			<% end %>
+				
 		</nav>
    		</div>
   	</div>
