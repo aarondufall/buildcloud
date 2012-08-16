@@ -43,9 +43,14 @@
      </tr>
   </thead>
   <tbody>
+        <% tasklist.tasks.each do |task| %>
         <tr>
-          <td>this is a task </td>
+          <td>task.name</td>
         </tr>
+        <% end %>
   </tbody>
 </table>
+<%= link_to 'Add task', [:new, @project, tasklist, :task], :class => 'btn btn-mini' %>
+
+                                              
 <% end %>
