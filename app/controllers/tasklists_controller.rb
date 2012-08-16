@@ -52,9 +52,7 @@ class TasklistsController < ApplicationController
 		params[:from] == 'project'
 	end
 
-	def current_project
-		@current_project ||= current_projects.find(params[:project_id])
-	end
+	
 
 	def current_tasklists
 		current_project.tasklists
