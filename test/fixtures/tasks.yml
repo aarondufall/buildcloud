@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  focused: false
+  created_by: 1
+  assigned_to: 1
+  scheduled: 2012-08-16 14:20:17
+  completed_at: 2012-08-16 14:20:17
+
+two:
+  name: MyString
+  focused: false
+  created_by: 1
+  assigned_to: 1
+  scheduled: 2012-08-16 14:20:17
+  completed_at: 2012-08-16 14:20:17

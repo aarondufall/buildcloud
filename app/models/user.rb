@@ -13,13 +13,14 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_and_belongs_to_many :teams
-
   has_many :projects, :through => :teams
-
   has_one :owned_team, :class_name => "Team", :foreign_key => 'user_id', :dependent => :destroy
 
   has_one :profile
   accepts_nested_attributes_for :profile
+
+  has_many :tasks, :class_name => "Task", :foreign_key => 'user_id', :dependent => :destroy
+  has_many :created_tasks, :class_name => "Task", :foreign_key => 'user_id', :dependent => :destroy
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :profile_attributes
 
