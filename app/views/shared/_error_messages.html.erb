@@ -1,0 +1,10 @@
+<% if @tasklist.errors.any? %> 
+	<div id="error_explanation">
+		<div class="alert alert-error">
+			The form contains <%= @tasklist.errors.full_messages %>.
+		</div>
+		<ul>
+		
+		</ul>
+	</div> 
+<% end %>
