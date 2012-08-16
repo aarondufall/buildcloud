@@ -25,28 +25,26 @@
     	<th>
         <%= tasklist.name %>
         <div class='pull-right'>
-          Scheduled: <span class="date"><%= tasklist.start_date%></span>
-          To: <span class="date"><%= tasklist.end_date%></span>
-          <%= link_to [:edit, @project, tasklist], :class => 'btn btn-mini', :method => 'get' do %>
-             <i class="icon-pencil icon-white"></i>
+          Start:<span class="date"> <%= l tasklist.start_date %> </span>
+          Duration:<span class="date"> <%= distance_of_time_in_words(tasklist.start_date, tasklist.end_date) %></span>
+       
+      
+       
+        <%= link_to [:edit, @project, tasklist], :class => 'btn btn-mini',
+                                                 :method => 'get' do %>
+            <i class="icon-pencil icon-white"></i>
             <% end %>
-          <%= link_to [@project, tasklist], method: :delete, :class => 'btn btn-mini btn-danger', confirm: "You sure?" do %>
-            <i class="icon-remove icon-white"></i>
-          <% end %>
+         </div> 
       </th>
-    	
-
-
-
-    </tr>
+     </tr>
   </thead>
   <tbody>
         <tr>
-          <td><input type="checkbox" name="task" value="task"> this is a task </td>
+          <td>this is a task </td>
 
           
         	
-          
+
 
         </tr>
 

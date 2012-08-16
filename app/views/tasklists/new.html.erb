@@ -1,4 +1,4 @@
-<h1>New TaskList</h1>
+<h1>New List</h1>
  <div class="row">
   <div class="span4 well offset4">
 
@@ -7,15 +7,15 @@
   <%= f.label :name %><br />
   <%= f.text_field :name %>
 
-  <%= f.label :start_date %>
+  <%= f.label 'Start date (optional)' %>
   <div><%= f.date_select :start_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
 
-  <%= f.label :end_date %>
+  <%= f.label 'completion date (optional)' %>
   <div><%= f.date_select :end_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
 
 
   <%= f.submit "Create List", :class => 'btn btn-success' %>
-
+  <%= link_to 'Cancel', @tasklist.project, :class => 'btn'%>
 
   <% end %>
 

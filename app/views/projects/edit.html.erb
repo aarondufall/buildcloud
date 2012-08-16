@@ -1,6 +1,6 @@
 <h1>Edit Project</h1>
 <div class="row">
-<div class="span4 offset4">
+<div class="span4 well offset4">
 <%= form_for @project do |f| %>
 	<%= f.label :name %>
     <%= f.text_field :name, :value => @project.name %>
@@ -8,10 +8,13 @@
     <%= f.label :job_number %>
     <%= f.text_field :job_number, :value => @project.job_number %>
 
-    <%= f.submit "Update", :class => 'btn' %>
+    <%= f.submit "Update", :class => 'btn btn-primary' %>
 
-
+    <%= link_to @project, method: :delete, :class => 'btn btn-danger', confirm: "You sure?" do %> 
+           <i class="icon-remove icon-white"></i> delete
+    <% end %> 
+    <%=  link_to 'back', projects_path, :class => 'btn'%>
  <% end %> 
- <%=  link_to 'back', projects_path, :class => 'btn'%>
+ 
 </div>
 </div>

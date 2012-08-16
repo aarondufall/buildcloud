@@ -22,7 +22,7 @@
         <td>
 
         	<% unless user_signed_in? && user == current_user %>
-        		<%= link_to add_to_team_user_path(user), :class => 'btn btn-mini pull-right', :method => 'put' do %>
+        		<%= link_to add_to_team_user_path(user), :class => 'pull-right', :method => 'put' do %>
 	    		   <i class="icon-plus icon-white"></i> Add
             <% end %>
         	<% end %>
