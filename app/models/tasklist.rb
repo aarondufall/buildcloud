@@ -3,7 +3,16 @@ class Tasklist < ActiveRecord::Base
   belongs_to :project
   validates :name, :presence => true
 
-  validate :ensure_has_valid_date_range
+  
+  validate :ensure_usable_date_entry
+
+  def ensure_usable_date_entry
+  	if start_date? && !end_date?
+  		errors.add :start_date, "Cannot enter a start date without a completion date"
+  	else
+  		ensure_has_valid_date_range
+  	end
+  end
 
   def ensure_has_valid_date_range
     if start_date? && end_date? && start_date >= end_date
