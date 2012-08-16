@@ -14,16 +14,21 @@
     	<th>
         
         <%= tasklist.name %>
-        
-
-        <div class='pull-right'>
-          Start:<span class="date"> <%= l tasklist.start_date %> </span>
-          Duration:<span class="date"> <%= distance_of_time_in_words(tasklist.start_date, tasklist.end_date) %></span>
-
-          <%= link_to [:edit, @project, tasklist], :class => 'btn btn-mini', :method => 'get' do %>
-             <i class="icon-pencil icon-white"></i>
+         <div class='pull-right'>
+        <% if tasklist.start_date? %>
+              Start:<span class="date"> <%= l tasklist.start_date %> </span>
+              Duration:
+              <span class="date"> 
+                <%= distance_of_time_in_words(tasklist.start_date, tasklist.end_date) %>
+              </span>
+        <% else %>
+          Due date:<span class="date"> <%= tasklist.end_date %></span>
         <% end %>
-    	</th>
+          <%= link_to [:edit, @project, tasklist], :class => 'btn btn-mini',
+                                                   :method => 'get' do %>
+            <i class="icon-pencil icon-white"></i> Edit
+          <% end %>
+       </div>   
     </tr>
   </thead>
   <tbody>
