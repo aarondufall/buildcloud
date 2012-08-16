@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
     current_user.projects
   end
 
+  def current_project
+		@current_project ||= current_projects.find(params[:project_id])
+	end
+
 end
