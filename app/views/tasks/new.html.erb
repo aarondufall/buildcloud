@@ -1,0 +1,25 @@
+<h1>New List</h1>
+ <div class="row">
+  <div class="span4 well offset4">
+
+  <%= form_for [@project, @tasklist, @task] do |f| %>
+
+  <%= f.label :name %><br />
+  <%= f.text_field :name %>
+
+  <%= f.label 'scheduled (optional)' %>
+  <div><%= f.date_select :scheduled, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
+
+  <%= f.label 'assigned_to (optional)' %>
+  <div><%= f.select :assigned_to, :profile %></div>
+
+
+  <%= f.submit "Create List", :class => 'btn btn-success' %>
+  <%= link_to 'Cancel', @tasklist.project, :class => 'btn'%>
+
+  <% end %>
+
+ </div>
+</div>
+
+:assigned_to, :completed_at, :created_by, :focused, :name, :scheduled
