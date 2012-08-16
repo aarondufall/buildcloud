@@ -18,3 +18,7 @@ log/*.lck
 solr/data/
 solr/pids/
 
+
+app/views/.DS_Store
+
+app/views/shared/.DS_Store
