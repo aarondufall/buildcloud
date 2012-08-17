@@ -54,8 +54,6 @@ class TasklistsController < ApplicationController
 
 	
 
-	def current_tasklists
-		current_project.tasklists
-	end
+	
 
 end
