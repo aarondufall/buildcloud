@@ -14,7 +14,7 @@
   <div><%= f.time_select :scheduled,  { :minute_step => 15,:ampm => true, :prompt => {:hour => 'hour', :minute => 'Minutes'}}, :class => 'date-field' %></div>
 
   <%= f.label 'assigned_to (optional)' %>
-  <div><%= select :user_id, :assigned_to , @project.team.users.collect{|user| [user.profile.name, user.id]}, :prompt => true %></div>
+  <div><%= f.select :assigned_to , @project.team.users.all.collect{|user| [user.profile.name, user.id]}, {:include_blank => 'Unassigned'} %></div>
 </div>
 
   <%= f.submit "Create To-do", :class => 'btn btn-primary' %>
