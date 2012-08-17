@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120816062017) do
+ActiveRecord::Schema.define(:version => 20120817085749) do
 
   create_table "profiles", :force => true do |t|
     t.string   "name"
@@ -61,13 +61,13 @@ ActiveRecord::Schema.define(:version => 20120816062017) do
   create_table "todos", :force => true do |t|
     t.string   "name"
     t.boolean  "focused"
-    t.integer  "created_by"
-    t.integer  "assigned_to"
+    t.integer  "created_by_id"
+    t.integer  "assigned_to_id"
     t.integer  "todolist_id"
     t.datetime "scheduled"
     t.datetime "completed_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "users", :force => true do |t|
