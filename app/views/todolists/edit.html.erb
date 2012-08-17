@@ -1,7 +1,7 @@
 <h1>Edit List</h1>
 <div class="row">
 <div class="span4 offset4">
-  <%= form_for [@tasklist.project, @tasklist] do |f| %>
+  <%= form_for [@todolist.project, @todolist] do |f| %>
 
     <%= hidden_field_tag :from, params[:from] %>
 
@@ -20,10 +20,10 @@
 
     <%= f.submit "Update", :class => 'btn btn-primary' %>
     
-    <%= link_to [@tasklist.project, @tasklist] , method: :delete, :class => 'btn btn-danger', confirm: "You sure?" do %>
+    <%= link_to [@todolist.project, @todolist] , method: :delete, :class => 'btn btn-danger', confirm: "You sure?" do %>
             <i class="icon-trash icon-white"></i> Delete
       <% end %>
-      <%= link_to 'Cancel', @tasklist.project, :class => 'btn'%>
+      <%= link_to 'Cancel', @todolist.project, :class => 'btn'%>
   <% end %>
   </div>
 </div>

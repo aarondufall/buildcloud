@@ -4,8 +4,8 @@ Buildcloud::Application.routes.draw do
   
 
   resources :projects do
-    resources :tasklists do
-      resources :tasks
+    resources :todolists do
+      resources :todos
     end
   end
 

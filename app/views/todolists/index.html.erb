@@ -2,29 +2,29 @@
 
 <hr />
 <ul class="navlist">
-<li>Task Lists</li>
+<li>To-do Lists</li>
 
-<li><%= link_to 'Add task list', [:new, @project, :tasklist], :class => 'btn btn-mini'%></li>
+<li><%= link_to 'Add to-do list', [:new, @project, :todolist], :class => 'btn btn-mini'%></li>
 </ul>
 
-<% @tasklists.each do |tasklist| %>
+<% @todolists.each do |todolist| %>
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>
     	<th>
         
-        <%= tasklist.name %>
+        <%= todolist.name %>
          <div class='pull-right'>
-        <% if tasklist.start_date? %>
-              Start:<span class="date"> <%= l tasklist.start_date %> </span>
+        <% if todolist.start_date? %>
+              Start:<span class="date"> <%= l todolist.start_date %> </span>
               Duration:
               <span class="date"> 
-                <%= distance_of_time_in_words(tasklist.start_date, tasklist.end_date) %>
+                <%= distance_of_time_in_words(todolist.start_date, todolist.end_date) %>
               </span>
         <% else %>
-          Due date:<span class="date"> <%= tasklist.end_date %></span>
+          Due date:<span class="date"> <%= todolist.end_date %></span>
         <% end %>
-          <%= link_to [:edit, @project, tasklist], :class => 'btn btn-mini',
+          <%= link_to [:edit, @project, todolist], :class => 'btn btn-mini',
                                                    :method => 'get' do %>
             <i class="icon-pencil icon-white"></i> Edit
           <% end %>
@@ -33,7 +33,7 @@
   </thead>
   <tbody>
         <tr>
-          <td>this is a task</td>
+          <td>this is a todo</td>
         </tr>
 
 

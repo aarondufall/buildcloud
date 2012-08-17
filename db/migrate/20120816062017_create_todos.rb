@@ -1,11 +1,11 @@
-class CreateTasks < ActiveRecord::Migration
+class CreateTodos < ActiveRecord::Migration
   def change
-    create_table :tasks do |t|
+    create_table :todos do |t|
       t.string :name
       t.boolean :focused
       t.integer :created_by
       t.integer :assigned_to
-      t.integer :tasklist_id
+      t.integer :todolist_id
       t.datetime :scheduled
       t.datetime :completed_at
 

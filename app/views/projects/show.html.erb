@@ -3,7 +3,7 @@
 
 <div class="project-nav">
 <ul class="nav nav-tabs ">
-  <li><%= link_to 'Tasks', project_tasklists_path(@project) %></li>
+  <li><%= link_to 'To-dos', project_todolists_path(@project) %></li>
   <li><%= link_to 'Waiting', '#' %></li>
   <li><%= link_to 'Orders', '#' %></li>
   <li><%= link_to 'R.F.I.', '#' %></li>
@@ -13,28 +13,28 @@
 </div>
 
 <ul class="navlist">
-<li>Task Lists</li>
+<li>To-do Lists</li>
 
-<li><%= link_to 'Add task list', new_project_tasklist_path(@project), :class => 'btn btn-mini'%></li>
+<li><%= link_to 'Add to-do list', new_project_todolist_path(@project), :class => 'btn btn-mini'%></li>
 </ul>
 
-<% @tasklists.each do |tasklist| %>
+<% @todolists.each do |todolist| %>
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>
     	<th>
-        <%= tasklist.name %>
+        <%= todolist.name %>
         <div class='pull-right'>
-        <% if tasklist.start_date? %>
-              Start:<span class="date"> <%= l tasklist.start_date %> </span>
+        <% if todolist.start_date? %>
+              Start:<span class="date"> <%= l todolist.start_date %> </span>
               Duration:
               <span class="date"> 
-                <%= distance_of_time_in_words(tasklist.start_date, tasklist.end_date) %>
+                <%= distance_of_time_in_words(todolist.start_date, todolist.end_date) %>
               </span>
         <% else %>
-          Due date:<span class="date"> <%= tasklist.end_date %></span>
+          Due date:<span class="date"> <%= todolist.end_date %></span>
         <% end %>
-          <%= link_to [:edit, @project, tasklist], :class => 'btn btn-mini',
+          <%= link_to [:edit, @project, todolist], :class => 'btn btn-mini',
                                                    :method => 'get' do %>
             <i class="icon-pencil icon-white"></i> Edit
           <% end %>
@@ -43,15 +43,15 @@
      </tr>
   </thead>
   <tbody>
-        <% tasklist.tasks.each do |task| %>
+        <% todolist.todos.each do |todo| %>
         <tr>
-          <td><%= task.name %></td>
-          <td><%= task.assigned_to %></td>
+          <td><%= todo.name %></td>
+          <td><%= todo.assigned_to %></td>
         </tr>
         <% end %>
   </tbody>
 </table>
-<%= link_to 'Add task', [:new, @project, tasklist, :task], :class => 'btn btn-mini' %>
+<%= link_to 'Add todo', [:new, @project, todolist, :todo], :class => 'btn btn-mini' %>
 <br />
 <br />                                              
 <% end %>

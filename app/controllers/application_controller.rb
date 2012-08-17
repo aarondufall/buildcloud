@@ -17,8 +17,8 @@ class ApplicationController < ActionController::Base
 		@current_project ||= current_projects.find(params[:project_id])
 	end
 
-  def current_tasklists
-    current_project.tasklists
+  def current_todolists
+    current_project.todolists
   end
 
 end

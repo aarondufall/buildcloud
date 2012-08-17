@@ -34,27 +34,6 @@ ActiveRecord::Schema.define(:version => 20120816062017) do
     t.integer  "team_id"
   end
 
-  create_table "tasklists", :force => true do |t|
-    t.string   "name",       :default => "", :null => false
-    t.date     "start_date"
-    t.date     "end_date"
-    t.integer  "project_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-  end
-
-  create_table "tasks", :force => true do |t|
-    t.string   "name"
-    t.boolean  "focused"
-    t.integer  "created_by"
-    t.integer  "assigned_to"
-    t.integer  "tasklist_id"
-    t.datetime "scheduled"
-    t.datetime "completed_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
   create_table "teams", :force => true do |t|
     t.string   "name"
     t.integer  "dept_no"
@@ -69,6 +48,27 @@ ActiveRecord::Schema.define(:version => 20120816062017) do
   end
 
   add_index "teams_users", ["team_id", "user_id"], :name => "by_team_and_user", :unique => true
+
+  create_table "todolists", :force => true do |t|
+    t.string   "name",       :default => "", :null => false
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "project_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "todos", :force => true do |t|
+    t.string   "name"
+    t.boolean  "focused"
+    t.integer  "created_by"
+    t.integer  "assigned_to"
+    t.integer  "todolist_id"
+    t.datetime "scheduled"
+    t.datetime "completed_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

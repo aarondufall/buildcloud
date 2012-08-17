@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TasklistTest < ActiveSupport::TestCase
+class TodolistTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
