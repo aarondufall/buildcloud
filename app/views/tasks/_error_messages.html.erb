@@ -1,0 +1,7 @@
+<% if @tasklist.errors.any? %> 
+		<div class="alert alert-error">
+		<% @tasklist.errors.full_messages.each do |msg| %>
+			Error: <%= msg %>
+		<% end %>	
+		</div>
+<% end %>
