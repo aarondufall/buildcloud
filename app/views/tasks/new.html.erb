@@ -1,4 +1,5 @@
 
+ <%= render 'error_messages' %>
  <div class="row">
   <div class="span4 offset4">
   <h3> New Task </h3><br />
@@ -13,7 +14,7 @@
   <div><%= f.time_select :scheduled,  { :minute_step => 15,:ampm => true, :prompt => {:hour => 'hour', :minute => 'Minutes'}}, :class => 'date-field' %></div>
 
   <%= f.label 'assigned_to (optional)' %>
-  <div><%= select :task, :assigned_to , @project.team.users.collect{|user| [user.profile.name, user.id]}, :prompt => true %></div>
+  <div><%= select :user_id, :assigned_to , @project.team.users.collect{|user| [user.profile.name, user.id]} %></div>
 </div>
 
   <%= f.submit "Create Task", :class => 'btn btn-primary' %>
