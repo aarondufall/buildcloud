@@ -45,8 +45,17 @@
   <tbody>
         <% todolist.todos.each do |todo| %>
         <tr>
-          <td><%= todo.name %></td>
-          <td><%= todo.assigned_to %></td>
+          <td>
+            <%= todo.name %>
+            <div class="pull-right">
+              <b>Assigned to:</b>
+              <% unless todo.assigned_to == nil  %>
+                 <%= todo.assigned_to.profile.name %>
+              <% else %>
+                Unassigned
+              <% end %>
+            </div>
+          </td>
         </tr>
         <% end %>
   </tbody>
