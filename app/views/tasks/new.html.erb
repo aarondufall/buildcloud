@@ -1,25 +1,25 @@
-<h1>New List</h1>
+
  <div class="row">
-  <div class="span4 well offset4">
-
+  <div class="span4 offset4">
+  <h3> New Task </h3><br />
   <%= form_for [@project, @tasklist, @task] do |f| %>
-
-  <%= f.label :name %><br />
-  <%= f.text_field :name %>
-
+  <div class="well">
+  <%= f.text_field :name, :placeholder => 'Enter task' %>
+  </div>
+  <h3>Options</h3><br />
+  <div class="well"
   <%= f.label 'scheduled (optional)' %>
   <div><%= f.date_select :scheduled, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
+  <div><%= f.time_select :scheduled,  { :minute_step => 15,:ampm => true, :prompt => {:hour => 'hour', :minute => 'Minutes'}}, :class => 'date-field' %></div>
 
   <%= f.label 'assigned_to (optional)' %>
-  <div><%= f.select :assigned_to, :profile %></div>
+  <div><%= select :task, :assigned_to , @project.team.users.collect{|user| [user.profile.name, user.id]}, :prompt => true %></div>
+</div>
 
-
-  <%= f.submit "Create List", :class => 'btn btn-success' %>
+  <%= f.submit "Create Task", :class => 'btn btn-primary' %>
   <%= link_to 'Cancel', @tasklist.project, :class => 'btn'%>
 
   <% end %>
 
  </div>
 </div>
-
-:assigned_to, :completed_at, :created_by, :focused, :name, :scheduled
