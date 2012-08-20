@@ -47,14 +47,35 @@
         <tr>
           <td>
             <%= todo.name %>
-            <div class="pull-right">
-              <b>Assigned to:</b>
+            
+              
               <% unless todo.assigned_to == nil  %>
-                 <%= todo.assigned_to.profile.name %>
+                 <span class="label label-info btn-gap pull-right"><%= todo.assigned_to.profile.name %></span>
               <% else %>
-                Unassigned
+                  <span class="label label-info btn-gap pull-right">Unassigned</span>
               <% end %>
-            </div>
+
+              <%= link_to [:edit, @project, todolist, todo], :class => 'btn btn-mini pull-right btn-gap',
+                                                       :method => 'get' do %>
+                <i class="icon-pencil icon-white"></i> Edit
+              <% end %>
+              
+              
+              <div class="btn-group pull-right">
+                <a class="btn btn-warning btn-mini btn-gap dropdown-toggle" data-toggle="dropdown" href="#">
+                  Waiting
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href='#'>R.F.I</a></li>
+                  <li><a href='#'>Rectification</a></li>
+                  <li><a href='#'>Completion of works</a></li>
+                </ul>
+              </div>
+            <%= link_to 'complete', '#', :class => 'btn btn-mini btn-success pull-right btn-gap' %>
+             
+            
+            
           </td>
         </tr>
         <% end %>

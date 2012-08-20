@@ -22,6 +22,10 @@ textarea {
   }
 }
 
+.btn-gap {
+  margin-right:5px;
+}
+
 /* typography */
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
@@ -75,7 +79,7 @@ color: #fff;
 .project-nav {
   margin-top: 40px;
   padding-bottom: 0px;
-  border-top: 1px solid #eaeaea;
+  font-weight: bold;
 }
 
 .navlist li
