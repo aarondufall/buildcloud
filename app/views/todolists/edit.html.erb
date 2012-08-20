@@ -10,10 +10,10 @@
       <%= f.label :name %>
       <%= f.text_field :name %>
 
-      <%= f.label :start_date %>
+      <%= f.label 'Start date (optional)' %>
       <div><%= f.date_select :start_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
 
-      <%= f.label :end_date %>
+      <%= f.label 'Due Date (optional)' %>
       <div><%= f.date_select :end_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
 
     
