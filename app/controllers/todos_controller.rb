@@ -36,4 +36,18 @@ class TodosController < ApplicationController
 			render 'new'
 		end
 	end
+
+	def complete_todo
+
+		@todolist = current_todolists.find(params[:todolist_id])
+		@todo = @todolist.todos.find(params[:todo_id])
+		@todo.completed_at = DateTime.now
+		if @todo.save
+			flash[:success] = "Task Completed"
+			redirect_to current_project
+		else
+			flash[:error] = "Error: could not complete task"
+			redirect_to current_project
+		end
+	end
 end

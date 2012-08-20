@@ -23,8 +23,9 @@
   <thead>
     <tr>
     	<th>
-        <%= todolist.name %>
+        <%= todolist.name %> 
         <div class='pull-right'>
+          Completed  <span class="badge"><%= todolist.todos.count %></span>
         <% if todolist.start_date? %>
               Start:<span class="date"> <%= l todolist.start_date %> </span>
               Duration:
@@ -38,47 +39,49 @@
                                                    :method => 'get' do %>
             <i class="icon-pencil icon-white"></i> Edit
           <% end %>
+
        </div>   
       </th>
      </tr>
   </thead>
   <tbody>
         <% todolist.todos.each do |todo| %>
-        <tr>
-          <td>
-            <%= todo.name %>
-            
-              
-              <% unless todo.assigned_to == nil  %>
-                 <span class="label label-info btn-gap pull-right"><%= todo.assigned_to.profile.name %></span>
-              <% else %>
-                  <span class="label label-info btn-gap pull-right">Unassigned</span>
-              <% end %>
 
-              <%= link_to [:edit, @project, todolist, todo], :class => 'btn btn-mini pull-right btn-gap',
+        <% unless todo.completed_at? %>
+          <tr>
+            <td>
+              <%= todo.name %><%= todo.completed_at %>
+                <%= link_to [:edit, @project, todolist, todo], :class => 'btn btn-mini pull-right btn-gap',
                                                        :method => 'get' do %>
-                <i class="icon-pencil icon-white"></i> Edit
-              <% end %>
+                  <i class="icon-pencil icon-white"></i> Edit
+                <% end %>
               
-              
-              <div class="btn-group pull-right">
-                <a class="btn btn-warning btn-mini btn-gap dropdown-toggle" data-toggle="dropdown" href="#">
-                  Waiting
-                  <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href='#'>R.F.I</a></li>
-                  <li><a href='#'>Rectification</a></li>
-                  <li><a href='#'>Completion of works</a></li>
-                </ul>
-              </div>
-            <%= link_to 'complete', '#', :class => 'btn btn-mini btn-success pull-right btn-gap' %>
-             
+                <div class="btn-group pull-right">
+                  <a class="btn btn-warning btn-mini btn-gap dropdown-toggle" data-toggle="dropdown" href="#">
+                    Waiting
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href='#'>R.F.I</a></li>
+                    <li><a href='#'>Rectification</a></li>
+                    <li><a href='#'>Completion of works</a></li>
+                  </ul>
+                </div>
             
-            
-          </td>
-        </tr>
-        <% end %>
+                <%= link_to [@project, todolist, todo, :complete_todo], :class => 'btn btn-mini btn-success pull-right btn-gap', :method => 'put' do %>
+                  <i class="icon-ok icon-white"></i> Done
+                <% end %>
+
+                <% unless todo.assigned_to == nil  %>
+                  <span class="label label-info btn-gap pull-right"><%= todo.assigned_to.profile.name %></span>
+                <% else %>
+                    <span class="label label-info btn-gap pull-right">Unassigned</span>
+                <% end %> 
+            </td>
+          </tr>
+        
+          <% end %>
+      <% end %>
   </tbody>
 </table>
 <%= link_to 'Add todo', [:new, @project, todolist, :todo], :class => 'btn btn-mini' %>
