@@ -10,7 +10,7 @@
   <h3>Options</h3><br />
   <div class="well"
   <%= f.label 'scheduled (optional)' %>
-  <div><%= f.date_select :scheduled, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
+  <div><%= f.date_select :scheduled, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field', :include_blank => true %></div>
   <div><%= f.time_select :scheduled,  { :minute_step => 15,:ampm => true, :prompt => {:hour => 'hour', :minute => 'Minutes'}}, :class => 'date-field' %></div>
 
   <%= f.label 'assigned_to (optional)' %>
