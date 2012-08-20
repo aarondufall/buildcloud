@@ -5,7 +5,9 @@ Buildcloud::Application.routes.draw do
 
   resources :projects do
     resources :todolists do
-      resources :todos
+      resources :todos do
+        put 'complete_todo'
+      end
     end
   end
 
