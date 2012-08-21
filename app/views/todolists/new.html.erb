@@ -1,21 +1,29 @@
 <%= render 'error_messages' %>
-<h2>New To-do List</h2>
- <div class="row">
-  <div class="span4 well offset4">
-
+<div class="row">
+<div class="span4 offset4">
+  <h3>Edit List</h3><br/>
   <%= form_for [@todolist.project, @todolist] do |f| %>
 
-  
-  <%= f.text_field :name, :placeholder => 'Enter List Name' %>
+    <%= hidden_field_tag :from, params[:from] %>
 
-  <%= f.label 'Start date (optional)' %>
-  <div><%= f.date_select :start_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
+    <div class='well'>
 
-  <%= f.label 'Due date (optional)' %>
-  <div><%= f.date_select :end_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
+      <%= f.text_field :name, :placeholder => 'Enter List Name' %>
+    </div>
+    <h3>Options</h3><br />
+    <div class='well'>
+
+      <%= f.label 'Start date' %>
+      <div><%= f.date_select :start_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
+
+      <%= f.label 'Due Date' %>
+      <div><%= f.date_select :end_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
+
+    
+    </div>
 
 
-  <%= f.submit "Create List", :class => 'btn btn-success' %>
+  <%= f.submit "Create List", :class => 'btn btn-primary' %>
   <%= link_to 'Cancel', @todolist.project, :class => 'btn'%>
 
   <% end %>
