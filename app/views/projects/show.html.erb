@@ -13,7 +13,7 @@
 </div>
 
 <div class="navlist"> 
-  To-do Lists <%= link_to 'Add to-do list', new_project_todolist_path(@project), :class => 'btn btn-mini'%>
+  To-do Lists <%= link_to 'Add to-do list', new_project_todolist_path(@project), :class => 'btn btn-mini' %>
 </div>
 
 
@@ -25,13 +25,32 @@
         <%= todolist.name %> 
         <div class='pull-right'>
         <% if todolist.start_date? %>
-              Start:<span class="date"> <%= l todolist.start_date %> </span>
-              Duration:
-              <span class="date"> 
-                <%= distance_of_time_in_words(todolist.start_date, todolist.end_date) %>
-              </span>
+
+            <% if todolist.start_date > DateTime.now.to_date %>
+              Due to start in:<span class="date"> <%= distance_of_time_in_words_to_now(todolist.start_date) %> </span>
+              Duration:<span class="date"> <%= distance_of_time_in_words(todolist.start_date, todolist.end_date) %></span>
+            <% else %>
+              <span class="date"> <%= distance_of_time_in_words(DateTime.now.to_date, todolist.end_date) %></span>
+              Until scheduled completion date
+             <% end %>
+
+        <% elsif todolist.end_date? %>
+
+            <% if todolist.end_date > DateTime.now.to_date %>
+                <span class="date"> 
+                  <%= distance_of_time_in_words(DateTime.now.to_date, todolist.end_date) %> 
+                </span>
+                Until scheduled completion date
+            <% else %>
+                Was due for completion
+                <span class="date"> 
+                  <%= distance_of_time_in_words(DateTime.now.to_date, todolist.end_date) %> 
+                </span>
+                ago.
+            <% end %>
+
         <% else %>
-          Due date:<span class="date"> <%= todolist.end_date %></span>
+
         <% end %>
           <%= link_to [:edit, @project, todolist], :class => 'btn btn-mini',
                                                    :method => 'get' do %>
