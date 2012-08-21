@@ -25,7 +25,7 @@
     	<th>
         <%= todolist.name %> 
         <div class='pull-right'>
-          Completed  <span class="badge"><%= todolist.todos.count %></span>
+          Completed  <span class="badge"><%= todolist.todos.completed.count %></span>
         <% if todolist.start_date? %>
               Start:<span class="date"> <%= l todolist.start_date %> </span>
               Duration:
