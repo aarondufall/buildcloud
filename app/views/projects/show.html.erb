@@ -74,7 +74,7 @@
         <% unless todo.completed_at? %>
           <tr>
             <td>
-              <%= todo.name %><%= todo.completed_at %>
+              <%= todo.name %>
                 <%= link_to [:edit, @project, todolist, todo], :class => 'btn btn-mini pull-right btn-gap',
                                                        :method => 'get' do %>
                   <i class="icon-pencil icon-white"></i> Edit
