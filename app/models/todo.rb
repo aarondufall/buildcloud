@@ -6,5 +6,5 @@ class Todo < ActiveRecord::Base
 
   validates :name, :presence => true
 
-  scope :completed, where(:completed_at != true)
+  
 end
