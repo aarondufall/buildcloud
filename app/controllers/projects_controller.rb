@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
 		@project = @team.projects.build(params[:project])
 		if @project.save
 			flash[:success] = "Added new project #{@project.name}"
-			redirect_to projects_path
+			redirect_to @project
 		else
 			render 'new'
 		end
