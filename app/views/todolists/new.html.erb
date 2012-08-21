@@ -1,12 +1,12 @@
 <%= render 'error_messages' %>
-<h1>New To-do List</h1>
+<h2>New To-do List</h2>
  <div class="row">
   <div class="span4 well offset4">
 
   <%= form_for [@todolist.project, @todolist] do |f| %>
 
-  <%= f.label :name %><br />
-  <%= f.text_field :name %>
+  
+  <%= f.text_field :name, :placeholder => 'Enter List Name' %>
 
   <%= f.label 'Start date (optional)' %>
   <div><%= f.date_select :start_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>

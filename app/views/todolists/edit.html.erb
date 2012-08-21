@@ -1,4 +1,4 @@
-<h1>Edit List</h1>
+<h2>Edit List</h2>
 <div class="row">
 <div class="span4 offset4">
   <%= form_for [@todolist.project, @todolist] do |f| %>
@@ -7,8 +7,7 @@
 
     <div class='well'>
 
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, :placeholder => 'Enter List Name' %>
 
       <%= f.label 'Start date (optional)' %>
       <div><%= f.date_select :start_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
