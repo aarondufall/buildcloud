@@ -6,6 +6,11 @@ class TodolistsController < ApplicationController
 		@todolists = current_todolists.all
 	end
 
+	def show
+		@project = current_project
+		@todolist = current_todolists.find(params[:id])
+	end
+
 	def new
 		@todolist = current_todolists.build
 	end
