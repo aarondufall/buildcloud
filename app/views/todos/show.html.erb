@@ -1,0 +1,47 @@
+<%= render 'shared/menu' %>
+
+  <div class="pull-left navlist"> <%= link_to [:edit, @project, @todolist, @todo], :class => 'btn',
+                                               :method => 'get' do %>
+            <i class="icon-pencil icon-white"></i> Edit To-do
+          <% end %></div>
+      
+
+<table class="table table-bordered table-condensed">
+  <thead>
+    <tr>
+    	<th>
+        <%= @todo.name %> 
+        <span class="notes"> created <%= distance_of_time_in_words_to_now(@todo.created_at) %> ago</span>
+
+        <%= link_to 'Issue', '#', :class => 'btn btn-warning btn-mini pull-right btn-gap' %>
+            
+        <%= link_to [@project, @todolist, @todo, :complete_todo], :class => 'btn btn-mini btn-success pull-right btn-gap', :method => 'put' do %>
+          <i class="icon-ok icon-white"></i> Done
+        <% end %>
+
+        <% unless @todo.assigned_to == nil  %>
+          <span class="label label-info btn-gap pull-right"><%= @todo.assigned_to.profile.name %></span>
+        <% else %>
+          <span class="label label-info btn-gap pull-right">Unassigned</span>
+        <% end %> 
+      </th>
+     </tr>
+  </thead>
+  <tbody>
+       
+        <tr>
+          <td>
+          <P> 
+            Detailed infomation about the task<br>
+            such as issues, comments, dates and attached files
+          <p>
+
+            </td>
+          </tr>
+        
+     
+  </tbody>
+</table>
+<%= link_to 'Add todo', [:new, @project, @todolist, :todo], :class => 'btn btn-mini' %>
+<br />
+<br />                                              

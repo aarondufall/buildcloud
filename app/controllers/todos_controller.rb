@@ -1,5 +1,10 @@
 class TodosController < ApplicationController
-
+	def show
+		@project = current_project
+		@todolist = current_todolists.find(params[:todolist_id])
+		@todo = @todolist.todos.find(params[:id])
+	end
+	
 	def new
 	  	@project = current_project
 	 	@todolist = current_todolists.find(params[:todolist_id])
