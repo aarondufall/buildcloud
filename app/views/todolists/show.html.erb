@@ -14,19 +14,10 @@
 </ul>
 </div>
 
-<ul class="breadcrumb">
-  <li>
-    <%= link_to @project.name, @project %><span class="divider">/</span>
-  </li>
-  <li>
     <%= link_to 'To-dos', project_todolists_path(@project) %><span class="divider">/</span>
   </li>
   <li class="active"><%= @todolist.name %></li>
-  <li class="pull-right"> <%= link_to [:edit, @project, @todolist], :class => 'btn btn-mini',
                                                    :method => 'get' do %>
-            <i class="icon-pencil icon-white"></i> Edit
-          <% end %></li>
-</ul>
 
   
       
