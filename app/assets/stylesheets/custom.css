@@ -85,7 +85,6 @@ color: #fff;
 .navlist
 {
 display: block;
-;
 padding-bottom: 20px;
 font-weight: bold;
 }
@@ -153,4 +152,8 @@ select.date-field {
 .todo-list{
 color: inherit;
 
+}
+
+.notes{
+  color: #9d261d;
 }
