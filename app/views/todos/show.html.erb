@@ -1,6 +1,7 @@
+<h3><%= link_to @project.name, @project %></h3>
 <%= render 'shared/menu' %>
 
-  <div class="pull-left navlist"> <%= link_to [:edit, @project, @todolist, @todo], :class => 'btn',
+  <div class="pull-right navlist"> <%= link_to [:edit, @project, @todolist, @todo], :class => 'btn',
                                                :method => 'get' do %>
             <i class="icon-pencil icon-white"></i> Edit To-do
           <% end %></div>
