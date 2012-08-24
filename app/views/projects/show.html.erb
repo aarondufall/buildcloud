@@ -1,6 +1,7 @@
+
+
 <h3><%= @project.name %></h3>
 <%= render 'shared/menu' %>
-
 <div class="navlist"> 
   To-do Lists <%= link_to 'Add to-do list', new_project_todolist_path(@project), :class => 'btn btn-mini' %>
 </div>
