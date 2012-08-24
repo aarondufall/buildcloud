@@ -48,11 +48,24 @@ class TodosController < ApplicationController
 		@todo = @todolist.todos.find(params[:todo_id])
 		@todo.completed_at = DateTime.now
 		if @todo.save
-			flash[:success] = "Task Completed"
-			redirect_to current_project
+			flash[:success] = "To-do Completed"
+			redirect_to  [@todolist.project, @todolist]
 		else
-			flash[:error] = "Error: could not complete task"
-			redirect_to current_project
+			flash[:error] = "Error: could not complete to-do"
+			redirect_to [@todolist.project, @todolist]
+		end
+	end
+
+	def incomplete_todo
+		@todolist = current_todolists.find(params[:todolist_id])
+		@todo = @todolist.todos.find(params[:todo_id])
+		@todo.completed_at = nil
+		if @todo.save
+			flash[:success] = "To-do set to incomplete"
+			redirect_to [@todolist.project, @todolist]
+		else
+			flash[:error] = "Error: could not set to-do to incomplete"
+			redirect_to [@todolist.project, @todolist]
 		end
 	end
 end

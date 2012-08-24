@@ -1,4 +1,5 @@
-<h3><%= link_to @project.name, @project %></h3>
+
+<h3><%= link_to @project.name, @project %> <i class="icon-arrow-right"></i> <%= link_to 'To-do Lists', [@project, :todolists] %> <i class="icon-arrow-right"></i> <%= @todolist.name %></h3>
 <hr />
 
 
@@ -8,7 +9,7 @@
           <% end %></span>
       
 
-<h3><%= @todolist.name %></h3>
+
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>
@@ -121,8 +122,8 @@
               <%= link_to todo.name, [@project, @todolist, todo], :class => 'todo-list' %> 
                 <span class="notes"> completed <%= distance_of_time_in_words_to_now(todo.completed_at) %></span>
             
-                <%= link_to [@project, @todolist, todo, :complete_todo], :class => 'btn btn-mini btn-success pull-right btn-gap', :method => 'put' do %>
-                  <i class="icon-ok icon-white"></i> Done
+                <%= link_to [@project, @todolist, todo, :incomplete_todo], :class => 'btn btn-mini btn-info pull-right btn-gap', :method => 'put' do %>
+                  <i class="icon-remove icon-white"></i> incomplete
                 <% end %>
 
                 <% unless todo.assigned_to == nil  %>
