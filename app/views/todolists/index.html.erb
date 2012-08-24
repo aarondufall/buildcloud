@@ -1,4 +1,5 @@
-<%= render 'shared/menu' %>
+<h3><%= link_to @project.name, @project %></h3>
+<hr />
 
 
 <div class="navlist"> 
@@ -9,32 +10,90 @@
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>
-    	<th>
-        
-        <%= todolist.name %>
-         <div class='pull-right'>
+      <th>
+        <%=link_to todolist.name, [@project, todolist], :class => 'todo-list' %> 
+        <div class='pull-right'>
         <% if todolist.start_date? %>
-              Start:<span class="date"> <%= l todolist.start_date %> </span>
-              Duration:
-              <span class="date"> 
-                <%= distance_of_time_in_words(todolist.start_date, todolist.end_date) %>
-              </span>
-        <% else %>
-          Due date:<span class="date"> <%= todolist.end_date %></span>
-        <% end %>
-          <%= link_to [:edit, @project, todolist], :class => 'btn btn-mini',
-                                                   :method => 'get' do %>
-            <i class="icon-pencil icon-white"></i> Edit
+
+            <% if todolist.start_date > DateTime.now.to_date %>
+              Due to start in:<span class="date"> <%= distance_of_time_in_words_to_now(todolist.start_date) %> </span>
+              Duration:<span class="date"> <%= distance_of_time_in_words(todolist.start_date, todolist.end_date) %></span>
+            <% else %>
+              <% if todolist.end_date > DateTime.now.to_date %>
+                <span class="date"> 
+                  <%= distance_of_time_in_words(DateTime.now.to_date, todolist.end_date) %> 
+                </span>
+                Until scheduled completion date
+              <% else %>
+                Was due for completion
+                <span class="date overdue"> 
+                  <%= distance_of_time_in_words(DateTime.now.to_date, todolist.end_date) %> 
+                </span>
+                ago
+              <% end %>
           <% end %>
+
+        <% elsif todolist.end_date? %>
+
+            <% if todolist.end_date > DateTime.now.to_date %>
+                <span class="date"> 
+                  <%= distance_of_time_in_words(DateTime.now.to_date, todolist.end_date) %> 
+                </span>
+                Until scheduled completion date
+            <% else %>
+                Was due for completion
+                <span class="date overdue"> 
+                  <%= distance_of_time_in_words(DateTime.now.to_date, todolist.end_date) %> 
+                </span>
+                ago
+            <% end %>
+
+        <% else %>
+
+        <% end %>
        </div>   
-    </tr>
+      </th>
+     </tr>
   </thead>
   <tbody>
-        <tr>
-          <td>this is a todo</td>
-        </tr>
+    <% if todolist.todos.count <= 0 %>
+      <tr>
+        <td>
+          Let's get started and add some tasks to the list
+        </td>
+      </tr>
+    <% else %>
+      <% todolist.todos.each do |todo| %>
+        <% unless todo.completed_at? %>
+          <tr>
+            <td>
+              <%= link_to todo.name, [@project, todolist, todo], :class => 'todo-list' %> 
+                <span class="notes"> created <%= distance_of_time_in_words_to_now(todo.created_at) %></span>
+              
+                <%= link_to 'Issue', '#', :class => 'btn btn-warning btn-mini pull-right btn-gap' %>
+            
+                <%= link_to [@project, todolist, todo, :complete_todo], :class => 'btn btn-mini btn-success pull-right btn-gap', :method => 'put' do %>
+                  <i class="icon-ok icon-white"></i> Done
+                <% end %>
 
-
+                <% unless todo.assigned_to == nil  %>
+                  <span class="label label-info btn-gap pull-right"><%= todo.assigned_to.profile.name %></span>
+                <% else %>
+                    <span class="label label-info btn-gap pull-right">Unassigned</span>
+                <% end %> 
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+    <tr>
+      <td>
+        <%= link_to [:new, @project, todolist, :todo]  do%>
+          <i class="icon-plus"></i> Add to-do
+        <% end %>
+      </td>
+    </tr>
   </tbody>
 </table>
+<br />                                              
 <% end %>
