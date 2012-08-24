@@ -35,7 +35,7 @@ class TodosController < ApplicationController
 		@todo = @todolist.todos.find(params[:id])
 		if @todo.update_attributes(params[:todo])
 			flash[:success] = "todo for #{@todolist.name} updated"
-			redirect_to current_project
+			redirect_to [@todolist.project, @todolist, @todo]
 		else
 			flash[:error] = "Failed"
 			render 'new'

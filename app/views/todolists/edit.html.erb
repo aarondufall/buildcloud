@@ -26,7 +26,7 @@
     <%= link_to [@todolist.project, @todolist] , method: :delete, :class => 'btn btn-danger', confirm: "You sure?" do %>
             <i class="icon-trash icon-white"></i> Delete
       <% end %>
-      <%= link_to 'Cancel', @todolist.project, :class => 'btn'%>
+      <%= link_to 'Cancel', [@todolist.project, @todolist], :class => 'btn'%>
   <% end %>
   
 </div>

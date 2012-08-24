@@ -34,11 +34,7 @@ class TodolistsController < ApplicationController
 		@todolist = current_todolists.find(params[:id])
 		if @todolist.update_attributes(params[:todolist])
 			flash[:success] = "List sucessfully updated"
-			if redirect_to_project?
-				redirect_to @todolist.project
-			else
-				redirect_to [@todolist.project, :todolists]
-			end
+			redirect_to [@todolist.project, @todolist]
 		else
 			flash[:error] = "List failed to update"
 			render 'edit'

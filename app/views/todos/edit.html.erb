@@ -18,7 +18,7 @@
 </div>
 
   <%= f.submit "Update To-do", :class => 'btn btn-primary' %>
-  <%= link_to 'Cancel', @todolist.project, :class => 'btn'%>
+  <%= link_to 'Cancel', [@todolist.project, @todolist, @todo], :class => 'btn'%>
 
   <% end %>
 
