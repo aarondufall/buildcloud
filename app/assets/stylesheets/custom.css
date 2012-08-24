@@ -146,6 +146,11 @@ select.date-field {
   padding-right: 10px;
 }
 
+.overdue {
+  color: #e01b35;
+
+
+}
 
 /* todo lits */
 
