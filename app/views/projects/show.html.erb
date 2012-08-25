@@ -59,7 +59,7 @@
     <% end %>
     <tr>
       <td>
-        <%= link_to [:new, @project, todolist, :todo]  do%>
+        <%= link_to new_project_todolist_todo_path(@project, todolist, :from => "project")  do%>
           <i class="icon-plus"></i> Add to-do
         <% end %>
       </td>

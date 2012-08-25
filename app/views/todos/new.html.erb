@@ -3,6 +3,7 @@
   <div class="span4 offset4">
     <h3> New To-do </h3><br />
     <%= form_for [@project, @todolist, @todo] do |f| %>
+      <%= hidden_field_tag :from, params[:from] %>
       <%= render :partial => "form", :object => f %>
       <%= f.submit "Create To-do", :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', @todolist.project, :class => 'btn'%>

@@ -47,10 +47,4 @@ class TodolistsController < ApplicationController
 		redirect_to current_project
 	end
 
-	private
-
-	def redirect_to_project?
-		params[:from] == 'project'
-	end
-
 end

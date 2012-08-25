@@ -2,7 +2,7 @@
 <h3><%= link_to @project.name, @project %> <i class="icon-arrow-right"></i> To-do Lists </h3>
 <hr />
 
-<div class="navlist"> 
+<div class="navlist">
   To-do Lists <%= link_to 'Add to-do list', new_project_todolist_path(@project), :class => 'btn btn-mini' %>
 </div>
 
@@ -11,7 +11,7 @@
   <thead>
     <tr>
       <th>
-        <%=link_to todolist.name, [@project, todolist], :class => 'todo-list' %> 
+        <%=link_to todolist.name, [@project, todolist], :class => 'todo-list' %>
         <div class='pull-right'>
         <% if todolist.start_date? %>
 
@@ -20,14 +20,14 @@
               Duration:<span class="date"> <%= distance_of_time_in_words(todolist.start_date, todolist.end_date) %></span>
             <% else %>
               <% if todolist.end_date > DateTime.now.to_date %>
-                <span class="date"> 
-                  <%= distance_of_time_in_words(DateTime.now.to_date, todolist.end_date) %> 
+                <span class="date">
+                  <%= distance_of_time_in_words(DateTime.now.to_date, todolist.end_date) %>
                 </span>
                 Until scheduled completion date
               <% else %>
                 Was due for completion
-                <span class="date overdue"> 
-                  <%= distance_of_time_in_words(DateTime.now.to_date, todolist.end_date) %> 
+                <span class="date overdue">
+                  <%= distance_of_time_in_words(DateTime.now.to_date, todolist.end_date) %>
                 </span>
                 ago
               <% end %>
@@ -36,14 +36,14 @@
         <% elsif todolist.end_date? %>
 
             <% if todolist.end_date > DateTime.now.to_date %>
-                <span class="date"> 
-                  <%= distance_of_time_in_words(DateTime.now.to_date, todolist.end_date) %> 
+                <span class="date">
+                  <%= distance_of_time_in_words(DateTime.now.to_date, todolist.end_date) %>
                 </span>
                 Until scheduled completion date
             <% else %>
                 Was due for completion
-                <span class="date overdue"> 
-                  <%= distance_of_time_in_words(DateTime.now.to_date, todolist.end_date) %> 
+                <span class="date overdue">
+                  <%= distance_of_time_in_words(DateTime.now.to_date, todolist.end_date) %>
                 </span>
                 ago
             <% end %>
@@ -51,7 +51,7 @@
         <% else %>
 
         <% end %>
-       </div>   
+       </div>
       </th>
      </tr>
   </thead>
@@ -67,11 +67,11 @@
         <% unless todo.completed_at? %>
           <tr>
             <td>
-              <%= link_to todo.name, [@project, todolist, todo], :class => 'todo-list' %> 
+              <%= link_to todo.name, [@project, todolist, todo], :class => 'todo-list' %>
                 <span class="notes"> created <%= distance_of_time_in_words_to_now(todo.created_at) %></span>
-              
+
                 <%= link_to 'Issue', '#', :class => 'btn btn-warning btn-mini pull-right btn-gap' %>
-            
+
                 <%= link_to [@project, todolist, todo, :complete_todo], :class => 'btn btn-mini btn-success pull-right btn-gap', :method => 'put' do %>
                   <i class="icon-ok icon-white"></i> Done
                 <% end %>
@@ -80,7 +80,7 @@
                   <span class="label label-info btn-gap pull-right"><%= todo.assigned_to.profile.name %></span>
                 <% else %>
                     <span class="label label-info btn-gap pull-right">Unassigned</span>
-                <% end %> 
+                <% end %>
             </td>
           </tr>
         <% end %>
@@ -88,12 +88,12 @@
     <% end %>
     <tr>
       <td>
-        <%= link_to [:new, @project, todolist, :todo]  do%>
+        <%= link_to new_project_todolist_todo_path(@project, todolist, :from => "todolists")  do%>
           <i class="icon-plus"></i> Add to-do
         <% end %>
       </td>
     </tr>
   </tbody>
 </table>
-<br />                                              
+<br />
 <% end %>
