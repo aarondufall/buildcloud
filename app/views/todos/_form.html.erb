@@ -1,0 +1,11 @@
+<div class="well">
+  <%= form.text_field :name, :placeholder => 'Enter todo' %>
+</div>
+<h3>Options</h3><br />
+<div class="well"
+  <%= form.label 'scheduled (optional)' %>
+  <div><%= form.date_select :scheduled, {:prompt => true}, :class => 'date-field'  %></div>
+  <div><%= form.time_select :scheduled,  {:minute_step => 15, :ignore_date => true, :ampm => true, :prompt => {:hour => 'Hour', :minute => 'Minutes'}}, :class => 'date-field' %></div>
+  <%= form.label 'assigned_to (optional)' %>
+  <div><%= form.select :assigned_to_id , @project.team.users.all.collect{|user| [user.profile.name, user.id]}, {:include_blank => 'Unassigned'} %></div>
+</div>
