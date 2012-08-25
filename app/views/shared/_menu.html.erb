@@ -3,7 +3,10 @@
   <ul class="nav nav-tabs ">
     <li>
       <%= link_to project_todolists_path(project) do %>
-        To-dos <span class="badge">11</span>
+        To-dos
+        <% if (count = project.todos.uncompleted.count).nonzero? %>
+          <span class="badge"><%= count %></span>
+        <% end %>
       <% end %>
     </li>
     <li><%= link_to 'Issues', '#' %></li>

@@ -6,5 +6,8 @@ class Todo < ActiveRecord::Base
 
   validates :name, :presence => true
 
-  
+  def self.uncompleted
+    where completed_at: nil
+  end
+
 end
