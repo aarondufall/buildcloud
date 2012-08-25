@@ -1,17 +1,17 @@
 <h3><%= link_to @project.name, @project %></h3>
-<%= render 'shared/menu' %>
+<%= render_project_menu @project %>
 
   <div class="pull-right navlist"> <%= link_to [:edit, @project, @todolist, @todo], :class => 'btn',
                                                :method => 'get' do %>
             <i class="icon-pencil icon-white"></i> Edit To-do
           <% end %></div>
-      
+
 
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>
     	<th>
-        <%= @todo.name %> 
+        <%= @todo.name %>
         <span class="notes"> created <%= distance_of_time_in_words_to_now(@todo.created_at) %> ago</span>
         <% if @todo.completed_at? %>
           <%= link_to [@project, @todolist, @todo, :incomplete_todo], :class => 'btn btn-mini btn-info pull-right btn-gap', :method => 'put' do %>
@@ -20,7 +20,7 @@
         <% else %>
 
           <%= link_to 'Issue', '#', :class => 'btn btn-warning btn-mini pull-right btn-gap' %>
-           
+
           <%= link_to [@project, @todolist, @todo, :complete_todo], :class => 'btn btn-mini btn-success pull-right btn-gap', :method => 'put' do %>
             <i class="icon-ok icon-white"></i> Done
           <% end %>
@@ -29,25 +29,25 @@
           <span class="label label-info btn-gap pull-right"><%= @todo.assigned_to.profile.name %></span>
         <% else %>
           <span class="label label-info btn-gap pull-right">Unassigned</span>
-        <% end %> 
+        <% end %>
       </th>
      </tr>
   </thead>
   <tbody>
-       
+
         <tr>
           <td>
-          <P> 
+          <P>
             Detailed infomation about the task<br>
             such as issues, comments, dates and attached files
           <p>
 
             </td>
           </tr>
-        
-     
+
+
   </tbody>
 </table>
 <%= link_to 'Add todo', [:new, @project, @todolist, :todo], :class => 'btn btn-mini' %>
 <br />
-<br />                                              
+<br />
