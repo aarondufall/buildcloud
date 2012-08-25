@@ -49,10 +49,10 @@ class TodosController < ApplicationController
 		@todo.completed_at = DateTime.now
 		if @todo.save
 			flash[:success] = "To-do Completed"
-			redirect_to  [@todolist.project, @todolist]
+			redirect_to  request.referer
 		else
 			flash[:error] = "Error: could not complete to-do"
-			redirect_to [@todolist.project, @todolist]
+			redirect_to request.referer
 		end
 	end
 
@@ -62,10 +62,10 @@ class TodosController < ApplicationController
 		@todo.completed_at = nil
 		if @todo.save
 			flash[:success] = "To-do set to incomplete"
-			redirect_to [@todolist.project, @todolist]
+			redirect_to request.referer
 		else
 			flash[:error] = "Error: could not set to-do to incomplete"
-			redirect_to [@todolist.project, @todolist]
+			redirect_to request.referer
 		end
 	end
 end
