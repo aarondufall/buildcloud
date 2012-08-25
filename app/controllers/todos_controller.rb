@@ -4,11 +4,11 @@ class TodosController < ApplicationController
 		@todolist = current_todolists.find(params[:todolist_id])
 		@todo = @todolist.todos.find(params[:id])
 	end
-	
+
 	def new
 	  	@project = current_project
 	 	@todolist = current_todolists.find(params[:todolist_id])
-	  	@todo = @todolist.todos.build	
+	  	@todo = @todolist.todos.build
 	end
 
 	def create
@@ -26,7 +26,7 @@ class TodosController < ApplicationController
 	def edit
 		@project = current_project
 	  	@todolist = current_todolists.find(params[:todolist_id])
-	  	@todo = @todolist.todos.find(params[:id])	
+	  	@todo = @todolist.todos.find(params[:id])
 	end
 
 	def update
@@ -43,29 +43,24 @@ class TodosController < ApplicationController
 	end
 
 	def complete_todo
-
 		@todolist = current_todolists.find(params[:todolist_id])
-		@todo = @todolist.todos.find(params[:todo_id])
-		@todo.completed_at = DateTime.now
-		if @todo.save
+		@todo     = @todolist.todos.find(params[:todo_id])
+		if @todo.complete!
 			flash[:success] = "To-do Completed"
-			redirect_to  request.referer
 		else
 			flash[:error] = "Error: could not complete to-do"
-			redirect_to request.referer
 		end
+		redirect_to :back
 	end
 
 	def incomplete_todo
 		@todolist = current_todolists.find(params[:todolist_id])
-		@todo = @todolist.todos.find(params[:todo_id])
-		@todo.completed_at = nil
-		if @todo.save
+		@todo     = @todolist.todos.find(params[:todo_id])
+		if @todo.incomplete!
 			flash[:success] = "To-do set to incomplete"
-			redirect_to request.referer
 		else
 			flash[:error] = "Error: could not set to-do to incomplete"
-			redirect_to request.referer
 		end
+		redirect_to :back
 	end
 end

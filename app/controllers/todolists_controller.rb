@@ -53,8 +53,4 @@ class TodolistsController < ApplicationController
 		params[:from] == 'project'
 	end
 
-	
-
-	
-
 end
