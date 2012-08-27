@@ -68,7 +68,7 @@ class TodosController < ApplicationController
 
 	def post_creation_path(project, todolist)
 		case params[:from]
-		when "project" 	 then project_path(project)
+		when "projects" 	 then project_path(project)
 		when "todolists" then project_todolists_path(project)
 		else project_todolist_path(project, todolist)
 		end
