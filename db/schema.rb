@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120817085749) do
+ActiveRecord::Schema.define(:version => 20120828063028) do
+
+  create_table "issues", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "type"
+    t.integer  "assigned_to_id"
+    t.datetime "closed_at"
+    t.integer  "todo_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "profiles", :force => true do |t|
     t.string   "name"

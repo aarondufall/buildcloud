@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  description: MyText
+  type: 
+  assigned_to_id: 1
+  closed_at: 2012-08-28 14:30:28
+  todo_id: 1
+
+two:
+  title: MyString
+  description: MyText
+  type: 
+  assigned_to_id: 1
+  closed_at: 2012-08-28 14:30:28
+  todo_id: 1
