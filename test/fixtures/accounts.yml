@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  account_owner_id: 1
+  plan: MyString
+
+two:
+  name: MyString
+  account_owner_id: 1
+  plan: MyString

@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def current_team
-    current_user.owned_team
+  def current_teams
+    current_user.teams
   end
 
   def current_projects

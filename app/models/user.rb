@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  after_create :set_user_on_team
+  after_create :new_company_account_setup
   before_destroy { teams.clear }
 
   # Include default devise modules. Others available are:
@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :teams
   has_many :projects, :through => :teams
-  has_one :owned_team, :class_name => "Team", :foreign_key => 'user_id', :dependent => :destroy
+  has_one :account, :dependent => :destroy
+ 
 
   has_one :profile
   accepts_nested_attributes_for :profile
@@ -33,11 +34,12 @@ class User < ActiveRecord::Base
 
 
   private
+    def add_invited_user_to_team
+      #join team related to token
+    end
 
-
-
-    def set_user_on_team
-      self.create_owned_team(:name => self.profile.name ).users << self
+    def new_company_account_setup
+      self.create_account(:name => self.profile.company ).create_team(:name => self.profile.company ).users << self
 
     end
 
