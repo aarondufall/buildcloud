@@ -1,6 +1,6 @@
 Buildcloud::Application.routes.draw do
   
-  
+  resources :accounts
   resources :projects do
     resources :todolists do
       resources :todos do

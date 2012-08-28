@@ -1,0 +1,12 @@
+
+<div class="row">
+  <div class="span4 offset4">
+    <h3> New Issue </h3><br />
+    <%= form_for [@project, @todolist, @todo, @issue] do |f| %>
+      <%= hidden_field_tag :from, params[:from] %>
+      <%= render :partial => "form", :object => f %>
+      <%= f.submit "Submit Issue", :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', @todolist.project, :class => 'btn'%>
+    <% end %>
+  </div>
+</div>

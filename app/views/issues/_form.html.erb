@@ -1,0 +1,7 @@
+
+
+
+
+<div><%= form.select :assigned_to_id , @project.team.users.all.collect{|user| [user.profile.name, user.id]}, {:include_blank => 'Unassigned'} %></div>
+
+:assigned_to_id, :closed_at, :description, :title, :todo_id, :type

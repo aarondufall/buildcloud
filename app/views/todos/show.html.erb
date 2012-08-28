@@ -19,7 +19,7 @@
           <% end %>
         <% else %>
 
-          <%= link_to 'Issue', '#', :class => 'btn btn-warning btn-mini pull-right btn-gap' %>
+          <%= link_to 'Issue', new_project_todolist_todo_issue_path(@project, todolist, todo), :class => 'btn btn-warning btn-mini pull-right btn-gap' %>
 
           <%= link_to [@project, @todolist, @todo, :complete_todo], :class => 'btn btn-mini btn-success pull-right btn-gap', :method => 'put' do %>
             <i class="icon-ok icon-white"></i> Done

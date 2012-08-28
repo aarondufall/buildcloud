@@ -8,6 +8,10 @@
         <%= f.fields_for :profile do |fa| %>
           <div><%= fa.label :name %><br />
           <%= fa.text_field :name %></div>
+
+          <div><%= fa.label :company %><br />
+          <%= fa.text_field :company %></div>
+
         <% end %>
 
   			<div><%= f.label :email %><br />
