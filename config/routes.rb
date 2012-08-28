@@ -3,6 +3,7 @@ Buildcloud::Application.routes.draw do
   resources :contacts
 
   resources :accounts
+
   resources :projects do
     resources :todolists do
       resources :todos do
@@ -15,7 +16,9 @@ Buildcloud::Application.routes.draw do
 
   resources :profiles
 
-  resources :teams
+  resources :teams do
+    resources :contacts
+  end
 
   devise_for :users,
              :controllers => { :registrations => "registrations" } 
