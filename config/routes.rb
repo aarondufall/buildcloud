@@ -1,5 +1,7 @@
 Buildcloud::Application.routes.draw do
   
+  resources :contacts
+
   resources :accounts
   resources :projects do
     resources :todolists do
