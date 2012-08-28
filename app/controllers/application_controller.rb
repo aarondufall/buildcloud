@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     current_user.teams
   end
 
+  def current_team
+    current_user.account.team
+  end
+
   def current_projects
     current_user.projects
   end
