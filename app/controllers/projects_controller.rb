@@ -12,12 +12,12 @@ class ProjectsController < ApplicationController
 	end
 
 	def new
-		@team    = current_user.owned_team
+		@team    = current_team
 		@project = @team.projects.build
 	end
 
 	def create
-		@team    = current_user.owned_team
+		@team    = current_team
 		@project = @team.projects.build(params[:project])
 		if @project.save
 			flash[:success] = "Added new project #{@project.name}"
