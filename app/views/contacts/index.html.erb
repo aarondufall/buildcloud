@@ -1,0 +1,9 @@
+<% if @contacts.none? %>
+	<h3>There are no contacts, lets add some</h3>
+<% else %>
+	<ul>
+		<% @contacts.each do |contact| %>
+			<li> <%= contact %> </li>
+		<%  end %>
+	</ul>	
+<% end %>
