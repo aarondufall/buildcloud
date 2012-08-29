@@ -1,0 +1,34 @@
+<%= render 'error_messages' %>
+<div class="row">
+<div class="span4 offset4">
+  <h3>New Contacts</h3><br/>
+  <%= form_for [current_team, @contact] do |f| %>
+
+    <%= hidden_field_tag :from, params[:from] %>
+
+    <div class='well'>
+      <%= f.label 'First Name' %>
+      <%= f.text_field :first_name, :placeholder => 'Enter First Name...' %>
+      <%= f.label 'Last Name' %>
+      <%= f.text_field :last_name, :placeholder => 'Enter Last Name...' %>
+      <%= f.label 'Company' %>
+      <%= f.text_field :company, :placeholder => 'Enter Company...' %>
+    </div>
+    <div class='well'>
+      <%= f.label 'email' %>
+      <%= f.text_field :email, :placeholder => 'Enter Email Address...' %>
+      <%= f.label 'phone' %>
+      <%= f.text_field :phone, :placeholder => 'Enter Phone Number...' %>
+      <%= f.label 'Address' %>
+      <%= f.text_field :address, :placeholder => 'Enter Street Address...' %>
+    
+    </div>
+    
+  <%= f.submit "Create List", :class => 'btn btn-primary' %>
+  <%= link_to 'Cancel', @contacts, :class => 'btn'%>
+
+  <% end %>
+
+ </div>
+</div>
+
