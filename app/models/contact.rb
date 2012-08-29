@@ -1,4 +1,6 @@
 class Contact < ActiveRecord::Base
   attr_accessible :address, :company, :email, :first_name, :last_name, :phone
   belongs_to :team
+  validates :team, presence: true
+  validates :email, presence: true
 end
