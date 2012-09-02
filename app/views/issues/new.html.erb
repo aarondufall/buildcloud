@@ -1,12 +1,13 @@
 
 <div class="row">
-  <div class="span4 offset4">
+  <div class="span6 offset3">
     <h3> New Issue </h3><br />
     <%= form_for [@project, @todolist, @todo, @issue] do |f| %>
       <%= hidden_field_tag :from, params[:from] %>
+      <%= hidden_field_tag :todo_id, params[:todo_id] %>
       <%= render :partial => "form", :object => f %>
       <%= f.submit "Submit Issue", :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', @todolist.project, :class => 'btn'%>
+      <%= link_to 'Cancel', :back, :class => 'btn'%>
     <% end %>
   </div>
 </div>
