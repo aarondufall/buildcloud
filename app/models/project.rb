@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   belongs_to :team
   has_many :todolists, :dependent => :destroy
   has_many :todos, :through => :todolists
+  has_many :issues
   validates :team, presence: true
 
 end
