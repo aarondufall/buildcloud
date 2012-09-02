@@ -1,0 +1,31 @@
+<h3><%= link_to @project.name, @project %> <i class="icon-arrow-right"></i> Issues </h3>
+<hr />
+<div class="pull-right navlist">
+<%= link_to 'New Issue', new_project_issue_path(@project), :class => 'btn' %>
+</div>
+
+
+	<table class="table table-bordered table-condensed">
+  		<thead>
+    		<tr>
+    			<th>Issues</th>
+    			
+     		</tr>
+  		</thead>
+  		<tbody>
+        <% if @issues.none? %>
+          <tr>
+            <td>There are no issues</td>
+            
+          </tr>
+        <% else %>
+    		  <% @issues.each do |issue| %>
+      		<tr>
+        		<td><%= issue.title %></td>	
+      		</tr>
+    		  <% end %>
+       <% end %>
+      </tbody>
+	</table>
+
+
