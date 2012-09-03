@@ -15,6 +15,7 @@ class TodosController < ApplicationController
 		@project = current_project
 		@todolist = current_todolists.find(params[:todolist_id])
 		@todo = @todolist.todos.build(params[:todo])
+		@todo.created_by = current_user
 		if @todo.save
 			flash[:success] = "Added new todo to #{@todolist.name} created"
 			redirect_to post_creation_path(@project, @todolist)
