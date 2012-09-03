@@ -4,7 +4,7 @@
 <%= form.text_area :description, :placeholder => 'Enter full description or notes for the issue' %>
 
 <% ["RFI", "Completion of works", "Rectification", "Out of Scope", "Snag Item"].each do |item| %>
-  <%= form.radio_button :type, item %> <%= item %><br />
+  <%= form.radio_button :issue_type, item %> <%= item %><br />
 <% end %>
 <br />
 
