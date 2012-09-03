@@ -1,8 +1,9 @@
 
+<%= render 'error_messages' %>
 <div class="row">
   <div class="span6 offset3">
     <h3> New Issue </h3><br />
-    <%= form_for [@project, @todolist, @todo, @issue] do |f| %>
+    <%= form_for [@project, @issue] do |f| %>
       <%= hidden_field_tag :from, params[:from] %>
       <%= hidden_field_tag :todo_id, params[:todo_id] %>
       <%= render :partial => "form", :object => f %>
