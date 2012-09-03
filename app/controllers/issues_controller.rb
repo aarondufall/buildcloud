@@ -8,18 +8,23 @@ class IssuesController < ApplicationController
 
 	def new
 		@project = current_project
-	  	@issue = @project.issues.build
-		
+	  	@issue = @project.issues.build		
 	end
 
 	def create
 		@project = current_project
-		@issue = @project.issues.build
-		if params[:todo_id].nil?
-			flash[:notice] = "true #{params}"
-		else
-			flash[:notice] = "fail"
+		@issue = @project.issues.build(params[:issue])
+		@issue.created_by = current_user
+		unless params[:todo_id].empty?
+			@todo = @project.todos.find(params[:todo_id])
+			@issue.todo = @todo
 		end
-		redirect_to root_path
+			
+		if @issue.save
+			flash[:success] = "Issue successfully logged"
+			redirect_to project_issues_path
+		else
+			render 'new'
+		end
 	end
 end
