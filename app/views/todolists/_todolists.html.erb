@@ -33,7 +33,7 @@
         <tr>
           <td>
             <%= link_to todo.name, [@project, todolist, todo], :class => 'todo-list' %>
-              <span class="notes"> created <%= relative_date(todo.created_at) %></span>
+              
 
               <%= link_to 'Issue', new_project_issue_path(@project, :todo_id => todo.id), :class => 'btn btn-warning btn-mini pull-right btn-gap' %>
 
@@ -46,6 +46,13 @@
               <% else %>
                   <span class="label label-info btn-gap pull-right">Unassigned</span>
               <% end %>
+              <div class="notes">
+                
+                <% unless todo.created_by.nil? %>
+                  Created by <%= link_to todo.created_by.profile.name, '#' %> <%= relative_date(todo.created_at) %>
+                <% end %> 
+
+              </div>
           </td>
         </tr>
       <% end %>
