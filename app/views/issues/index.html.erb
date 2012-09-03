@@ -8,7 +8,7 @@
 	<table class="table table-bordered table-condensed">
   		<thead>
     		<tr>
-    			<th>Issues</th>
+    			<th>Open issues</th>
     			
      		</tr>
   		</thead>
@@ -21,7 +21,21 @@
         <% else %>
     		  <% @issues.each do |issue| %>
       		<tr>
-        		<td><%= issue.title %></td>	
+        		<td>
+              
+              <%= issue.title %>
+              <% unless issue.todo.nil? %>
+              Issue for <%= link_to issue.todo.name, [@project, issue.todo.todolist, issue.todo] %>
+              <% end %>
+              <span class="label label-warning"><%= issue.issue_type %></span>
+              <%= link_to 'Close', '#', :class => 'btn btn-success btn-mini pull-right btn-gap' %>
+              <%= link_to 'Follow up', '#', :class => 'btn btn-warning pull-right btn-mini btn-gap' %>
+              <div>
+                <% unless issue.created_by.nil? %>
+                  Created by <%= link_to issue.created_by.profile.name, '#' %> <%= relative_date(issue.created_at) %>
+                <% end %>
+              </div>
+            </td>	
       		</tr>
     		  <% end %>
        <% end %>
