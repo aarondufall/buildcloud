@@ -80,6 +80,7 @@ color: #fff;
   margin-top: 30px;
   padding-bottom: 0px;
   font-weight: bold;
+  font-size: 1.1em;
 }
 
 .navlist
@@ -152,13 +153,25 @@ select.date-field {
 
 }
 
-/* todo lits */
+/* tabled-lists */
+
+
+thead{
+  font-size: 1.1em;
+}
+
+tr{
+  font-size: 1.1em;
+}
+
+.notes {
+  font-size: 0.8em;
+}
 
 .todo-list{
 color: inherit;
 
+
+
 }
 
-.notes{
-  color: #9d261d;
-}
