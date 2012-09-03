@@ -1,0 +1,7 @@
+<% if @issue.errors.any? %> 
+		<div class="alert alert-error">
+		<% @issue.errors.full_messages.each do |msg| %>
+			Error: <%= msg %>
+		<% end %>	
+		</div>
+<% end %>
