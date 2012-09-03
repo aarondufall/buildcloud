@@ -6,6 +6,11 @@ class IssuesController < ApplicationController
 	end
 
 
+	def show
+		@project = current_project
+		@issue = @project.issues.find(params[:id])
+	end
+
 	def new
 		@project = current_project
 	  	@issue = @project.issues.build		
@@ -22,7 +27,7 @@ class IssuesController < ApplicationController
 			
 		if @issue.save
 			flash[:success] = "Issue successfully logged"
-			redirect_to project_issues_path
+			redirect_to project_issue_path(@project, @issue)
 		else
 			render 'new'
 		end
