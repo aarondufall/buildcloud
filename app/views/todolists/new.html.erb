@@ -1,32 +1,15 @@
 <%= render 'error_messages' %>
 <div class="row">
-<div class="span4 offset4">
-  <h3>Edit List</h3><br/>
-  <%= form_for [@todolist.project, @todolist] do |f| %>
+  <div class="span4 offset4">
+    <h3>New List</h3><br/>
+    <%= form_for [@todolist.project, @todolist] do |f| %>
 
-    <%= hidden_field_tag :from, params[:from] %>
-
-    <div class='well'>
-
-      <%= f.text_field :name, :placeholder => 'Enter List Name' %>
-    </div>
-    <h3>Options</h3><br />
-    <div class='well'>
-
-      <%= f.label 'Start date' %>
-      <div><%= f.date_select :start_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
-
-      <%= f.label 'Due Date' %>
-      <div><%= f.date_select :end_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
-
-    
-    </div>
+      <%= render :partial => "form", :object => f %>
 
 
-  <%= f.submit "Create List", :class => 'btn btn-primary' %>
-  <%= link_to 'Cancel', @todolist.project, :class => 'btn'%>
+      <%= f.submit "Create List", :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', @todolist.project, :class => 'btn'%>
 
-  <% end %>
-
- </div>
+    <% end %>
+  </div>
 </div>

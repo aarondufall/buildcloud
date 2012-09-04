@@ -1,0 +1,20 @@
+<%= hidden_field_tag :from, params[:from] %>
+<div class='well'>
+  <%= form.text_field :name, :placeholder => 'Enter List Name' %>
+</div>
+
+<h3>Options</h3><br />
+<div class='well'>
+
+  <%= form.label 'Start date' %>
+  <div>
+    <%= form.date_select :start_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, 
+                         :class => 'date-field' %>
+  </div>
+
+  <%= form.label 'Due Date' %>
+  <div>
+    <%= form.date_select :end_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, 
+                          :class => 'date-field' %>
+  </div>
+</div>

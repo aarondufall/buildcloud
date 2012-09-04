@@ -1,35 +1,17 @@
 <%= render 'error_messages' %>
 <div class="row">
-<div class="span4 offset4">
-  <h3>Edit List</h3><br/>
-  <%= form_for [@todolist.project, @todolist] do |f| %>
-
-    <%= hidden_field_tag :from, params[:from] %>
-
-    <div class='well'>
-
-      <%= f.text_field :name, :placeholder => 'Enter List Name' %>
-    </div>
-    <h3>Options</h3><br />
-    <div class='well'>
-
-      <%= f.label 'Start date' %>
-      <div><%= f.date_select :start_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
-
-      <%= f.label 'Due Date' %>
-      <div><%= f.date_select :end_date, {:prompt => {:day => 'Day', :month => 'Month', :year => 'Year'}}, :class => 'date-field' %></div>
-
+  <div class="span4 offset4">
+    <h3>Edit List</h3><br/>
+    <%= form_for [@todolist.project, @todolist] do |f| %>
     
-    </div>
-    <%= f.submit "Update", :class => 'btn btn-primary' %>
+      <%= render :partial => "form", :object => f %>
+  
+      <%= f.submit "Update", :class => 'btn btn-primary' %>
     
-    <%= link_to [@todolist.project, @todolist] , method: :delete, :class => 'btn btn-danger', confirm: "You sure?" do %>
-            <i class="icon-trash icon-white"></i> Delete
+      <%= link_to [@todolist.project, @todolist] , method: :delete, :class => 'btn btn-danger', confirm: "You sure?" do %>
+        <i class="icon-trash icon-white"></i> Delete
       <% end %>
       <%= link_to 'Cancel', [@todolist.project, @todolist], :class => 'btn'%>
-  <% end %>
-  
-</div>
-
-
+    <% end %>
+  </div>
 </div>

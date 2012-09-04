@@ -3,15 +3,7 @@
   <thead>
     <tr>
     	<th>
-       <%=link_to todolist.name, [@project, todolist], :class => 'todo-list' %>
-        <div class='pull-right'>
-        <% if todolist.start_date? && todolist.start_date.future? %>
-          Due to start in: <span class="date"><%= relative_date(todolist.start_date) %> </span>
-          Duration: <span class="date"><%= relative_date(todolist.end_date, todolist.start_date) %></span>
-        <% elsif todolist.end_date? %>
-          <%= formatted_todolist_end_date todolist %>
-        <% end %>
-       </div>
+       <%= render :partial => 'todolists/list_header', :locals => { :todolist => todolist } %>
       </th>
      </tr>
   </thead>
@@ -32,27 +24,9 @@
       <% todolist.todos.in_progress.each do |todo| %>
         <tr>
           <td>
-            <%= link_to todo.name, [@project, todolist, todo], :class => 'todo-list' %>
-              
-
-              <%= link_to 'Issue', new_project_issue_path(@project, :todo_id => todo.id), :class => 'btn btn-warning btn-mini pull-right btn-gap' %>
-
-              <%= link_to [@project, todolist, todo, :complete_todo], :class => 'btn btn-mini btn-success pull-right btn-gap', :method => 'put' do %>
-                <i class="icon-ok icon-white"></i> Done
-              <% end %>
-
-              <% unless todo.assigned_to == nil  %>
-                <span class="label label-info btn-gap pull-right"><%= todo.assigned_to.profile.name %></span>
-              <% else %>
-                  <span class="label label-info btn-gap pull-right">Unassigned</span>
-              <% end %>
-              <div class="notes">
-                
-                <% unless todo.created_by.nil? %>
-                  Created by <%= link_to todo.created_by.profile.name, '#' %> <%= relative_date(todo.created_at) %>
-                <% end %> 
-
-              </div>
+            <%= render :partial => 'todos/todo', :locals => { :todolist => todolist, 
+                                                              :todo => todo, 
+                                                              :project => @project } %>
           </td>
         </tr>
       <% end %>

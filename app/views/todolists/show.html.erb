@@ -1,92 +1,48 @@
 
-<h3><%= link_to @project.name, @project %> <i class="icon-arrow-right"></i> <%= link_to 'To-do Lists', [@project, :todolists] %> <i class="icon-arrow-right"></i> <%= @todolist.name %></h3>
+<h3>
+  <%= link_to @project.name, @project %> 
+  <i class="icon-arrow-right"></i> <%= link_to 'To-do Lists', [@project, :todolists] %> 
+  <i class="icon-arrow-right"></i> <%= @todolist.name %>
+</h3>
 <hr />
 
 
-  <span class="pull-right navlist"> <%= link_to [:edit, @project, @todolist], :class => 'btn',
-                                                   :method => 'get' do %>
-            <i class="icon-pencil icon-white"></i> Edit List
-          <% end %></span>
-      
-
+<span class="pull-right navlist"> 
+  <%= link_to [:edit, @project, @todolist], :class => 'btn', :method => 'get' do %>
+    <i class="icon-pencil icon-white"></i> Edit List
+  <% end %>
+</span>
 
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>
       <th>
-        Active To-dos
-        <div class='pull-right'>
-        <% if @todolist.start_date? %>
-
-            <% if @todolist.start_date > DateTime.now.to_date %>
-              Due to start in:<span class="date"> <%= distance_of_time_in_words_to_now(@todolist.start_date) %> </span>
-              Duration:<span class="date"> <%= distance_of_time_in_words(@todolist.start_date, @todolist.end_date) %></span>
-            <% else %>
-              <% if @todolist.end_date > DateTime.now.to_date %>
-                <span class="date"> 
-                  <%= distance_of_time_in_words(DateTime.now.to_date, @todolist.end_date) %> 
-                </span>
-                Until scheduled completion date
-              <% else %>
-                Was due for completion
-                <span class="date overdue"> 
-                  <%= distance_of_time_in_words(DateTime.now.to_date, @todolist.end_date) %> 
-                </span>
-                ago
-              <% end %>
-          <% end %>
-
-        <% elsif @todolist.end_date? %>
-
-            <% if @todolist.end_date > DateTime.now.to_date %>
-                <span class="date"> 
-                  <%= distance_of_time_in_words(DateTime.now.to_date, @todolist.end_date) %> 
-                </span>
-                Until scheduled completion date
-            <% else %>
-                Was due for completion
-                <span class="date overdue"> 
-                  <%= distance_of_time_in_words(DateTime.now.to_date, @todolist.end_date) %> 
-                </span>
-                ago
-            <% end %>
-
-        <% else %>
-
-        <% end %>
-       </div>   
+        <%= render :partial => 'todolists/list_header', :locals => { :todolist => @todolist } %>
       </th>
      </tr>
   </thead>
   <tbody>
-    <% if @todolist.todos.count <= 0 %>
+    <% if @todolist.todos.none? %>
       <tr>
         <td>
           Let's get started and add some tasks to the list
         </td>
       </tr>
+    <% elsif @todolist.todos.in_progress.none? %>
+      <tr>
+        <td>
+          All todos have been completed, why not add some more?
+        </td>
+      </tr>
     <% else %>
-      <% @todolist.todos.each do |todo| %>
-        <% unless todo.completed_at? %>
-          <tr>
-            <td>
-              <%= link_to todo.name, [@project, @todolist, todo], :class => 'todo-list' %> 
-                <span class="notes"> created <%= distance_of_time_in_words_to_now(todo.created_at) %></span>
-              
-                <%= link_to 'Issue', '#', :class => 'btn btn-warning btn-mini pull-right btn-gap' %>
-            
-                <%= link_to [@project, @todolist, todo, :complete_todo], :class => 'btn btn-mini btn-success pull-right btn-gap', :method => 'put' do %>
-                  <i class="icon-ok icon-white"></i> Done
-                <% end %>
-
-                <% unless todo.assigned_to == nil  %>
-                  <span class="label label-info btn-gap pull-right"><%= todo.assigned_to.profile.name %></span>
-                <% else %>
-                    <span class="label label-info btn-gap pull-right">Unassigned</span>
-                <% end %> 
-            </td>
-          </tr>
-        <% end %>
+      <% @todolist.todos.in_progress.each do |todo| %>
+        <tr>
+          <td>
+            <%= render :partial => 'todos/todo', :locals => { :todolist => @todolist, 
+                                                              :todo => todo, 
+                                                              :project => @project } %>
+          </td>
+        </tr>
       <% end %>
     <% end %>
     <tr>
@@ -99,41 +55,38 @@
   </tbody>
 </table>
 <br />
+
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>
       <th>
-       Completed To-dos
+        Completed To-dos
       </th>
      </tr>
   </thead>
   <tbody>
-    <% if @todolist.todos.count <= 0 %>
+    <% if @todolist.todos.none? %>
       <tr>
         <td>
-          There are no completed To-dos yet
+          Let's get started and add some tasks to the list
+        </td>
+      </tr>
+    <% elsif @todolist.todos.in_progress.none? %>
+      <tr>
+        <td>
+          All todos have been completed, why not add some more?
         </td>
       </tr>
     <% else %>
-      <% @todolist.todos.each do |todo| %>
-        <% if todo.completed_at? %>
-          <tr>
-            <td>
-              <%= link_to todo.name, [@project, @todolist, todo], :class => 'todo-list' %> 
-                <span class="notes"> completed <%= distance_of_time_in_words_to_now(todo.completed_at) %></span>
-            
-                <%= link_to [@project, @todolist, todo, :incomplete_todo], :class => 'btn btn-mini btn-info pull-right btn-gap', :method => 'put' do %>
-                  <i class="icon-remove icon-white"></i> incomplete
-                <% end %>
+      <% @todolist.todos.completed.each do |todo| %>
+        <tr>
+          <td>
+            <%= render :partial => 'todos/todo', :locals => { :todolist => @todolist, 
+                                                              :todo => todo, 
+                                                              :project => @project } %>
 
-                <% unless todo.assigned_to == nil  %>
-                  <span class="label label-info btn-gap pull-right"><%= todo.assigned_to.profile.name %></span>
-                <% else %>
-                    <span class="label label-info btn-gap pull-right">Unassigned</span>
-                <% end %> 
-            </td>
-          </tr>
-        <% end %>
+          </td>
+        </tr>
       <% end %>
     <% end %>
     <tr>
@@ -145,4 +98,5 @@
     </tr>
   </tbody>
 </table>
-<br />                                              
+<br />
+

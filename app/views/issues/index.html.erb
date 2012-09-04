@@ -4,43 +4,50 @@
 <%= link_to 'New Issue', new_project_issue_path(@project), :class => 'btn' %>
 </div>
 
+<table class="table table-bordered table-condensed">
+  <thead>
+    <tr>
+    	<th>Open issues</th>			
+    </tr>
+  </thead>
+  <tbody>
+    <% if @issues.open.none? %>
+      <tr>
+        <td>There are currently issues. Awsome!</td>      
+      </tr>
+    <% else %>
+    	<% @issues.open.each do |issue| %>
+      <tr>
+        <td>
+          <%= render :partial => 'issue', :locals => { :issue => issue , :project => @project } %>       
+        </td>	
+      </tr>
+    	<% end %>
+    <% end %>
+  </tbody>
+</table>
 
-	<table class="table table-bordered table-condensed">
-  		<thead>
-    		<tr>
-    			<th>Open issues</th>
-    			
-     		</tr>
-  		</thead>
-  		<tbody>
-        <% if @issues.none? %>
-          <tr>
-            <td>There are no issues</td>
-            
-          </tr>
-        <% else %>
-    		  <% @issues.open.each do |issue| %>
-      		<tr>
-        		<td>
-              
-              <%= link_to issue.title, [@project, issue], :class => 'todo-list' %>
-              
-              <span class="label label-important"><%= issue.issue_type %></span>
-              <%= link_to 'Close', [@project, issue, :close_issue], :class => 'btn btn-success btn-mini pull-right btn-gap', :method => 'put'%>
-              <%= link_to 'Follow up', '#', :class => 'btn btn-warning pull-right btn-mini btn-gap' %>
-              <div class="notes">
-                <% unless issue.created_by.nil? %>
-                  Created by <%= link_to issue.created_by.profile.name, '#' %> <%= relative_date(issue.created_at) %>
-                <% end %>
-                <% unless issue.todo.nil? %>
-                  To-do <%= link_to issue.todo.name, [@project, issue.todo.todolist, issue.todo] %>
-                <% end %>
-              </div>
-            </td>	
-      		</tr>
-    		  <% end %>
-       <% end %>
-      </tbody>
-	</table>
 
+<table class="table table-bordered table-condensed">
+  <thead>
+    <tr>
+      <th>Closed issues</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <% if @issues.closed.none? %>
+      <tr>
+        <td>There are no closed issues</td>      
+      </tr>
+    <% else %>
+      <% @issues.closed.each do |issue| %>
+      <tr>
+        <td>
+          <%= render :partial => 'issue', :locals => { :issue => issue , :project => @project } %>       
+        </td> 
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
 

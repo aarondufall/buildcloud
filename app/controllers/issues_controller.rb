@@ -45,7 +45,7 @@ class IssuesController < ApplicationController
 		redirect_to :back
 	end
 
-	def reopen_todo
+	def reopen_issue
 		@project = current_project
 		@issue = @project.issues.find(params[:issue_id])	
 		if @issue.reopen!
