@@ -1,0 +1,40 @@
+<h3><%= link_to @project.name, @project %></h3>
+<%= render_project_menu @project %>
+
+  <div class="pull-right navlist"> <%= link_to [:edit, @project, @issue], :class => 'btn',
+                                               :method => 'get' do %>
+            <i class="icon-pencil icon-white"></i> Edit Issue
+          <% end %></div>
+
+
+<table class="table table-bordered table-condensed">
+      <thead>
+        <tr>
+          <th><%= @issue.title %> <span class="label label-important"><%= @issue.issue_type %></span>
+            <%= link_to 'Close', '#', :class => 'btn btn-success btn-mini pull-right btn-gap' %>
+              <%= link_to 'Follow up', '#', :class => 'btn btn-warning pull-right btn-mini btn-gap' %>
+          </th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            
+            descrition of issues, comment and follow up information
+
+            <div class="notes">
+                <% unless @issue.created_by.nil? %>
+                  Created by <%= link_to @issue.created_by.profile.name, '#' %> <%= relative_date(@issue.created_at) %>
+                <% end %>
+                <% unless @issue.todo.nil? %>
+                  To-do <%= link_to @issue.todo.name, [@project, @issue.todo.todolist, @issue.todo] %>
+                <% end %>
+              </div>
+          </td>
+        </tr>
+
+      </tbody>
+  </table>
+
+

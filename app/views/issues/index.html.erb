@@ -19,14 +19,14 @@
             
           </tr>
         <% else %>
-    		  <% @issues.each do |issue| %>
+    		  <% @issues.open.each do |issue| %>
       		<tr>
         		<td>
               
               <%= link_to issue.title, [@project, issue], :class => 'todo-list' %>
               
               <span class="label label-important"><%= issue.issue_type %></span>
-              <%= link_to 'Close', '#', :class => 'btn btn-success btn-mini pull-right btn-gap' %>
+              <%= link_to 'Close', [@project, issue, :close_issue], :class => 'btn btn-success btn-mini pull-right btn-gap', :method => 'put'%>
               <%= link_to 'Follow up', '#', :class => 'btn btn-warning pull-right btn-mini btn-gap' %>
               <div class="notes">
                 <% unless issue.created_by.nil? %>

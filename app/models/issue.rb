@@ -7,4 +7,13 @@ class Issue < ActiveRecord::Base
   validates :title, :presence => true
   validates :issue_type, :presence => true
   validates :created_by, :presence => true
+
+  
+  def close!
+    update_attributes closed_at: Time.now
+  end
+
+  def reopen!
+    update_attributes closed_at: nil
+  end
 end

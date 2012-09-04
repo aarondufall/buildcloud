@@ -5,12 +5,14 @@ Buildcloud::Application.routes.draw do
   resources :accounts
 
   resources :projects do
-    resources :issues
+    resources :issues do
+      put 'close_issue'
+      put 'reopen_issue'
+    end
     resources :todolists do
       resources :todos do
         put 'complete_todo'
         put 'incomplete_todo'
-        
       end
     end
   end

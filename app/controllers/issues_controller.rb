@@ -32,4 +32,27 @@ class IssuesController < ApplicationController
 			render 'new'
 		end
 	end
+
+
+	def close_issue
+		@project = current_project
+		@issue = @project.issues.find(params[:issue_id])	
+		if @issue.close!
+			flash[:success] = "Issue closed"
+		else
+			flash[:error] = "Error: could not close issue"
+		end
+		redirect_to :back
+	end
+
+	def reopen_todo
+		@project = current_project
+		@issue = @project.issues.find(params[:issue_id])	
+		if @issue.reopen!
+			flash[:success] = "Issue reopend"
+		else
+			flash[:error] = "Error: could not set issue open"
+		end
+		redirect_to :back
+	end
 end
