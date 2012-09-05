@@ -10,9 +10,8 @@
 <table class="table table-bordered table-condensed">
       <thead>
         <tr>
-          <th><%= @issue.title %> <span class="label label-important"><%= @issue.issue_type %></span>
-            <%= link_to 'Close', '#', :class => 'btn btn-success btn-mini pull-right btn-gap' %>
-              <%= link_to 'Follow up', '#', :class => 'btn btn-warning pull-right btn-mini btn-gap' %>
+          <th>
+            <%= render :partial => 'issue', :locals => { :issue => @issue , :project => @project } %>  
           </th>
           
         </tr>
