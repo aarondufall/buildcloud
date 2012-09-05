@@ -1,4 +1,9 @@
-<%=link_to todolist.name, [@project, todolist], :class => 'todo-list' %>
+<% if completed_todos? %>
+  <%=link_to "Complete todos in #{todolist.name}", [@project, todolist], :class => 'todo-list' %>
+<% else %>
+  <%=link_to "Active todos in #{todolist.name}", [@project, todolist], :class => 'todo-list' %>
+<% end %>
+
 <div class='pull-right'>
     <% if todolist.start_date? && todolist.start_date.future? %>
       	Due to start in: <span class="date"><%= relative_date(todolist.start_date) %> </span>

@@ -7,20 +7,20 @@
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>
-    	<th>Open issues</th>			
+    	<th>Open issues</th>
     </tr>
   </thead>
   <tbody>
-    <% if @issues.open.none? %>
+    <% if @issues.opened.none? %>
       <tr>
-        <td>There are currently issues. Awsome!</td>      
+        <td>There are currently issues. Awsome!</td>
       </tr>
     <% else %>
-    	<% @issues.open.each do |issue| %>
+    	<% @issues.opened.each do |issue| %>
       <tr>
         <td>
-          <%= render :partial => 'issue', :locals => { :issue => issue , :project => @project } %>       
-        </td>	
+          <%= render :partial => 'issue', :locals => { :issue => issue , :project => @project } %>
+        </td>
       </tr>
     	<% end %>
     <% end %>
@@ -31,20 +31,20 @@
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>
-      <th>Closed issues</th>      
+      <th>Closed issues</th>
     </tr>
   </thead>
   <tbody>
     <% if @issues.closed.none? %>
       <tr>
-        <td>There are no closed issues</td>      
+        <td>There are no closed issues</td>
       </tr>
     <% else %>
       <% @issues.closed.each do |issue| %>
       <tr>
         <td>
-          <%= render :partial => 'issue', :locals => { :issue => issue , :project => @project } %>       
-        </td> 
+          <%= render :partial => 'issue', :locals => { :issue => issue , :project => @project } %>
+        </td>
       </tr>
       <% end %>
     <% end %>

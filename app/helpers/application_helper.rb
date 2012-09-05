@@ -9,6 +9,10 @@ module ApplicationHelper
       end
   end
 
-  
+  def navbar_entry(active = false, &block)
+    options = {}
+    options[:class] = "active" if active
+    content_tag :li, capture(&block), options
+  end
 
 end

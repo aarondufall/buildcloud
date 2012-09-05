@@ -2,17 +2,7 @@ class Todolist < ActiveRecord::Base
   attr_accessible :end_date, :name, :start_date
   belongs_to :project
 
-  has_many :todos do
-
-    def in_progress
-      reject { |r| r.completed_at? }
-    end
-
-    def completed
-      select { |r| r.completed_at? }
-    end
-
-  end
+  has_many :todos
 
   validates :name, :presence => true
 

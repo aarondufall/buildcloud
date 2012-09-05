@@ -7,8 +7,12 @@ class Todo < ActiveRecord::Base
 
   validates :name, :presence => true
 
-  def self.uncompleted
+  def self.incomplete
     where completed_at: nil
+  end
+
+  def self.completed
+    where "completed_at IS NOT NULL"
   end
 
   def complete!

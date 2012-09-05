@@ -9,6 +9,11 @@ class TodolistsController < ApplicationController
 	def show
 		@project = current_project
 		@todolist = current_todolists.find(params[:id])
+		if completed_todos?
+			@todos = @todolist.todos.completed
+		else
+			@todos = @todolist.todos.incomplete
+		end
 	end
 
 	def new
@@ -46,5 +51,15 @@ class TodolistsController < ApplicationController
 		flash[:success] = "List deleted."
 		redirect_to current_project
 	end
+
+	def completed_todos?
+		params[:filter] == 'completed'
+	end
+
+	def active_todos?
+		params[:filter] != 'completed'
+	end
+
+	helper_method :completed_todos?, :active_todos?
 
 end

@@ -4,7 +4,7 @@
     <li>
       <%= link_to project_todolists_path(project) do %>
         To-dos
-        <% if (count = project.todos.uncompleted.count).nonzero? %>
+        <% if (count = project.todos.incomplete.count).nonzero? %>
           <span class="badge"><%= count %></span>
         <% end %>
       <% end %>

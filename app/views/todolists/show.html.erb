@@ -1,17 +1,26 @@
 
 <h3>
-  <%= link_to @project.name, @project %> 
-  <i class="icon-arrow-right"></i> <%= link_to 'To-do Lists', [@project, :todolists] %> 
+  <%= link_to @project.name, @project %>
+  <i class="icon-arrow-right"></i> <%= link_to 'To-do Lists', [@project, :todolists] %>
   <i class="icon-arrow-right"></i> <%= @todolist.name %>
 </h3>
 <hr />
 
 
-<span class="pull-right navlist"> 
-  <%= link_to [:edit, @project, @todolist], :class => 'btn', :method => 'get' do %>
-    <i class="icon-pencil icon-white"></i> Edit List
+<ul class="nav nav-tabs">
+  <%= navbar_entry active_todos? do %>
+    <%= link_to 'Active', [@project, @todolist] %>
   <% end %>
-</span>
+  <%= navbar_entry completed_todos? do %>
+    <%= link_to 'Completed', project_todolist_path(@project, @todolist, filter: "completed") %>
+  <% end %>
+
+  <li class="pull-right">
+    <%= link_to [:edit, @project, @todolist], :method => 'get' do %>
+      <i class="icon-pencil icon-white"></i> Edit List
+    <% end %>
+  </li>
+</ul>
 
 <table class="table table-bordered table-condensed">
   <thead>
@@ -22,24 +31,24 @@
      </tr>
   </thead>
   <tbody>
-    <% if @todolist.todos.none? %>
+    <% if !@todolist.todos.exists? %>
       <tr>
         <td>
           Let's get started and add some tasks to the list
         </td>
       </tr>
-    <% elsif @todolist.todos.in_progress.none? %>
+    <% elsif !@todolist.todos.incomplete.exists? %>
       <tr>
         <td>
           All todos have been completed, why not add some more?
         </td>
       </tr>
     <% else %>
-      <% @todolist.todos.in_progress.each do |todo| %>
+      <% @todos.each do |todo| %>
         <tr>
           <td>
-            <%= render :partial => 'todos/todo', :locals => { :todolist => @todolist, 
-                                                              :todo => todo, 
+            <%= render :partial => 'todos/todo', :locals => { :todolist => @todolist,
+                                                              :todo => todo,
                                                               :project => @project } %>
           </td>
         </tr>
@@ -55,48 +64,3 @@
   </tbody>
 </table>
 <br />
-
-<table class="table table-bordered table-condensed">
-  <thead>
-    <tr>
-      <th>
-        Completed To-dos
-      </th>
-     </tr>
-  </thead>
-  <tbody>
-    <% if @todolist.todos.none? %>
-      <tr>
-        <td>
-          Let's get started and add some tasks to the list
-        </td>
-      </tr>
-    <% elsif @todolist.todos.completed.none? %>
-      <tr>
-        <td>
-          All todos have been completed, why not add some more?
-        </td>
-      </tr>
-    <% else %>
-      <% @todolist.todos.completed.each do |todo| %>
-        <tr>
-          <td>
-            <%= render :partial => 'todos/todo', :locals => { :todolist => @todolist, 
-                                                              :todo => todo, 
-                                                              :project => @project } %>
-
-          </td>
-        </tr>
-      <% end %>
-    <% end %>
-    <tr>
-      <td>
-        <%= link_to [:new, @project, @todolist, :todo]  do%>
-          <i class="icon-plus"></i> Add to-do
-        <% end %>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<br />
-
