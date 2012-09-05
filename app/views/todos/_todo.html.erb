@@ -1,12 +1,22 @@
 <%= link_to todo.name, [@project, todolist, todo], :class => 'todo-list' %>
+<% if todo.completed_at %>
+      Completed <%= distance_of_time_in_words_to_now(todo.completed_at) %> ago.
+<% end %>
               
 <%= link_to 'Issue', new_project_issue_path(@project, :todo_id => todo.id), 
                                                       :class => 'btn btn-warning btn-mini pull-right btn-gap' %>
-
-<%= link_to [@project, todolist, todo, :complete_todo], :class => 'btn btn-mini btn-success pull-right btn-gap', 
-                                                        :method => 'put' do %>
-    <i class="icon-ok icon-white"></i> Done
+<% if todo.completed_at.nil? %>
+  <%= link_to [@project, todolist, todo, :complete_todo], :class => 'btn btn-mini btn-success pull-right btn-gap', 
+                                                          :method => 'put' do %>
+      <i class="icon-ok icon-white"></i> Done
+  <% end %>
+<% else %>
+  <%= link_to [@project, todolist, todo, :incomplete_todo], :class => 'btn btn-mini btn-info pull-right btn-gap', 
+                                                          :method => 'put' do %>
+      <i class="icon-remove icon-white"></i> Uncompleted
+  <% end %>
 <% end %>
+
 
 <% unless todo.assigned_to == nil  %>
   <span class="label label-info btn-gap pull-right"><%= todo.assigned_to.profile.name %></span>
@@ -15,9 +25,7 @@
 <% end %>
               
 <div class="notes">
-	<% if todo.completed_at %>
-  		Completed <%= distance_of_time_in_words_to_now(todo.completed_at) %>.
-  	<% end %>
+	
   	<% unless todo.created_by.nil? %>
     	Created by <%= link_to todo.created_by.profile.name, '#' %> <%= relative_date(todo.created_at) %>
   	<% end %> 
