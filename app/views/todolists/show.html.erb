@@ -26,7 +26,7 @@
   <thead>
     <tr>
       <th>
-        <%= render :partial => 'todolists/list_header', :locals => { :todolist => @todolist } %>
+        <%= render :partial => 'todolists/list_header', :locals => { :todolist => @todolist, completed_todos: completed_todos?, active_todos: active_todos? } %>
       </th>
      </tr>
   </thead>
