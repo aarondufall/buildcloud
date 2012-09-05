@@ -1,3 +1,15 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+#= require jquery.tokeninput.js
+
+buildAutocompleteResult = (item) ->
+  output = "<li>"
+  if item.type?
+    output += "<strong>#{item.type}:</strong> "
+  output += item.name
+  output + "</li>"
+
+$ ->
+  email_tokens_field = $ "#issue_email_tokens"
+  email_tokens_field.tokenInput "/emails.json"
+    theme: "facebook"
+    prePopulate: email_tokens_field.data 'email-details'
+    resultsFormatter: buildAutocompleteResult

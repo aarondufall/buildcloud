@@ -1,0 +1,42 @@
+Issue:
+
+  - Issue has many asssociated emails
+    - Email is either a user, or a contact
+
+  - Want a tokened email input field
+
+  Set the emails:
+    - For a specific email, if the user exists, assign that.
+      Other wise, assign a contact with the specific email.
+
+
+    For a user:
+
+     - Find user with a name, nil otherwise
+     - For a contact, we first_or_create with an email.
+
+  In the view:
+
+    - Passes through tokens
+    - Tokens are a string, with commas seperating values
+
+    IDeally, at the value level (*under the plugin):
+
+    - e.g. a@example.com,b@example.com,c@example.com
+    - Convert into a list of emails
+
+    - Convert list of emails into tokens
+      - emails.join(",")
+
+When I submit the issue:
+
+   - get the emaail tokens
+   - convert into a list of emails
+   - assign as users, or a contact if no user is found
+
+   When I load the form:
+
+   - I ask for the email tokens string
+   - I ask fro the list of emails
+   - I build the list of emails from the users and contacts
+   - I make the token from the emails

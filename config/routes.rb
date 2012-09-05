@@ -1,5 +1,5 @@
 Buildcloud::Application.routes.draw do
-  
+
 
 
   resources :accounts
@@ -19,13 +19,15 @@ Buildcloud::Application.routes.draw do
 
   resources :profiles
 
+  resources :emails, only: [:index]
+
   resources :teams do
     resources :contacts
   end
 
   devise_for :users,
-             :controllers => { :registrations => "registrations" } 
-    
+             :controllers => { :registrations => "registrations" }
+
 
   resources  :users, :only => [:index, :show] do
     member do
