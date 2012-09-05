@@ -7,15 +7,22 @@
 <% else %>
   <%= link_to 'Reopen', [project, issue, :reopen_issue], :class => 'btn btn-info btn-mini pull-right btn-gap', 
                                                        :method => 'put'%> 
+ 
+  <% unless issue.closed_at.nil? %>
+    Closed <%= relative_date(issue.closed_at) %> ago
+  <% end %>
+ 
 <% end %>                                                                                                      
 
 <%= link_to 'Follow up', '#', :class => 'btn btn-warning pull-right btn-mini btn-gap' %>
               
 <div class="notes">
+  
   <% unless issue.created_by.nil? %>
     Created by <%= link_to issue.created_by.profile.name, '#' %> <%= relative_date(issue.created_at) %>
   <% end %>
   <% unless issue.todo.nil? %>
-    To-do <%= link_to issue.todo.name, [@project, issue.todo.todolist, issue.todo] %>
+    for To-do <%= link_to issue.todo.name, [@project, issue.todo.todolist, issue.todo] %>
   <% end %>
+
 </div>
