@@ -8,6 +8,10 @@ class Issue < ActiveRecord::Base
   validates :issue_type, :presence => true
   validates :created_by, :presence => true
 
+  has_many :recipients, class_name: "IssueRecipient"
+  has_many :users,      through: :recipients
+  has_many :contacts,   through: :recipients
+
   def self.opened
     where closed_at: nil
   end
@@ -17,11 +21,12 @@ class Issue < ActiveRecord::Base
   end
 
   def emails
-    @emails ||= []
+    @emails ||= recipients.map(&:email)
   end
 
   def emails=(value)
-    @emails = value
+    self.recipients = recipients.from_emails(Array(value), project.team)
+    @emails = recipients.map(&:email)
   end
 
   def email_tokens=(value)
@@ -33,7 +38,7 @@ class Issue < ActiveRecord::Base
   end
 
   def current_email_details
-    emails.map { |e| {id: e, name: Forgery::Name.full_name} }
+    recipients.map &:to_autocomplete_hash
   end
 
   def close!

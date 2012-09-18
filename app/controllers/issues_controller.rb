@@ -2,7 +2,7 @@ class IssuesController < ApplicationController
 
 	def index
 		@project = current_project
-		@issues = @project.issues	
+		@issues = @project.issues
 	end
 
 
@@ -13,18 +13,19 @@ class IssuesController < ApplicationController
 
 	def new
 		@project = current_project
-	  	@issue = @project.issues.build		
+	  @issue = @project.issues.build
 	end
 
 	def create
 		@project = current_project
-		@issue = @project.issues.build(params[:issue])
+		@issue = @project.issues.build
+		@issue.attributes = params[:issue]
 		@issue.created_by = current_user
 		unless params[:todo_id].empty?
 			@todo = @project.todos.find(params[:todo_id])
 			@issue.todo = @todo
 		end
-			
+
 		if @issue.save
 			flash[:success] = "Issue successfully logged"
 			redirect_to project_issue_path(@project, @issue)
@@ -36,7 +37,7 @@ class IssuesController < ApplicationController
 
 	def close_issue
 		@project = current_project
-		@issue = @project.issues.find(params[:issue_id])	
+		@issue = @project.issues.find(params[:issue_id])
 		if @issue.close!
 			flash[:success] = "Issue closed"
 		else
@@ -47,7 +48,7 @@ class IssuesController < ApplicationController
 
 	def reopen_issue
 		@project = current_project
-		@issue = @project.issues.find(params[:issue_id])	
+		@issue = @project.issues.find(params[:issue_id])
 		if @issue.reopen!
 			flash[:success] = "Issue reopend"
 		else

@@ -3,6 +3,7 @@
 <h3>Description/Notes</h3><br />
 <%= form.text_area :description, :placeholder => 'Enter full description or notes for the issue', :rows => 5 %>
 
+<%= form.label :email_tokens, "Who to notify:" %>
 <%= form.text_field :email_tokens, "data-email-details" => form.object.current_email_details.to_json %>
 
 <% ["RFI", "Completion of works", "Rectification", "Out of Scope", "Snag Item"].each do |item| %>
