@@ -9,7 +9,14 @@
         <% end %>
       <% end %>
     </li>
-    <li><%= link_to 'Issues', project_issues_path(project) %></li>
+    <li>
+      <%= link_to project_issues_path(project) do %>
+        Issues
+        <% if (count = project.issues.opened.count).nonzero? %>
+          <span class="badge"><%= count %></span>
+        <% end %>
+      <% end %>
+    </li>
     <li><%= link_to 'Files', '#' %></li>
     <li><%= link_to 'Dates', '#' %></li>
     <li><%= link_to 'Contacts', '#' %></li>

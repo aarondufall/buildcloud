@@ -11,7 +11,7 @@
       <thead>
         <tr>
           <th>
-            <%= render :partial => 'issue', :locals => { :issue => @issue , :project => @project } %>  
+            <%= render :partial => 'issue', :locals => { :issue => @issue , :project => @project, :title => true } %>  
           </th>
           
         </tr>
@@ -19,8 +19,11 @@
       <tbody>
         <tr>
           <td>
-            
-            descrition of issues, comment and follow up information
+            <% unless @issue.description.empty? %>
+              <%= @issue.description %>
+            <% else %>
+              No description 
+            <% end %>
 
             <div class="notes">
                 <% unless @issue.created_by.nil? %>

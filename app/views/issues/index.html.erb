@@ -19,7 +19,7 @@
     	<% @issues.opened.each do |issue| %>
       <tr>
         <td>
-          <%= render :partial => 'issue', :locals => { :issue => issue , :project => @project } %>
+          <%= render :partial => 'issue', :locals => { :issue => issue , :project => @project, :title => false } %>
         </td>
       </tr>
     	<% end %>
