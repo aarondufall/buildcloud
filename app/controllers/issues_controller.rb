@@ -2,7 +2,11 @@ class IssuesController < ApplicationController
 
 	def index
 		@project = current_project
-		@issues = @project.issues
+		if closed_issues?
+			@issues = @project.issues.closed
+		else
+			@issues = @project.issues.opened
+		end
 	end
 
 
@@ -56,4 +60,14 @@ class IssuesController < ApplicationController
 		end
 		redirect_to :back
 	end
+
+	def closed_issues?
+		params[:filter] == 'closed'
+	end
+
+	def open_issues?
+		params[:filter] != 'closed'
+	end
+
+	helper_method :closed_issues?, :open_issues?
 end

@@ -1,25 +1,35 @@
 <h3><%= link_to @project.name, @project %> <i class="icon-arrow-right"></i> Issues </h3>
 <hr />
-<div class="pull-right navlist">
-<%= link_to 'New Issue', new_project_issue_path(@project), :class => 'btn' %>
-</div>
+
+<ul class="nav nav-tabs">
+  <%= navbar_entry open_issues? do %>
+    <%= link_to 'open', project_issues_path(@project) %>
+  <% end %>
+  <%= navbar_entry closed_issues? do %>
+    <%= link_to 'closed', project_issues_path(@project, filter: "closed") %>
+  <% end %>
+  <li class="pull-right">
+    <%= link_to 'New Issue', new_project_issue_path(@project) %>
+  </li>
+
+</ul>
 
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>
-    	<th>Open issues</th>
+    	<th>Issues</th>
     </tr>
   </thead>
   <tbody>
-    <% if @issues.opened.none? %>
+    <% unless @issues.exists? %>
       <tr>
         <td>There are currently issues. Awsome!</td>
       </tr>
     <% else %>
-    	<% @issues.opened.each do |issue| %>
+    	<% @issues.each do |issue| %>
       <tr>
         <td>
-          <%= render :partial => 'issue', :locals => { :issue => issue , :project => @project, :title => false } %>
+          <%= render :partial => 'issue', :locals => { :issue => issue , :project => @project, :title => false, :open_issues => open_issues?,                                           :closed_issues => closed_issues?} %>
         </td>
       </tr>
     	<% end %>
@@ -28,26 +38,5 @@
 </table>
 
 
-<table class="table table-bordered table-condensed">
-  <thead>
-    <tr>
-      <th>Closed issues</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @issues.closed.none? %>
-      <tr>
-        <td>There are no closed issues</td>
-      </tr>
-    <% else %>
-      <% @issues.closed.each do |issue| %>
-      <tr>
-        <td>
-          <%= render :partial => 'issue', :locals => { :issue => issue , :project => @project } %>
-        </td>
-      </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+
 
