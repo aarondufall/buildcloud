@@ -1,9 +1,9 @@
 <% completed_todos ||= false %>
 <% active_todos ||= false %>
 <% if completed_todos %>
-  <%=link_to "Complete todos in #{todolist.name}", [@project, todolist], :class => 'todo-list' %>
+  <%=link_to "#{todolist.name}", [@project, todolist], :class => 'todo-list' %>
 <% elsif active_todos %>
-  <%=link_to "Active todos in #{todolist.name}", [@project, todolist], :class => 'todo-list' %>
+  <%=link_to "#{todolist.name}", [@project, todolist], :class => 'todo-list' %>
 <% else %>
   <%=link_to todolist.name, [@project, todolist], :class => 'todo-list' %>
 <% end %>
