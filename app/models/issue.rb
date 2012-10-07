@@ -11,7 +11,6 @@ class Issue < ActiveRecord::Base
   has_many :recipients, class_name: "IssueRecipient"
   has_many :users,      through: :recipients
   has_many :contacts,   through: :recipients
-  has_many :follow_ups
 
   def self.opened
     where closed_at: nil
