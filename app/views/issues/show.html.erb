@@ -38,5 +38,26 @@
 
       </tbody>
   </table>
+  <% if (count = @issue.follow_ups.count).nonzero? %>      
+  <table class="table table-bordered table-condensed">
+      <thead>
+        <tr>
+          <th>
+            Follow ups <span class="badge"><%= count %></span>
+          </th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <% @issue.follow_ups.each do |follow_up| %>
+        <tr>
+          <td>
+            <span class="date"><%= l follow_up.created_at, format: :short  %></span> <%= relative_date(follow_up.created_at) %> ago
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+  </table>
+  <% end %>
 
 
