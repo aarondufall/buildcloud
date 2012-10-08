@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  issue: 
+  followed_up_by: 
+
+two:
+  issue: 
+  followed_up_by: 

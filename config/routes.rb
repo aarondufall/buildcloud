@@ -2,6 +2,8 @@ Buildcloud::Application.routes.draw do
 
 
 
+  resources :follow_ups
+
   resources :accounts
 
   resources :projects do
