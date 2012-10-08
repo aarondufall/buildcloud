@@ -14,7 +14,7 @@
  
 <% end %>                                                                                                      
 
-<%= link_to 'Follow up', '#', :class => 'btn btn-warning pull-right btn-mini btn-gap' %>
+<%= link_to 'Follow up', project_issue_follow_ups_path(project, issue), :method => :post, :class => 'btn btn-warning pull-right btn-mini btn-gap' %>
               
 <div class="notes">
   <% unless title == true %>
