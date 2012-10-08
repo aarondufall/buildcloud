@@ -22,3 +22,23 @@ solr/pids/
 app/views/.DS_Store
 
 app/views/shared/.DS_Store
+
+.idea/.generators
+
+.idea/.name
+
+.idea/.rakeTasks
+
+.idea/buildcloud.iml
+
+.idea/encodings.xml
+
+.idea/misc.xml
+
+.idea/modules.xml
+
+.idea/scopes/scope_settings.xml
+
+.idea/vcs.xml
+
+.idea/workspace.xml
