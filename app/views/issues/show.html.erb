@@ -11,7 +11,7 @@
       <thead>
         <tr>
           <th>
-            <%= render :partial => 'issue', :locals => { :issue => @issue , :project => @project, :title => true } %>  
+            Issue 
           </th>
           
         </tr>
@@ -19,6 +19,7 @@
       <tbody>
         <tr>
           <td>
+            <%= render :partial => 'issue', :locals => { :issue => @issue , :project => @project, :title => true } %> 
             <% unless @issue.description.empty? %>
               <%= @issue.description %>
             <% else %>
@@ -37,6 +38,8 @@
         </tr>
 
       </tbody>
+
+
   </table>
   <% if (count = @issue.follow_ups.count).nonzero? %>      
   <table class="table table-bordered table-condensed">
@@ -52,6 +55,9 @@
         <% @issue.follow_ups.each do |follow_up| %>
         <tr>
           <td>
+            <% unless follow_up.followed_up_by.nil? %>
+              by <%= link_to follow_up.followed_up_by.profile.name, '#' %> on 
+            <% end %>
             <span class="date"><%= l follow_up.created_at, format: :short  %></span> <%= relative_date(follow_up.created_at) %> ago
           </td>
         </tr>

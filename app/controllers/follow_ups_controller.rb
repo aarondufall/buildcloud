@@ -2,8 +2,9 @@ class FollowUpsController < ApplicationController
 	def create
 		@issue = current_project.issues.find(params[:issue_id])
 		@follow_up = @issue.follow_ups.build(params[:issue])
+		@follow_up.followed_up_by = current_user
 		if @follow_up.save
-			flash[:sucess] = "A follow up e-mail has been sent for this issue"
+			flash[:sucess] = "A follow up e-mail has been sent for this issue #{@follow_up.followed_up_by}"
 		else
 			flash[:error] = "failed"
 		end
