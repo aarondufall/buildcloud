@@ -11,7 +11,7 @@ gem "twitter-bootstrap-rails"
 
 gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate', '0.0.6'
-gem 'sunspot_rails'
+
 
 
 # Gems used only for assets and not required

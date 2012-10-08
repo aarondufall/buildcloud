@@ -31,11 +31,6 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :profile_attributes
 
-  searchable do
-    text :users_name do
-      profile.name
-    end
-  end
 
   def self.search_for_autocomplete(text)
     includes(:profile).where("email LIKE ? OR profiles.name LIKE ?", "#{text}%", "#{text}%").limit(10)
