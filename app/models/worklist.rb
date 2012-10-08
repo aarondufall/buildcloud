@@ -1,4 +1,4 @@
-class Todolist < ActiveRecord::Base
+class Worklist < ActiveRecord::Base
   attr_accessible :end_date, :name, :start_date
   belongs_to :project
 

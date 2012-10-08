@@ -1,30 +1,30 @@
-<% todolists.each do |todolist| %>
+<% worklists.each do |worklist| %>
 <table class="table table-bordered table-condensed">
   <thead>
     <tr>
     	<th>
-       <%= render :partial => 'todolists/list_header', :locals => { :todolist => todolist } %>
+       <%= render :partial => 'worklists/list_header', :locals => { :worklist => worklist } %>
       </th>
      </tr>
   </thead>
   <tbody>
-    <% if todolist.todos.none? %>
+    <% if worklist.todos.none? %>
       <tr>
         <td>
           Let's get started and add some tasks to the list
         </td>
       </tr>
-    <% elsif todolist.todos.incomplete.none? %>
+    <% elsif worklist.todos.incomplete.none? %>
       <tr>
         <td>
           All todos have been completed, why not add some more?
         </td>
       </tr>
     <% else %>
-      <% todolist.todos.incomplete.each do |todo| %>
+      <% worklist.todos.incomplete.each do |todo| %>
         <tr>
           <td>
-            <%= render :partial => 'todos/todo', :locals => { :todolist => todolist,
+            <%= render :partial => 'todos/todo', :locals => { :worklist => worklist,
                                                               :todo => todo,
                                                               :project => @project } %>
           </td>
@@ -33,7 +33,7 @@
     <% end %>
     <tr>
       <td>
-        <%= link_to new_project_todolist_todo_path(@project, todolist, :from => controller.controller_name )  do%>
+        <%= link_to new_project_worklist_todo_path(@project, worklist, :from => controller.controller_name )  do%>
           <i class="icon-plus"></i> Add to-do
         <% end %>
       </td>

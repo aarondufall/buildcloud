@@ -1,7 +1,7 @@
-module TodolistsHelper
+module WorklistsHelper
 
-def formatted_todolist_end_date(todolist)
-    date          = todolist.end_date
+def formatted_worklist_end_date(worklist)
+    date          = worklist.end_date
     duration_text = relative_date(date, Time.now.to_date)
     output        = ActiveSupport::SafeBuffer.new
     if date.future?
@@ -20,8 +20,8 @@ def formatted_todolist_end_date(todolist)
     content_tag :abbr, duration_text, :class => "relative-date", :title => l(from, :format => :long)
   end
 
-  def render_todolists(todolists)
-  	render partial: 'todolists/todolists', locals: {todolists: todolists}
+  def render_worklists(worklists)
+  	render partial: 'worklists/worklists', locals: {worklists: worklists}
   end
 
 end

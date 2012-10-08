@@ -1,24 +1,24 @@
 class TodosController < ApplicationController
 	def show
 		@project = current_project
-		@todolist = current_todolists.find(params[:todolist_id])
-		@todo = @todolist.todos.find(params[:id])
+		@worklist = current_worklists.find(params[:worklist_id])
+		@todo = @worklist.todos.find(params[:id])
 	end
 
 	def new
 	  	@project = current_project
-	 	@todolist = current_todolists.find(params[:todolist_id])
-	  	@todo = @todolist.todos.build
+	 	@worklist = current_worklists.find(params[:worklist_id])
+	  	@todo = @worklist.todos.build
 	end
 
 	def create
 		@project = current_project
-		@todolist = current_todolists.find(params[:todolist_id])
-		@todo = @todolist.todos.build(params[:todo])
+		@worklist = current_worklists.find(params[:worklist_id])
+		@todo = @worklist.todos.build(params[:todo])
 		@todo.created_by = current_user
 		if @todo.save
-			flash[:success] = "Added new todo to #{@todolist.name} created"
-			redirect_to post_creation_path(@project, @todolist)
+			flash[:success] = "Added new todo to #{@worklist.name} created"
+			redirect_to post_creation_path(@project, @worklist)
 		else
 			render 'new'
 		end
@@ -26,17 +26,17 @@ class TodosController < ApplicationController
 
 	def edit
 		@project = current_project
-	  	@todolist = current_todolists.find(params[:todolist_id])
-	  	@todo = @todolist.todos.find(params[:id])
+	  	@worklist = current_worklists.find(params[:worklist_id])
+	  	@todo = @worklist.todos.find(params[:id])
 	end
 
 	def update
 		@project = current_project
-		@todolist = current_todolists.find(params[:todolist_id])
-		@todo = @todolist.todos.find(params[:id])
+		@worklist = current_worklists.find(params[:worklist_id])
+		@todo = @worklist.todos.find(params[:id])
 		if @todo.update_attributes(params[:todo])
-			flash[:success] = "todo for #{@todolist.name} updated"
-			redirect_to [@todolist.project, @todolist, @todo]
+			flash[:success] = "todo for #{@worklist.name} updated"
+			redirect_to [@worklist.project, @worklist, @todo]
 		else
 			flash[:error] = "Failed"
 			render 'new'
@@ -44,8 +44,8 @@ class TodosController < ApplicationController
 	end
 
 	def complete_todo
-		@todolist = current_todolists.find(params[:todolist_id])
-		@todo     = @todolist.todos.find(params[:todo_id])
+		@worklist = current_worklists.find(params[:worklist_id])
+		@todo     = @worklist.todos.find(params[:todo_id])
 		if @todo.complete!
 			flash[:success] = "To-do Completed"
 		else
@@ -55,8 +55,8 @@ class TodosController < ApplicationController
 	end
 
 	def incomplete_todo
-		@todolist = current_todolists.find(params[:todolist_id])
-		@todo     = @todolist.todos.find(params[:todo_id])
+		@worklist = current_worklists.find(params[:worklist_id])
+		@todo     = @worklist.todos.find(params[:todo_id])
 		if @todo.incomplete!
 			flash[:success] = "To-do set to incomplete"
 		else

@@ -22,19 +22,19 @@ class ApplicationController < ActionController::Base
 		@current_project ||= current_projects.find(params[:project_id])
 	end
 
-  def current_todolists
-    current_project.todolists
+  def current_worklists
+    current_project.worklists
   end
 
   def after_sign_in_path_for(resource)
     projects_path
   end
 
-  def post_creation_path(project, todolist)
+  def post_creation_path(project, worklist)
     case params[:from]
     when "projects"    then project_path(project)
-    when "todolists" then project_todolists_path(project)
-    else project_todolist_path(project, todolist)
+    when "worklists" then project_worklists_path(project)
+    else project_worklist_path(project, worklist)
     end
   end
 

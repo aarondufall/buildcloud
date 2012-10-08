@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
 
 	def show
 		@project = current_projects.find(params[:id])
-		@todolists = @project.todolists
+		@worklists = @project.worklists
 	end
 
 	def new

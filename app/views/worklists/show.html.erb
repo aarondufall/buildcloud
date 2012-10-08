@@ -1,22 +1,22 @@
 
 <h3>
   <%= link_to @project.name, @project %>
-  <i class="icon-arrow-right"></i> <%= link_to 'To-do Lists', [@project, :todolists] %>
-  <i class="icon-arrow-right"></i> <%= @todolist.name %>
+  <i class="icon-arrow-right"></i> <%= link_to 'To-do Lists', [@project, :worklists] %>
+  <i class="icon-arrow-right"></i> <%= @worklist.name %>
 </h3>
 <hr />
 
 
 <ul class="nav nav-tabs">
   <%= navbar_entry active_todos? do %>
-    <%= link_to 'Active', [@project, @todolist] %>
+    <%= link_to 'Active', [@project, @worklist] %>
   <% end %>
   <%= navbar_entry completed_todos? do %>
-    <%= link_to 'Completed', project_todolist_path(@project, @todolist, filter: "completed") %>
+    <%= link_to 'Completed', project_worklist_path(@project, @worklist, filter: "completed") %>
   <% end %>
 
   <li class="pull-right">
-    <%= link_to [:edit, @project, @todolist], :method => 'get' do %>
+    <%= link_to [:edit, @project, @worklist], :method => 'get' do %>
       <i class="icon-pencil icon-white"></i> Edit List
     <% end %>
   </li>
@@ -26,18 +26,18 @@
   <thead>
     <tr>
       <th>
-        <%= render :partial => 'todolists/list_header', :locals => { :todolist => @todolist, completed_todos: completed_todos?, active_todos: active_todos? } %>
+        <%= render :partial => 'worklists/list_header', :locals => { :worklist => @worklist, completed_todos: completed_todos?, active_todos: active_todos? } %>
       </th>
      </tr>
   </thead>
   <tbody>
-    <% if !@todolist.todos.exists? %>
+    <% if !@worklist.todos.exists? %>
       <tr>
         <td>
           Let's get started and add some tasks to the list
         </td>
       </tr>
-    <% elsif !@todolist.todos.incomplete.exists? %>
+    <% elsif !@worklist.todos.incomplete.exists? %>
       <tr>
         <td>
           All todos have been completed, why not add some more?
@@ -47,7 +47,7 @@
       <% @todos.each do |todo| %>
         <tr>
           <td>
-            <%= render :partial => 'todos/todo', :locals => { :todolist => @todolist,
+            <%= render :partial => 'todos/todo', :locals => { :worklist => @worklist,
                                                               :todo => todo,
                                                               :project => @project } %>
           </td>
@@ -56,7 +56,7 @@
     <% end %>
     <tr>
       <td>
-        <%= link_to [:new, @project, @todolist, :todo]  do%>
+        <%= link_to [:new, @project, @worklist, :todo]  do%>
           <i class="icon-plus"></i> Add to-do
         <% end %>
       </td>

@@ -1,8 +1,9 @@
-<h3><%= @project.name %></h3>
 
-<%= render_project_menu @project %>
+<h3><%= link_to @project.name, @project %> <i class="icon-arrow-right"></i> To-do Lists </h3>
+<hr />
+
 <div class="navlist">
   To-do Lists <%= link_to 'Add to-do list', new_project_worklist_path(@project), :class => 'btn btn-mini' %>
 </div>
 
-<%= render_worklists @project.worklists %>
+<%= render_worklists @worklists %>

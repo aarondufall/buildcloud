@@ -1,0 +1,18 @@
+<% completed_todos ||= false %>
+<% active_todos ||= false %>
+<% if completed_todos %>
+  <%=link_to "#{worklist.name}", [@project, worklist], :class => 'todo-list' %>
+<% elsif active_todos %>
+  <%=link_to "#{worklist.name}", [@project, worklist], :class => 'todo-list' %>
+<% else %>
+  <%=link_to worklist.name, [@project, worklist], :class => 'todo-list' %>
+<% end %>
+
+<div class='pull-right'>
+    <% if worklist.start_date? && worklist.start_date.future? %>
+      	Due to start in: <span class="date"><%= relative_date(worklist.start_date) %> </span>
+        Duration: <span class="date"><%= relative_date(worklist.end_date, worklist.start_date) %></span>
+    <% elsif worklist.end_date? %>
+          <%= formatted_worklist_end_date worklist %>
+    <% end %>
+</div>

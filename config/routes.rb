@@ -13,7 +13,7 @@ Buildcloud::Application.routes.draw do
       resources :follow_ups
     end
     
-    resources :todolists do
+    resources :worklists do
       resources :todos do
         put 'complete_todo'
         put 'incomplete_todo'

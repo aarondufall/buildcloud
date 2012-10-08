@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121008080914) do
+ActiveRecord::Schema.define(:version => 20121008151358) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -105,21 +105,12 @@ ActiveRecord::Schema.define(:version => 20121008080914) do
 
   add_index "teams_users", ["team_id", "user_id"], :name => "by_team_and_user", :unique => true
 
-  create_table "todolists", :force => true do |t|
-    t.string   "name",       :default => "", :null => false
-    t.date     "start_date"
-    t.date     "end_date"
-    t.integer  "project_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-  end
-
   create_table "todos", :force => true do |t|
     t.string   "name"
     t.boolean  "focused"
     t.integer  "created_by_id"
     t.integer  "assigned_to_id"
-    t.integer  "todolist_id"
+    t.integer  "worklist_id"
     t.datetime "scheduled"
     t.datetime "completed_at"
     t.datetime "created_at",     :null => false
@@ -143,5 +134,14 @@ ActiveRecord::Schema.define(:version => 20121008080914) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "worklists", :force => true do |t|
+    t.string   "name",       :default => "", :null => false
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "project_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
 
 end

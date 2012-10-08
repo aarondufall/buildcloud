@@ -2,16 +2,16 @@
 <div class="row">
   <div class="span4 offset4">
     <h3>Edit List</h3><br/>
-    <%= form_for [@todolist.project, @todolist] do |f| %>
+    <%= form_for [@worklist.project, @worklist] do |f| %>
     
       <%= render :partial => "form", :object => f %>
   
       <%= f.submit "Update", :class => 'btn btn-primary' %>
     
-      <%= link_to [@todolist.project, @todolist] , method: :delete, :class => 'btn btn-danger', confirm: "You sure?" do %>
+      <%= link_to [@worklist.project, @worklist] , method: :delete, :class => 'btn btn-danger', confirm: "You sure?" do %>
         <i class="icon-trash icon-white"></i> Delete
       <% end %>
-      <%= link_to 'Cancel', [@todolist.project, @todolist], :class => 'btn'%>
+      <%= link_to 'Cancel', [@worklist.project, @worklist], :class => 'btn'%>
     <% end %>
   </div>
 </div>
