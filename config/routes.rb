@@ -2,7 +2,7 @@ Buildcloud::Application.routes.draw do
 
 
 
-  resources :follow_ups
+  
 
   resources :accounts
 
@@ -10,7 +10,9 @@ Buildcloud::Application.routes.draw do
     resources :issues do
       put 'close_issue'
       put 'reopen_issue'
+      resources :follow_ups
     end
+    
     resources :todolists do
       resources :todos do
         put 'complete_todo'
