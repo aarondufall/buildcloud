@@ -3,8 +3,8 @@
   <ul class="nav nav-tabs ">
     <li>
       <%= link_to project_worklists_path(project) do %>
-        To-dos
-        <% if (count = project.todos.incomplete.count).nonzero? %>
+        Item Lists
+        <% if (count = project.items.incomplete.count).nonzero? %>
           <span class="badge"><%= count %></span>
         <% end %>
       <% end %>

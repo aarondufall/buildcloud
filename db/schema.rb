@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121008151358) do
+ActiveRecord::Schema.define(:version => 20121009061421) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -69,6 +69,18 @@ ActiveRecord::Schema.define(:version => 20121008151358) do
     t.integer  "created_by_id"
   end
 
+  create_table "items", :force => true do |t|
+    t.string   "name"
+    t.boolean  "focused"
+    t.integer  "created_by_id"
+    t.integer  "assigned_to_id"
+    t.integer  "worklist_id"
+    t.datetime "scheduled"
+    t.datetime "completed_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "profiles", :force => true do |t|
     t.string   "name"
     t.string   "company"
@@ -104,18 +116,6 @@ ActiveRecord::Schema.define(:version => 20121008151358) do
   end
 
   add_index "teams_users", ["team_id", "user_id"], :name => "by_team_and_user", :unique => true
-
-  create_table "todos", :force => true do |t|
-    t.string   "name"
-    t.boolean  "focused"
-    t.integer  "created_by_id"
-    t.integer  "assigned_to_id"
-    t.integer  "worklist_id"
-    t.datetime "scheduled"
-    t.datetime "completed_at"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

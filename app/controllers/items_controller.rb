@@ -1,23 +1,23 @@
-class TodosController < ApplicationController
+class ItemsController < ApplicationController
 	def show
 		@project = current_project
 		@worklist = current_worklists.find(params[:worklist_id])
-		@todo = @worklist.todos.find(params[:id])
+		@item = @worklist.items.find(params[:id])
 	end
 
 	def new
 	  	@project = current_project
 	 	@worklist = current_worklists.find(params[:worklist_id])
-	  	@todo = @worklist.todos.build
+	  	@item = @worklist.items.build
 	end
 
 	def create
 		@project = current_project
 		@worklist = current_worklists.find(params[:worklist_id])
-		@todo = @worklist.todos.build(params[:todo])
-		@todo.created_by = current_user
-		if @todo.save
-			flash[:success] = "Added new todo to #{@worklist.name} created"
+		@item = @worklist.items.build(params[:item])
+		@item.created_by = current_user
+		if @item.save
+			flash[:success] = "Added new item to #{@worklist.name} created"
 			redirect_to post_creation_path(@project, @worklist)
 		else
 			render 'new'
@@ -27,26 +27,26 @@ class TodosController < ApplicationController
 	def edit
 		@project = current_project
 	  	@worklist = current_worklists.find(params[:worklist_id])
-	  	@todo = @worklist.todos.find(params[:id])
+	  	@item = @worklist.items.find(params[:id])
 	end
 
 	def update
 		@project = current_project
 		@worklist = current_worklists.find(params[:worklist_id])
-		@todo = @worklist.todos.find(params[:id])
-		if @todo.update_attributes(params[:todo])
-			flash[:success] = "todo for #{@worklist.name} updated"
-			redirect_to [@worklist.project, @worklist, @todo]
+		@item = @worklist.items.find(params[:id])
+		if @item.update_attributes(params[:item])
+			flash[:success] = "item for #{@worklist.name} updated"
+			redirect_to [@worklist.project, @worklist, @item]
 		else
 			flash[:error] = "Failed"
 			render 'new'
 		end
 	end
 
-	def complete_todo
+	def complete_item
 		@worklist = current_worklists.find(params[:worklist_id])
-		@todo     = @worklist.todos.find(params[:todo_id])
-		if @todo.complete!
+		@item     = @worklist.items.find(params[:item_id])
+		if @item.complete!
 			flash[:success] = "To-do Completed"
 		else
 			flash[:error] = "Error: could not complete to-do"
@@ -54,10 +54,10 @@ class TodosController < ApplicationController
 		redirect_to :back
 	end
 
-	def incomplete_todo
+	def incomplete_item
 		@worklist = current_worklists.find(params[:worklist_id])
-		@todo     = @worklist.todos.find(params[:todo_id])
-		if @todo.incomplete!
+		@item     = @worklist.items.find(params[:item_id])
+		if @item.incomplete!
 			flash[:success] = "To-do set to incomplete"
 		else
 			flash[:error] = "Error: could not set to-do to incomplete"

@@ -4,7 +4,7 @@
     <h3> New Issue </h3><br />
     <%= form_for [@project, @issue] do |f| %>
       <%= hidden_field_tag :from, params[:from] %>
-      <%= hidden_field_tag :todo_id, params[:todo_id] %>
+      <%= hidden_field_tag :item_id, params[:item_id] %>
       <%= render :partial => "form", :object => f %>
       <%= f.submit "Submit Issue", :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', :back, :class => 'btn'%>

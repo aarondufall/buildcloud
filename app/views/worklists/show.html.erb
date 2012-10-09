@@ -8,10 +8,10 @@
 
 
 <ul class="nav nav-tabs">
-  <%= navbar_entry active_todos? do %>
+  <%= navbar_entry active_items? do %>
     <%= link_to 'Active', [@project, @worklist] %>
   <% end %>
-  <%= navbar_entry completed_todos? do %>
+  <%= navbar_entry completed_items? do %>
     <%= link_to 'Completed', project_worklist_path(@project, @worklist, filter: "completed") %>
   <% end %>
 
@@ -26,29 +26,29 @@
   <thead>
     <tr>
       <th>
-        <%= render :partial => 'worklists/list_header', :locals => { :worklist => @worklist, completed_todos: completed_todos?, active_todos: active_todos? } %>
+        <%= render :partial => 'worklists/list_header', :locals => { :worklist => @worklist, completed_items: completed_items?, active_items: active_items? } %>
       </th>
      </tr>
   </thead>
   <tbody>
-    <% if !@worklist.todos.exists? %>
+    <% if !@worklist.items.exists? %>
       <tr>
         <td>
           Let's get started and add some tasks to the list
         </td>
       </tr>
-    <% elsif !@worklist.todos.incomplete.exists? %>
+    <% elsif !@worklist.items.incomplete.exists? %>
       <tr>
         <td>
-          All todos have been completed, why not add some more?
+          All items have been completed, why not add some more?
         </td>
       </tr>
     <% else %>
-      <% @todos.each do |todo| %>
+      <% @items.each do |item| %>
         <tr>
           <td>
-            <%= render :partial => 'todos/todo', :locals => { :worklist => @worklist,
-                                                              :todo => todo,
+            <%= render :partial => 'items/item', :locals => { :worklist => @worklist,
+                                                              :item => item,
                                                               :project => @project } %>
           </td>
         </tr>
@@ -56,7 +56,7 @@
     <% end %>
     <tr>
       <td>
-        <%= link_to [:new, @project, @worklist, :todo]  do%>
+        <%= link_to [:new, @project, @worklist, :item]  do%>
           <i class="icon-plus"></i> Add to-do
         <% end %>
       </td>

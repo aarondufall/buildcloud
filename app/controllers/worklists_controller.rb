@@ -9,10 +9,10 @@ class WorklistsController < ApplicationController
 	def show
 		@project = current_project
 		@worklist = current_worklists.find(params[:id])
-		if completed_todos?
-			@todos = @worklist.todos.completed
+		if completed_items?
+			@items = @worklist.items.completed
 		else
-			@todos = @worklist.todos.incomplete
+			@items = @worklist.items.incomplete
 		end
 	end
 
@@ -52,14 +52,14 @@ class WorklistsController < ApplicationController
 		redirect_to current_project
 	end
 
-	def completed_todos?
+	def completed_items?
 		params[:filter] == 'completed'
 	end
 
-	def active_todos?
+	def active_items?
 		params[:filter] != 'completed'
 	end
 
-	helper_method :completed_todos?, :active_todos?
+	helper_method :completed_items?, :active_items?
 
 end

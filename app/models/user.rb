@@ -24,8 +24,8 @@ class User < ActiveRecord::Base
   has_one :profile
   accepts_nested_attributes_for :profile
 
-  has_many :todos, :class_name => "todo", :foreign_key => 'assigned_to_id', :dependent => :destroy
-  has_many :created_todos, :class_name => "todo", :foreign_key => 'created_by_id', :dependent => :destroy
+  has_many :items, :class_name => "item", :foreign_key => 'assigned_to_id', :dependent => :destroy
+  has_many :created_items, :class_name => "item", :foreign_key => 'created_by_id', :dependent => :destroy
   has_many :issues
   has_many :created_issues, :class_name => "User", :foreign_key => 'created_by_id'
 

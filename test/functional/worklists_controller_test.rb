@@ -1,7 +1,6 @@
 require 'test_helper'
 
-class Todo
-	Test < ActiveSupport::TestCase
+class WorklistsControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

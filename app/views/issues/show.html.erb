@@ -30,8 +30,8 @@
                 <% unless @issue.created_by.nil? %>
                   Created by <%= link_to @issue.created_by.profile.name, '#' %> <%= relative_date(@issue.created_at) %>
                 <% end %>
-                <% unless @issue.todo.nil? %>
-                  To-do <%= link_to @issue.todo.name, [@project, @issue.todo.worklist, @issue.todo] %>
+                <% unless @issue.item.nil? %>
+                  To-do <%= link_to @issue.item.name, [@project, @issue.item.worklist, @issue.item] %>
                 <% end %>
               </div>
           </td>

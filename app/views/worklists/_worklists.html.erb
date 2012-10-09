@@ -8,24 +8,24 @@
      </tr>
   </thead>
   <tbody>
-    <% if worklist.todos.none? %>
+    <% if worklist.items.none? %>
       <tr>
         <td>
           Let's get started and add some tasks to the list
         </td>
       </tr>
-    <% elsif worklist.todos.incomplete.none? %>
+    <% elsif worklist.items.incomplete.none? %>
       <tr>
         <td>
-          All todos have been completed, why not add some more?
+          All items have been completed, why not add some more?
         </td>
       </tr>
     <% else %>
-      <% worklist.todos.incomplete.each do |todo| %>
+      <% worklist.items.incomplete.each do |item| %>
         <tr>
           <td>
-            <%= render :partial => 'todos/todo', :locals => { :worklist => worklist,
-                                                              :todo => todo,
+            <%= render :partial => 'items/item', :locals => { :worklist => worklist,
+                                                              :item => item,
                                                               :project => @project } %>
           </td>
         </tr>
@@ -33,7 +33,7 @@
     <% end %>
     <tr>
       <td>
-        <%= link_to new_project_worklist_todo_path(@project, worklist, :from => controller.controller_name )  do%>
+        <%= link_to new_project_worklist_item_path(@project, worklist, :from => controller.controller_name )  do%>
           <i class="icon-plus"></i> Add to-do
         <% end %>
       </td>

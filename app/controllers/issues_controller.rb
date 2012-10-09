@@ -25,9 +25,9 @@ class IssuesController < ApplicationController
 		@issue = @project.issues.build
 		@issue.attributes = params[:issue]
 		@issue.created_by = current_user
-		unless params[:todo_id].empty?
-			@todo = @project.todos.find(params[:todo_id])
-			@issue.todo = @todo
+		unless params[:item_id].empty?
+			@item = @project.items.find(params[:item_id])
+			@issue.item = @item
 		end
 
 		if @issue.save

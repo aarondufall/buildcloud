@@ -1,11 +1,11 @@
-<% completed_todos ||= false %>
-<% active_todos ||= false %>
-<% if completed_todos %>
-  <%=link_to "#{worklist.name}", [@project, worklist], :class => 'todo-list' %>
-<% elsif active_todos %>
-  <%=link_to "#{worklist.name}", [@project, worklist], :class => 'todo-list' %>
+<% completed_items ||= false %>
+<% active_items ||= false %>
+<% if completed_items %>
+  <%=link_to "#{worklist.name}", [@project, worklist], :class => 'item-list' %>
+<% elsif active_items %>
+  <%=link_to "#{worklist.name}", [@project, worklist], :class => 'item-list' %>
 <% else %>
-  <%=link_to worklist.name, [@project, worklist], :class => 'todo-list' %>
+  <%=link_to worklist.name, [@project, worklist], :class => 'item-list' %>
 <% end %>
 
 <div class='pull-right'>

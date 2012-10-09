@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TodoControllerTest < ActionController::TestCase
+class ItemControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

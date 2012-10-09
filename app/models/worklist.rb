@@ -2,7 +2,7 @@ class Worklist < ActiveRecord::Base
   attr_accessible :end_date, :name, :start_date
   belongs_to :project
 
-  has_many :todos
+  has_many :items
 
   validates :name, :presence => true
 

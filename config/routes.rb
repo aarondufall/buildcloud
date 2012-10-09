@@ -14,9 +14,9 @@ Buildcloud::Application.routes.draw do
     end
     
     resources :worklists do
-      resources :todos do
-        put 'complete_todo'
-        put 'incomplete_todo'
+      resources :items do
+        put 'complete_item'
+        put 'incomplete_item'
       end
     end
   end
