@@ -4,7 +4,7 @@ class Invite < ActiveRecord::Base
   attr_accessible :email, :token
 
   # Creating an invite:
-  # invite = account.invites.create target: project, ...
+  # account.invites.invite_to project, "test@example.com"
 
   def self.invite_email(invite_to, email)
     create target: invite_to, email: email

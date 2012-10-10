@@ -12,8 +12,6 @@ class Membership < ActiveRecord::Base
 
     included do
       has_many :memberships,  as: :target
-      has_many :member_users, through: :memberships, source: :user
-      has_many :member_teams, through: :memberships, source: :team
     end
 
     module ClassMethods

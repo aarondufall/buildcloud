@@ -10,5 +10,8 @@ class Team < ActiveRecord::Base
   	raise ActiveRecord::Rollback if self.users.include? user
   end
 
+  def give_user_access(user)
+    users << user
+  end
 
 end
