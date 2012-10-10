@@ -47,7 +47,6 @@ class User < ActiveRecord::Base
   private
     def add_invited_user_to_team
       #join team related to token
-
       token = self.created_by_token
       token.team.users << self
     end
