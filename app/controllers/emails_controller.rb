@@ -4,8 +4,8 @@ class EmailsController < ApplicationController
     respond_to do |format|
       format.json do
         matches = [new_contact]
-        matches += current_team.users.search_for_autocomplete(current_query).map(&:to_autocomplete_hash)
-        matches += current_team.contacts.search_for_autocomplete(current_query).map(&:to_autocomplete_hash)
+        matches += current_teams.users.search_for_autocomplete(current_query).map(&:to_autocomplete_hash)
+        matches += current_teams.contacts.search_for_autocomplete(current_query).map(&:to_autocomplete_hash)
         render json: matches
       end
     end

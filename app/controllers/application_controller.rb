@@ -7,7 +7,11 @@ class ApplicationController < ActionController::Base
   private
 
   def current_teams
-    current_user.teams
+    Account.accessible_by(current_user).collect { |account| account.teams  }
+  end
+
+  def current_accounts
+    current_account.memberships
   end
 
   def current_account

@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
     end
 
     def new_company_account_setup
-      self.create_account(:name => self.profile.company ).create_team(:name => self.profile.company ).users << self
+      self.create_account(:name => self.profile.company ).give_user_access(self)
     end
 
 end
