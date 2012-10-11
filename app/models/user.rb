@@ -16,9 +16,9 @@ class User < ActiveRecord::Base
   attr_accessor :created_by_token
 
   has_and_belongs_to_many :teams
-  has_many :projects, :through => :teams
   has_many :follow_ups
   has_one :account, :dependent => :destroy
+  has_many :memberships, :class_name => "Membership", :foreign_key => "user_id"
 
 
   has_one :profile

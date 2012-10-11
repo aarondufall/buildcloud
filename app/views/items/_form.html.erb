@@ -7,5 +7,5 @@
   <div><%= form.date_select :scheduled, {:prompt => true}, :class => 'date-field'  %></div>
   <div><%= form.time_select :scheduled,  {:minute_step => 15, :ignore_date => true, :ampm => true, :prompt => {:hour => 'Hour', :minute => 'Minutes'}}, :class => 'date-field' %></div>
   <%= form.label 'assigned_to (optional)' %>
-  <div><%= form.select :assigned_to_id , @project.memberships.all.collect{|user| [user.profile.name, user.id]}, {:include_blank => 'Unassigned'} %></div>
+  <div><%= form.select :assigned_to_id , @project.memberships.collect{|member| [member.user.profile.name, member.user.id]}, {:include_blank => 'Unassigned'} %></div>
 </div>

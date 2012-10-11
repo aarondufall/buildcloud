@@ -1,11 +1,11 @@
 <%= render 'error_messages' %>
 <div class="row">
   <div class="span4 offset4">
-    <h3> New To-do </h3><br />
+    <h3> New Item </h3><br />
     <%= form_for [@project, @worklist, @item] do |f| %>
       <%= hidden_field_tag :from, params[:from] %>
       <%= render :partial => "form", :object => f %>
-      <%= f.submit "Create To-do", :class => 'btn btn-primary' %>
+      <%= f.submit "Create Item", :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', @worklist.project, :class => 'btn'%>
     <% end %>
   </div>

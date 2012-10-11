@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   has_many :worklists, :dependent => :destroy
   has_many :items,     :through => :worklists
   has_many :issues
+   
 
   include Membership::HasMembersMixin
 

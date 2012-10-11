@@ -11,5 +11,5 @@
 <% end %>
 <br />
 
-<div><%= form.select :assigned_to_id , @project.team.users.all.collect{|user| [user.profile.name, user.id]}, {:include_blank => 'Unassigned'} %></div>
+<div><%= form.select :assigned_to_id , @project.memberships.collect{|member| [member.user.profile.name, member.user.id]}, {:include_blank => 'Unassigned'} %></div>
 

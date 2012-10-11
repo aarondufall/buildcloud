@@ -3,11 +3,11 @@ class ProjectsController < ApplicationController
 	respond_to :html
 
 	def index
-		@projects = current_projects.all
+		@projects = current_projects
 	end
 
 	def show
-		@project = Project.find(params[:id])
+		@project = current_projects.find(params[:id])
 		@worklists = @project.worklists
 	end
 
