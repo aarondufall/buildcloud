@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_team
+  helper_method :current_account
  
 
   private
@@ -10,12 +10,12 @@ class ApplicationController < ActionController::Base
     current_user.teams
   end
 
-  def current_team
-    current_user.account.team
+  def current_account
+    current_user.account
   end
 
   def current_projects
-    current_user.projects
+    current_user.account.projects
   end
 
   def current_project

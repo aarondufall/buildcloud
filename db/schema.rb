@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121010105736) do
+ActiveRecord::Schema.define(:version => 20121011015657) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(:version => 20121010105736) do
 
   add_index "follow_ups", ["followed_up_by_id"], :name => "index_follow_ups_on_followed_up_by_id"
   add_index "follow_ups", ["issue_id"], :name => "index_follow_ups_on_issue_id"
+
+  create_table "invites", :force => true do |t|
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.integer  "account_id"
+    t.string   "email"
+    t.string   "token"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "invites", ["target_id"], :name => "index_invites_on_target_id"
 
   create_table "issue_recipients", :force => true do |t|
     t.integer  "issue_id"
@@ -112,7 +124,7 @@ ActiveRecord::Schema.define(:version => 20121010105736) do
     t.integer  "created_by"
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
-    t.integer  "team_id"
+    t.integer  "account_id"
   end
 
   create_table "teams", :force => true do |t|

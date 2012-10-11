@@ -7,19 +7,20 @@ class ProjectsController < ApplicationController
 	end
 
 	def show
-		@project = current_projects.find(params[:id])
+		@project = Project.find(params[:id])
 		@worklists = @project.worklists
 	end
 
 	def new
-		@team    = current_team
-		@project = @team.projects.build
+		@account    = current_account
+		@project = @account.projects.build
 	end
 
 	def create
-		@team    = current_team
-		@project = @team.projects.build(params[:project])
+		@account = current_account
+		@project = @account.projects.build(params[:project])
 		if @project.save
+			@project.give_user_access(current_user)
 			flash[:success] = "Added new project #{@project.name}"
 			redirect_to @project
 		else

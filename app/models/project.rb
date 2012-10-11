@@ -2,9 +2,10 @@ class Project < ActiveRecord::Base
 
   attr_accessible :created_by, :job_number, :name
 
-  belongs_to :team
+  belongs_to :account
+
   has_many :worklists, :dependent => :destroy
-  has_many :items, :through => :worklists
+  has_many :items,     :through => :worklists
   has_many :issues
 
   include Membership::HasMembersMixin
@@ -14,6 +15,6 @@ class Project < ActiveRecord::Base
     user.team_ids.presence && arel_table[:team_id].in(user.team_ids)
   end
 
-  validates :team, presence: true
+  
 
 end
