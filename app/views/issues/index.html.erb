@@ -1,15 +1,15 @@
-<h3><%= link_to @project.name, @project %> <i class="icon-arrow-right"></i> Issues </h3>
+<h3><%= link_to  @project.name, [current_account, @project] %> <i class="icon-arrow-right"></i> Issues </h3>
 <hr />
 
 <ul class="nav nav-tabs">
   <%= navbar_entry open_issues? do %>
-    <%= link_to 'open', project_issues_path(@project) %>
+    <%= link_to 'open', account_project_issues_path(current_account, @project) %>
   <% end %>
   <%= navbar_entry closed_issues? do %>
-    <%= link_to 'closed', project_issues_path(@project, filter: "closed") %>
+    <%= link_to 'closed', account_project_issues_path(current_account, @project, filter: "closed") %>
   <% end %>
   <li class="pull-right">
-    <%= link_to 'New Issue', new_project_issue_path(@project) %>
+    <%= link_to 'New Issue', new_account_project_issue_path(current_account, @project) %>
   </li>
 
 </ul>

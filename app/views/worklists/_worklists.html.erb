@@ -11,7 +11,7 @@
     <% if worklist.items.none? %>
       <tr>
         <td>
-          Let's get started and add some tasks to the list
+          Let's get started and add some items to the list
         </td>
       </tr>
     <% elsif worklist.items.incomplete.none? %>
@@ -33,7 +33,7 @@
     <% end %>
     <tr>
       <td>
-        <%= link_to new_project_worklist_item_path(@project, worklist, :from => controller.controller_name )  do%>
+        <%= link_to new_account_project_worklist_item_path(current_account, @project, worklist, :from => controller.controller_name )  do%>
           <i class="icon-plus"></i> Add Item
         <% end %>
       </td>

@@ -1,11 +1,11 @@
-<%= link_to issue.title, [project, issue], :class => 'item-list' %>
+<%= link_to issue.title, [current_account, project, issue], :class => 'item-list' %>
               
 <span class="label label-important"><%= issue.issue_type %></span>
 <% if issue.closed_at.nil? %>
-  <%= link_to 'Close', [project, issue, :close_issue], :class => 'btn btn-success btn-mini pull-right btn-gap', 
+  <%= link_to 'Close', [current_account, project, issue, :close_issue], :class => 'btn btn-success btn-mini pull-right btn-gap', 
                                                        :method => 'put'%>
 <% else %>
-  <%= link_to 'Reopen', [project, issue, :reopen_issue], :class => 'btn btn-info btn-mini pull-right btn-gap', 
+  <%= link_to 'Reopen', [current_account, project, issue, :reopen_issue], :class => 'btn btn-info btn-mini pull-right btn-gap', 
                                                        :method => 'put'%> 
  
   <% unless issue.closed_at.nil? %>
@@ -14,7 +14,7 @@
  
 <% end %>                                                                                                      
 
-<%= link_to 'Follow up', project_issue_follow_ups_path(project, issue), :method => :post, :class => 'btn btn-warning pull-right btn-mini btn-gap' %>
+<%= link_to 'Follow up', account_project_issue_follow_ups_path(current_account, project, issue), :method => :post, :class => 'btn btn-warning pull-right btn-mini btn-gap' %>
               
 <div class="notes">
   <% unless title == true %>

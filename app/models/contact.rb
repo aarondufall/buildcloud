@@ -1,7 +1,7 @@
 class Contact < ActiveRecord::Base
   attr_accessible :address, :company, :email, :first_name, :last_name, :phone
-  belongs_to :team
-  validates :team, presence: true
+  belongs_to :account
+  validates :account, presence: true
   validates :email, presence: true
 
   # before_save :store_display_name

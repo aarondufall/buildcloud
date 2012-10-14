@@ -2,7 +2,7 @@
 
 <%= render_project_menu @project %>
 <div class="navlist">
-   Lists <%= link_to 'Add list', new_project_worklist_path(@project), :class => 'btn btn-mini' %>
+   Lists <%= link_to 'Add list', new_account_project_worklist_path(current_account, @project), :class => 'btn btn-mini' %>
 </div>
 
 <%= render_worklists @project.worklists %>

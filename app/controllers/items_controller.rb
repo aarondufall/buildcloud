@@ -17,7 +17,7 @@ class ItemsController < ApplicationController
 		@item = @worklist.items.build(params[:item])
 		@item.created_by = current_user
 		if @item.save
-			flash[:success] = "Added new item to #{@worklist.name} created"
+			flash[:success] = "Added new item to #{@worklist.name}"
 			redirect_to post_creation_path(@project, @worklist)
 		else
 			render 'new'
@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
 		@item = @worklist.items.find(params[:id])
 		if @item.update_attributes(params[:item])
 			flash[:success] = "item for #{@worklist.name} updated"
-			redirect_to [@worklist.project, @worklist, @item]
+			redirect_to [current_account, @worklist.project, @worklist, @item]
 		else
 			flash[:error] = "Failed"
 			render 'new'

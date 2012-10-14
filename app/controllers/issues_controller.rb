@@ -32,7 +32,7 @@ class IssuesController < ApplicationController
 
 		if @issue.save
 			flash[:success] = "Issue successfully logged"
-			redirect_to project_issue_path(@project, @issue)
+			redirect_to account_project_issue_path(current_account, @project, @issue)
 		else
 			render 'new'
 		end

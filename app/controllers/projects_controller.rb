@@ -7,22 +7,22 @@ class ProjectsController < ApplicationController
 	end
 
 	def show
-		@project = current_projects.find(params[:id])
+		@project   = current_projects.find(params[:id])
 		@worklists = @project.worklists
 	end
 
 	def new
-		@account    = current_account
+		@account = current_owned_account
 		@project = @account.projects.build
 	end
 
 	def create
-		@account = current_account
+		@account = current_owned_account
 		@project = @account.projects.build(params[:project])
 		if @project.save
 			@project.give_user_access(current_user)
 			flash[:success] = "Added new project #{@project.name}"
-			redirect_to @project
+			redirect_to [current_account, @project]
 		else
 			render 'new'
 		end
@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
 		@project = current_projects.find(params[:id])
 		if @project.update_attributes(params[:project])
 			flash[:success] = "project sucessfully updated"
-			redirect_to projects_path
+			redirect_to account_projects_path(current_account)
 		else
 			flash[:error] = "project failed to update"
 			render 'edit'
@@ -48,7 +48,7 @@ class ProjectsController < ApplicationController
 	def destroy
 		current_projects.find(params[:id]).destroy
 		flash[:success] = "Project deleteed."
-  	redirect_to projects_path
+  		redirect_to [current_account, @project]
 	end
 
 end

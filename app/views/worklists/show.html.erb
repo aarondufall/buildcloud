@@ -1,7 +1,7 @@
 
 <h3>
-  <%= link_to @project.name, @project %>
-  <i class="icon-arrow-right"></i> <%= link_to 'To-do Lists', [@project, :worklists] %>
+  <%= link_to @project.name, [current_account, @project] %>
+  <i class="icon-arrow-right"></i> <%= link_to 'Item Lists', [current_account, @project, :worklists] %>
   <i class="icon-arrow-right"></i> <%= @worklist.name %>
 </h3>
 <hr />
@@ -9,14 +9,14 @@
 
 <ul class="nav nav-tabs">
   <%= navbar_entry active_items? do %>
-    <%= link_to 'Active', [@project, @worklist] %>
+    <%= link_to 'Active', [current_account, @project, @worklist] %>
   <% end %>
   <%= navbar_entry completed_items? do %>
-    <%= link_to 'Completed', project_worklist_path(@project, @worklist, filter: "completed") %>
+    <%= link_to 'Completed', account_project_worklist_path(current_account, @project, @worklist, filter: "completed") %>
   <% end %>
 
   <li class="pull-right">
-    <%= link_to [:edit, @project, @worklist], :method => 'get' do %>
+    <%= link_to [:edit, current_account, @project, @worklist], :method => 'get' do %>
       <i class="icon-pencil icon-white"></i> Edit List
     <% end %>
   </li>
@@ -56,7 +56,7 @@
     <% end %>
     <tr>
       <td>
-        <%= link_to [:new, @project, @worklist, :item]  do%>
+        <%= link_to [:new,current_account, @project, @worklist, :item]  do%>
           <i class="icon-plus"></i> Add to-do
         <% end %>
       </td>

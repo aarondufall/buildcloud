@@ -2,11 +2,11 @@
 <div class="row">
   <div class="span4 offset4">
     <h3> New Item </h3><br />
-    <%= form_for [@project, @worklist, @item] do |f| %>
+    <%= form_for [current_account, @project, @worklist, @item] do |f| %>
       <%= hidden_field_tag :from, params[:from] %>
       <%= render :partial => "form", :object => f %>
       <%= f.submit "Create Item", :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', @worklist.project, :class => 'btn'%>
+      <%= link_to 'Cancel', [current_account, @worklist.project], :class => 'btn'%>
     <% end %>
   </div>
 </div>

@@ -4,30 +4,32 @@ Buildcloud::Application.routes.draw do
   put '/invite/:token', to: 'invites#update'
 
 
-  resources :accounts
-
-  resources :projects do
-    resources :issues do
-      put 'close_issue'
-      put 'reopen_issue'
-      resources :follow_ups
-    end
-
-    resources :worklists do
-      resources :items do
-        put 'complete_item'
-        put 'incomplete_item'
+  
+  resources :accounts do
+    resources :contacts
+    resources :teams
+    resources :projects do
+      resources :worklists do
+        resources :items do
+          put 'complete_item'
+          put 'incomplete_item'
+        end
+      end
+      resources :issues do
+        put 'close_issue'
+        put 'reopen_issue'
+        resources :follow_ups
       end
     end
   end
+
+    
 
   resources :profiles
 
   resources :emails, only: [:index]
 
-  resources :teams do
-    resources :contacts
-  end
+  
 
   devise_for :users,
              :controllers => { :registrations => "registrations" }

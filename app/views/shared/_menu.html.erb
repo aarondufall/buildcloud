@@ -2,7 +2,7 @@
 <div class="project-nav">
   <ul class="nav nav-tabs ">
     <li>
-      <%= link_to project_worklists_path(project) do %>
+      <%= link_to account_project_worklists_path(current_account, project) do %>
         Item Lists
         <% if (count = project.items.incomplete.count).nonzero? %>
           <span class="badge"><%= count %></span>
@@ -10,7 +10,7 @@
       <% end %>
     </li>
     <li>
-      <%= link_to project_issues_path(project) do %>
+      <%= link_to account_project_issues_path(current_account, project) do %>
         Issues
         <% if (count = project.issues.opened.count).nonzero? %>
           <span class="badge"><%= count %></span>

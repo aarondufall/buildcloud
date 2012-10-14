@@ -5,11 +5,10 @@
 
 <%= form.label :email_tokens, "Who to notify:" %>
 <%= form.text_field :email_tokens, "data-email-details" => form.object.current_email_details.to_json %>
-
-<% ["RFI", "Completion of works", "Rectification", "Out of Scope", "Snag Item"].each do |item| %>
-  <%= form.radio_button :issue_type, item %> <%= item %><br />
-<% end %>
 <br />
+<%= form.label :issue_type, "Type of issue" %>
+<%= form.select :issue_type, ["RFI", "Completion of works", "Rectification", "Out of Scope", "Snag Item"] %> <br />
+
 
 <div><%= form.select :assigned_to_id , @project.memberships.collect{|member| [member.user.profile.name, member.user.id]}, {:include_blank => 'Unassigned'} %></div>
 

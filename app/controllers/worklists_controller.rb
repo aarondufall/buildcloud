@@ -24,7 +24,7 @@ class WorklistsController < ApplicationController
 		@worklist = current_worklists.build(params[:worklist])
 		if @worklist.save
 			flash[:success] = "Added new worklist #{@worklist.name} created"
-			redirect_to current_project
+			redirect_to [current_account, current_project]
 		else
 			render 'new'
 		end

@@ -7,15 +7,16 @@ class ApplicationController < ActionController::Base
   private
 
   def current_teams
-    Account.accessible_by(current_user).collect { |account| account.teams  }
+    current_user.teams
   end
 
-  def current_accounts
-    current_account.memberships
+  def current_account_memberships
+    Account.accessible_by(current_user)
   end
 
   def current_account
-    current_user.account
+    #need to refactor to be able to select accounts for project creation
+    current_account_memberships.first
   end
 
   def current_projects
@@ -36,9 +37,9 @@ class ApplicationController < ActionController::Base
 
   def post_creation_path(project, worklist)
     case params[:from]
-    when "projects"    then project_path(project)
-    when "worklists" then project_worklists_path(project)
-    else project_worklist_path(project, worklist)
+    when "projects"    then account_project_path(current_account, project)
+    when "worklists" then account_project_worklists_path(current_account, project)
+    else account_project_worklist_path(current_account, project, worklist)
     end
   end
 

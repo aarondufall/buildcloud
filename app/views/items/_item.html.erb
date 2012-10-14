@@ -1,17 +1,17 @@
-<%= link_to item.name, [@project, worklist, item], :class => 'item-list' %>
+<%= link_to item.name, [current_account, @project, worklist, item], :class => 'item-list' %>
 <% if item.completed_at %>
       Completed <%= distance_of_time_in_words_to_now(item.completed_at) %> ago.
 <% end %>
               
-<%= link_to 'Issue', new_project_issue_path(@project, :item_id => item.id), 
+<%= link_to 'Issue', new_account_project_issue_path(current_account, @project, :item_id => item.id), 
                                                       :class => 'btn btn-warning btn-mini pull-right btn-gap' %>
 <% if item.completed_at.nil? %>
-  <%= link_to [@project, worklist, item, :complete_item], :class => 'btn btn-mini btn-success pull-right btn-gap', 
+  <%= link_to [current_account, @project, worklist, item, :complete_item], :class => 'btn btn-mini btn-success pull-right btn-gap', 
                                                           :method => 'put' do %>
       <i class="icon-ok icon-white"></i> Done
   <% end %>
 <% else %>
-  <%= link_to [@project, worklist, item, :incomplete_item], :class => 'btn btn-mini btn-info pull-right btn-gap', 
+  <%= link_to [current_account, @project, worklist, item, :incomplete_item], :class => 'btn btn-mini btn-info pull-right btn-gap', 
                                                           :method => 'put' do %>
       <i class="icon-remove icon-white"></i> Uncompleted
   <% end %>
