@@ -38,6 +38,11 @@ class IssuesController < ApplicationController
 		end
 	end
 
+	def edit
+		@project = current_project
+		@issue = @project.issues.find(params[:id]) 
+	end
+
 
 	def close_issue
 		@project = current_project

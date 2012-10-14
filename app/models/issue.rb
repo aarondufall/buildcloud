@@ -26,7 +26,7 @@ class Issue < ActiveRecord::Base
   end
 
   def emails=(value)
-    self.recipients = recipients.from_emails(Array(value), project.memberships.collect { |member| [member.user.profile.name, member.user] })
+    self.recipients = recipients.from_emails(Array(value), project.account )
     @emails = recipients.map(&:email)
   end
 
