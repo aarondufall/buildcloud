@@ -5,6 +5,7 @@ class Account < ActiveRecord::Base
   has_many :invites
   has_many :projects
   has_many :contacts
+  has_many :users, through: :memberships
 
 
   include Membership::HasMembersMixin
