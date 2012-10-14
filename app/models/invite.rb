@@ -1,13 +1,14 @@
 class Invite < ActiveRecord::Base
   belongs_to :target, polymorphic: true
   belongs_to :account
-  attr_accessible :email, :token
+  attr_accessible :email, :token, :target
 
   # Creating an invite:
   # account.invites.invite_to project, "test@example.com"
 
-  def self.invite_email(invite_to, email)
+  def self.invite_to(invite_to, email)
     create target: invite_to, email: email
+    #generate token
   end
 
   # Creating user:
