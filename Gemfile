@@ -11,6 +11,7 @@ gem "twitter-bootstrap-rails"
 
 gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate', '0.0.6'
+gem 'unique_generator', '~> 1.0'
 
 
 

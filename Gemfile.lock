@@ -124,6 +124,8 @@ GEM
     uglifier (1.2.6)
       execjs (>= 0.3.0)
       multi_json (~> 1.3)
+    unique_generator (1.0.0)
+      activesupport
     warden (1.1.1)
       rack (>= 1.0)
     will_paginate (3.0.3)
@@ -144,4 +146,5 @@ DEPENDENCIES
   sunspot_solr
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
+  unique_generator (~> 1.0)
   will_paginate (~> 3.0)
