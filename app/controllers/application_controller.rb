@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    projects_path
+    account_projects_path(current_account)
   end
 
   def post_creation_path(project, worklist)
