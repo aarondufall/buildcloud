@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
 	respond_to :html
 
 	def index
-		@projects = current_projects
+		@projects = current_account.projects.all
 	end
 
 	def show

@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_projects
-    Project.accessible_by(current_user)
+    current_account.projects
   end
 
   def current_project
