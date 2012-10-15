@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="span6 offset3">
+    <h3> Invite more users to <%= @project.name %> </h3><br />
+    <%= form_for [current_account, @project, @invite] do |f| %>
+      <%= render :partial => "form", :object => f %>
+      <%= f.submit "Send Invite", :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', :back, :class => 'btn'%>
+    <% end %>
+  </div>
+</div>

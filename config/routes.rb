@@ -1,5 +1,6 @@
 Buildcloud::Application.routes.draw do
 
+
   get '/invite/:token', to: 'invites#show', as: :invite
   put '/invite/:token', to: 'invites#update'
 
@@ -9,6 +10,7 @@ Buildcloud::Application.routes.draw do
     resources :contacts
     resources :teams
     resources :projects do
+      resource :invites
       resources :worklists do
         resources :items do
           put 'complete_item'

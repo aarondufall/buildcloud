@@ -50,6 +50,9 @@ class ProjectsController < ApplicationController
 		flash[:success] = "Project deleted."
   		redirect_to [current_account, @project]
 	end
+
+	def invite
+	end
 end
 
 

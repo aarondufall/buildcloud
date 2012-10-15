@@ -1,4 +1,4 @@
-<h3><%= @project.name %></h3>
+<h3><%= @project.name %></h3><span class="pull right"><%= link_to 'Invite more users', new_account_project_invites_path(current_account, @project) %></span>
 
 <%= render_project_menu @project %>
 <div class="navlist">
