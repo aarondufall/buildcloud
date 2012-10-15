@@ -1,4 +1,5 @@
 class Invite < ActiveRecord::Base
+  before_create :generate_invite_token
   belongs_to :target, polymorphic: true
   belongs_to :account
   attr_accessible :email, :token, :target
@@ -10,6 +11,11 @@ class Invite < ActiveRecord::Base
     create target: invite_to, email: email
     #generate token
   end
+
+  def generate_invite_token
+    generate_unique_field! :token, 32 if token.blank?
+  end
+
 
   # Creating user:
   # user = invite.account.users.create(params[:user])
