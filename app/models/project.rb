@@ -14,7 +14,7 @@ class Project < ActiveRecord::Base
 
   def self.directly_accessible_by(user)
     # arel_table[:owner_id].eq(user.id)
-    user.team_ids.presence && arel_table[:team_id].in(user.team_ids)
+    # user.team_ids.presence && arel_table[:team_id].in(user.team_ids)
   end
 
   
