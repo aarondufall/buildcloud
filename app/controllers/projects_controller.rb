@@ -12,12 +12,12 @@ class ProjectsController < ApplicationController
 	end
 
 	def new
-		@account = current_owned_account
+		@account = current_account
 		@project = @account.projects.build
 	end
 
 	def create
-		@account = current_owned_account
+		@account = current_account
 		@project = @account.projects.build(params[:project])
 		if @project.save
 			@project.give_user_access(current_user)
