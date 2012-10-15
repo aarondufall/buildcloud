@@ -32,10 +32,13 @@ Buildcloud::Application.routes.draw do
   
 
   devise_for :users,
-             :controllers => { :registrations => "registrations" }
+             :controllers => { :registrations => "registrations" } do 
+              get '/users/sign_out' => 'devise/sessions#destroy' 
+  end
 
 
-  resources  :users, :only => [:index, :show] do
+
+  resources  :users, :only => [:index] do
     member do
         put 'add_to_team'
         put 'remove_from_team'
