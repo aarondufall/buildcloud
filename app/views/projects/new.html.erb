@@ -2,7 +2,7 @@
  <div class="row">
   	<div class="span4 offset4">
   	<div class="well">
-  	<%= form_for @project do |f| %>
+  	<%= form_for [@account, @project] do |f| %>
 
   	<%= f.text_field :name, :placeholder => 'Enter Project Name' %>
     
@@ -11,7 +11,7 @@
 	</div>
 	
   <%= f.submit "Create Project", :class => 'btn btn-primary' %>
-  <%= link_to 'Cancel', projects_path, :class => 'btn' %>
+  <%= link_to 'Cancel', account_projects_path(current_account), :class => 'btn' %>
 
 <% end %>
 
