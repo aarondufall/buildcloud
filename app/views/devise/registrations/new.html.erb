@@ -2,6 +2,11 @@
 <div class="row">
   	<div class="span4 offset4">
     <% resource.build_profile %>
+    <% if @invite.nil? %>
+      <% invite = 'empty' %>
+    <% else %>
+      <% invite = @invite.email %>
+    <% end %>
 		<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   			<%= devise_error_messages! %>
 
@@ -15,7 +20,7 @@
         <% end %>
 
   			<div><%= f.label :email %><br />
-  			<%= f.email_field :email %></div>
+  			<%= f.email_field :email, value: invite %></div>
 
   			<div><%= f.label :password %><br />
  			<%= f.password_field :password %></div>
