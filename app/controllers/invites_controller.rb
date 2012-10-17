@@ -1,6 +1,8 @@
 class InvitesController < ApplicationController
 	def show
-		@invite = Invite.find_by_token(params[:token])	
+		@invite = Invite.find_by_token(params[:token])
+		session[:invite] = @invite.id
+		redirect_to new_user_registration_path
 	end
 
 	def new
