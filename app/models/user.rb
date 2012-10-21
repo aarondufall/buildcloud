@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
   # after_create :add_invited_user_to_team, unless: :created_by_token
-  after_create :new_company_account_setup, unless: :created_by_token
+  # after_create :new_company_account_setup, unless: :created_by_token
   before_destroy { teams.clear }
-
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
