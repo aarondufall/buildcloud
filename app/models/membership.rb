@@ -12,6 +12,7 @@ class Membership < ActiveRecord::Base
 
     included do
       has_many :memberships,  as: :target
+      has_many :users, through: :memberships
     end
 
     module ClassMethods
@@ -31,7 +32,7 @@ class Membership < ActiveRecord::Base
     end
 
     def has_access?(user)
-      memberships.for_user_or_their_teams(user).exists?
+      memberships.for_user_directly(user).exists?
     end
 
     def give_user_access(user)
