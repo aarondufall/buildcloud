@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_account
-    #need to refactor to be able to select accounts for project creation
+    #TODO need to refactor to be able to select accounts for project creation
     current_account_memberships.first
   end
 
