@@ -1,7 +1,7 @@
-<h3><%= link_to @project.name, @project %></h3>
+<h3><%= link_to @project.name, [current_account, @project] %></h3>
 <%= render_project_menu @project %>
 
-  <div class="pull-right navlist"> <%= link_to [:edit, @project, @worklist, @item], :class => 'btn',
+  <div class="pull-right navlist"> <%= link_to [:edit, current_account, @project, @worklist, @item], :class => 'btn',
                                                :method => 'get' do %>
             <i class="icon-pencil icon-white"></i> Edit To-do
           <% end %></div>
