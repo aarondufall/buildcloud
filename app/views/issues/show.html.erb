@@ -31,7 +31,7 @@
                   Created by <%= link_to @issue.created_by.profile.name, '#' %> <%= relative_date(@issue.created_at) %>
                 <% end %>
                 <% unless @issue.item.nil? %>
-                  To-do <%= link_to @issue.item.name, [@project, @issue.item.worklist, @issue.item] %>
+                  To-do <%= link_to @issue.item.name, [current_account, @project, @issue.item.worklist, @issue.item] %>
                 <% end %>
               </div>
           </td>

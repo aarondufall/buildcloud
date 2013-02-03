@@ -1,4 +1,6 @@
-<%= link_to issue.item.name, "#" %>
+<%unless issue.item.nil? %>
+  <%= link_to issue.item.name, "#" %>
+<% end %>
 <%= link_to issue.title, [current_account, project, issue], :class => 'item-list' %>
               
 <span class="label label-important"><%= issue.issue_type %></span>
@@ -21,9 +23,6 @@
   <% unless title == true %>
     <% unless issue.created_by.nil? %>
      Created by <%= link_to issue.created_by.profile.name, '#' %> <%= relative_date(issue.created_at) %>
-    <% end %>
-    <% unless issue.item.nil? %>
-      for To-do <%= link_to issue.item.name, [@project, issue.item.worklist, issue.item] %>
     <% end %>
   <% end %>
 </div>
