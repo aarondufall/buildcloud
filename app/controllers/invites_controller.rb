@@ -14,9 +14,11 @@ class InvitesController < ApplicationController
 	def create
 		@account = current_account_memberships.find(params[:account_id])
 		@project = current_projects.find(params[:project_id]) 
-		@invite = @account.invites.invite_to(@project, params[:invite][:email])
-		flash[:notice] = "Invite sent"
-		redirect_to [@account, @project]
+		if @invite = @account.invites.invite_to(@project, params[:invite][:email])
+			InviteMailer.send_invite(@invite).deliver
+			flash[:notice] = "Invite sent"
+			redirect_to [@account, @project]
+		end
 	end
 	
 end

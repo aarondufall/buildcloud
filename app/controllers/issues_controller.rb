@@ -31,6 +31,7 @@ class IssuesController < ApplicationController
 		end
 
 		if @issue.save
+			IssueMailer.issue_notice(@issue).deliver
 			flash[:success] = "Issue successfully logged"
 			redirect_to account_project_issue_path(current_account, @project, @issue)
 		else

@@ -4,6 +4,7 @@ class FollowUpsController < ApplicationController
 		@follow_up = @issue.follow_ups.build(params[:issue])
 		@follow_up.followed_up_by = current_user
 		if @follow_up.save
+			IssueMailer.issue_notice(@issue).deliver
 			flash[:sucess] = "A follow up e-mail has been sent for this issue"
 		else
 			flash[:error] = "failed"
