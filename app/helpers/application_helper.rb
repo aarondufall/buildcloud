@@ -15,4 +15,9 @@ module ApplicationHelper
     content_tag :li, capture(&block), options
   end
 
+  def relative_date(from, relative_to = Time.now)
+    duration_text = distance_of_time_in_words relative_to, from
+    content_tag :abbr, duration_text, :class => "relative-date", :title => l(from, :format => :long)
+  end
+
 end

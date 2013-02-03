@@ -15,10 +15,7 @@ def formatted_worklist_end_date(worklist)
     output
   end
 
-  def relative_date(from, relative_to = Time.now)
-    duration_text = distance_of_time_in_words relative_to, from
-    content_tag :abbr, duration_text, :class => "relative-date", :title => l(from, :format => :long)
-  end
+  
 
   def render_worklists(worklists)
   	render partial: 'worklists/worklists', locals: {worklists: worklists}
