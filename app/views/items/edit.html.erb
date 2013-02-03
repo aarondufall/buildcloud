@@ -3,10 +3,10 @@
  <div class="row">
   <div class="span4 offset4">
   <h3> Edit To-do </h3><br />
-  <%= form_for [@project, @worklist, @item] do |f| %>
+  <%= form_for [current_account, @project, @worklist, @item] do |f| %>
     <%= render :partial => "form", :object => f %>
     <%= f.submit "Update To-do", :class => 'btn btn-primary' %>
-    <%= link_to 'Cancel', [@worklist.project, @worklist, @item], :class => 'btn'%>
+    <%= link_to 'Cancel', [current_account, @worklist.project, @worklist, @item], :class => 'btn'%>
   <% end %>
  </div>
 </div>
