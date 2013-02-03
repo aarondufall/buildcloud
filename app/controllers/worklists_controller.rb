@@ -39,7 +39,7 @@ class WorklistsController < ApplicationController
 		@worklist = current_worklists.find(params[:id])
 		if @worklist.update_attributes(params[:worklist])
 			flash[:success] = "List sucessfully updated"
-			redirect_to [@worklist.project, @worklist]
+			redirect_to [current_account, @worklist.project, @worklist]
 		else
 			flash[:error] = "List failed to update"
 			render 'edit'
